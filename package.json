@@ -1,4 +1,4 @@
-
+{
   "name": "fundamor-api",
   "version": "1.0.0",
   "description": "api para proyecto fundamor ",
@@ -33,4 +33,3 @@
     "nodemon": "^2.0.12"
   }
 }
-
