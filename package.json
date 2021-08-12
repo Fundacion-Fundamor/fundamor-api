@@ -1,0 +1,27 @@
+{
+  "name": "fundamorapi",
+  "version": "1.0.0",
+  "description": "api para proyecto fundamor ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon .",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andre101011/fundamor-api.git"
+  },
+  "author": "Andres Llinas, Neyder Figueroa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andre101011/fundamor-api/issues"
+  },
+  "homepage": "https://github.com/andre101011/fundamor-api#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
