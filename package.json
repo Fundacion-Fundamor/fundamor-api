@@ -1,7 +1,7 @@
-{
+
   "name": "fundamor-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "api para proyecto fundamor ",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/andre101011/fundamor-api.git"
   },
-  "author": "",
+  "author": "Andres Llinas, Neyder Figueroa",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/andre101011/fundamor-api/issues"
@@ -33,3 +33,4 @@
     "nodemon": "^2.0.12"
   }
 }
+
