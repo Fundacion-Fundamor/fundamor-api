@@ -9,6 +9,11 @@
         "ecmaVersion": 12
     },
     "rules": {
+        "brace-style": "error",
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
         "semi-style": [
             "error",
             "last"
