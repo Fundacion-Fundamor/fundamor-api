@@ -1,13 +1,9 @@
-const config = require ("./src/config");
+const config = require("./src/config");
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => {
-	res.send("Hello World!");
-});
-
 //enable express.json (in the request the header should be application/json)
-app.use(express.json({extended: true}));
+app.use(express.json({ extended: true }));
 
 app.use("/api/employees", require("./routes/employees"));
 // app.use("/api/animals", require("./routes/animals"));
@@ -18,5 +14,5 @@ app.use("/api/employees", require("./routes/employees"));
 // app.use("/api/statistics", require("./routes/statistics"));
 
 app.listen(config.port, () => {
-	console.log(`App listening at http://localhost:${config.port}`);
+  console.log(`App listening at http://localhost:${config.port}`);
 });
