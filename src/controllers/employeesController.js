@@ -1,23 +1,29 @@
 exports.create = (req, res) => {
-	console.log(req.body);
-	res.send("Creating employee...");
+	res.status(200).json({
+		message:"Creating employee..."
+	});
 };
 
 exports.delete = (req, res) => {
-	console.log(req.body);
-	res.send("Deleting employee...");
+	res.status(200).json({
+		message:"Deleting employee..."
+	});
 };
 
 exports.get = (req, res) => {
-	console.log(req.body);
-	res.send("Getting employee...");
+	res.status(200).json({
+		message:"Getting employee..."
+	});
 };
 
 exports.update = (req, res) => {
 	console.log(req.body);
-	res.send("Updating employee...");
+	res.status(200).json({
+		message:"Updating employee..."
+	});
 };
 exports.list = (req, res) => {
-	console.log(req.body);
-	res.send("Listing employees...");
+	res.status(200).json({
+		message:"Listing employees..."
+	});
 };

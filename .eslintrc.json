@@ -9,6 +9,13 @@
         "ecmaVersion": 12
     },
     "rules": {
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
         "brace-style": "error",
         "comma-dangle": [
             "error",
