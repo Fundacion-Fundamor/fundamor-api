@@ -2,7 +2,8 @@
 "use strict";
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable("empleados", {
+		// Reminder: Table names must be singular nouns
+		await queryInterface.createTable("empleado", {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
@@ -23,6 +24,6 @@ module.exports = {
 		});
 	},
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable("empleados");
+		await queryInterface.dropTable("empleado");
 	}
 };
