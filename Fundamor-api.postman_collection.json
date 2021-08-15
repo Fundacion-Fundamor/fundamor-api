@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "5bfac9d9-b23a-4a17-8218-9cf988fc6d7d",
+		"name": "Fundamor-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "News",
+			"item": [
+				{
+					"name": "Create post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUGV0ZXIiLCJlbWFpbCI6InBldGVyQGV4YW1wbGUuY29tIn0sImlhdCI6MTYyODk4MjY5NiwiZXhwIjoxNjI4OTg0NDk2fQ.HXOB25jeIASY8SbD0iB0uSbA5lXIdf8Ibatv00W4GYw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/news/post",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"news",
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/auth//token",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
