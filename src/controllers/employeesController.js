@@ -1,29 +1,29 @@
 exports.create = (req, res) => {
 	res.status(200).json({
-		message:"Creating employee..."
+		message:"NOT IMPLEMENTED: Employee create"
 	});
 };
 
 exports.delete = (req, res) => {
 	res.status(200).json({
-		message:"Deleting employee..."
+		message:"NOT IMPLEMENTED: Employee delete"
 	});
 };
 
 exports.get = (req, res) => {
 	res.status(200).json({
-		message:"Getting employee..."
+		message:"NOT IMPLEMENTED: Employee get"
 	});
 };
 
 exports.update = (req, res) => {
 	console.log(req.body);
 	res.status(200).json({
-		message:"Updating employee..."
+		message:"NOT IMPLEMENTED: Employee update"
 	});
 };
 exports.list = (req, res) => {
 	res.status(200).json({
-		message:"Listing employees..."
+		message:"NOT IMPLEMENTED: Employee list"
 	});
 };
