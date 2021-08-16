@@ -4,12 +4,12 @@ const morgan = require("morgan");
 
 const employeesRoutes = require("./src/routes/employees");
 const authRoutes = require("./src/routes/auth");
-const newsRoutes= require("./src/routes/news");
+const newsRoutes = require("./src/routes/news");
+const foundationRoutes = require("./src/routes/foundations");
 
 // const animalsRoutes= require("./routes/animals");
 // const adoptionsRoutes= require("./routes/adoptions");
 // const adoptersRoutes= require("./routes/adopters");
-// const foundationRoutes= require("./routes/foundations");
 // const analyticsRoutes = require("./routes/analytics");
 //enable express.json (in the request the header should be application/json)
 
@@ -20,18 +20,19 @@ app.use(morgan("dev"));
 app.use("/api/employees", employeesRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/foundations", foundationRoutes);
 
 // app.use("/api/animals", animalsRoutes);
 // app.use("/api/adoptions", adoptionsRoutes);
 // app.use("/api/adopters", adoptersRoutes);
-// app.use("/api/foundations", foundationRoutes);
+
 // app.use("/api/analytics", analyticsRoutes);
 
 
 //app.use sets up middleware
-app.use((req, res, next)=>{
-	const error = new Error("Endpoint Not found"); 
-	error.status = 404; 
+app.use((req, res, next) => {
+	const error = new Error("Endpoint Not found");
+	error.status = 404;
 	next(error);
 });
 

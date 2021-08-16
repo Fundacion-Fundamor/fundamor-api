@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "",
-    "database": "fundamor_test",
+    "database": "fundamor_adopciones",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
