@@ -4,3 +4,29 @@ https://medium.com/@mwaysolutions/10-best-practices-for-better-restful-api-cbe81
 Authentication:
 https://stackoverflow.com/questions/48246853/best-way-to-handle-authentication-in-express/48249996
 
+
+
+------------------------------------------------------------
+HTTP RESPONSE STATUS CODES: https://httpstatuses.com/
+
+200 OK
+Todo lo que haya salido bien además de created
+
+201 CREATED
+Objeto creado 
+
+400 BAD REQUEST
+Cualquier otro error que pueda ser del cliente
+
+403 Forbidden
+Petición no autorizada
+
+404 NOT FOUND
+No encontrado
+
+409 CONFLICT
+Al insertar elementos que YA existen
+
+501 Not Implemented
+No se ha implementado el endpoint
+------------------------------------------------------------

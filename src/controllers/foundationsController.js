@@ -20,7 +20,7 @@ exports.create = async (req, res) => {
                 data: result.id_fundacion // id assigned
             });
         } else {
-            res.status(200).json({
+            res.status(409).json({
                 state: false,
                 message: "Ya existe una fundación registrada con este nombre"
 
@@ -51,9 +51,9 @@ exports.delete = async (req, res) => {
                 message: "La fundación se ha eliminado exitosamente"
             });
         } else {
-            res.status(200).json({
+            res.status(404).json({
                 state: false,
-                message: "La fundación se no existe"
+                message: "La fundación no existe"
             });
         }
 
@@ -83,7 +83,7 @@ exports.get = async (req, res) => {
                 data: searchResult
             });
         } else {
-            res.status(200).json({
+            res.status(404).json({
                 state: false,
                 message: "La fundación no existe"
 
@@ -110,7 +110,6 @@ exports.update = async (req, res) => {
                 {
                     [Op.ne]: req.body.id_fundacion
                 }
-
             }
         });
 
@@ -122,17 +121,16 @@ exports.update = async (req, res) => {
             });
 
 
-            res.status(201).json({
+            res.status(200).json({
                 state: true,
                 message: "Los datos de la fundación se han actualizado exitosamente",
                 data:searchResult
             });
 
         } else {
-            res.status(200).json({
+            res.status(409).json({
                 state: false,
                 message: "Ya existe una fundación registrada con este nombre"
-
             });
         }
 
@@ -160,7 +158,7 @@ exports.list = async (req, res) => {
                 data: searchResult
             });
         } else {
-            res.status(200).json({
+            res.status(404).json({
                 state: false,
                 message: "No existen registros en la base de datos"
 
