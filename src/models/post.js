@@ -15,15 +15,15 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	}
 	post.init({
-		id_noticia: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
+		id_publicacion: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
 		id_fundacion: { allowNull: false, type: DataTypes.INTEGER },
 		titulo: { type: DataTypes.STRING(200), allowNull: false },
 		cuerpo: { type: DataTypes.TEXT, allowNull: false },
-		fecha_creacion: { type: DataTypes.DATE, allowNull: false }
+		fecha_creacion: { type: DataTypes.DATE(6), allowNull: false }
 	}, {
 		sequelize,
 		modelName: "post",
-		tableName: "imagen_publicacion",
+		tableName: "publicacion",
 		timestamps: false
 	});
 	return post;

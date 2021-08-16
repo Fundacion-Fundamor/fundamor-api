@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	};
 	postImage.init({
-		id_imagen_noticia: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
-		id_noticia: { type: DataTypes.INTEGER, allowNull: false },
+		id_imagen_publicacion: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
+		id_publicacion: { type: DataTypes.INTEGER, allowNull: false },
 		ruta: { type: DataTypes.STRING(200), allowNull: false }
 	}, {
 		sequelize,

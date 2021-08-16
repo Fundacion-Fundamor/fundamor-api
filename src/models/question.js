@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	question.init({
 		id_pregunta: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
+		id_fundacion: { allowNull: false, type: DataTypes.INTEGER },
 		titulo: { type: DataTypes.STRING(100), allowNull: false },
-		respuesta: { type: DataTypes.STRING(70) },
-		tipo_pregunta: DataTypes.ENUM("arbierta", "multiple")
+		tipo_pregunta: { type: DataTypes.ENUM("arbierta", "multiple"), allowNull: false }
 	}, {
 		sequelize,
 		modelName: "question",
