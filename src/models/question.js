@@ -11,7 +11,19 @@ module.exports = (sequelize, DataTypes) => {
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			// define association here
+			console.log(models);
+			models.question.hasMany(models.adoptionQuestion, {
+				foreignKey: "id_pregunta",
+				as: "adoptionQuestion"
+			});
+			models.question.hasMany(models.questionOption, {
+				foreignKey: "id_pregunta",
+				as: "questionOption"
+			});
+			models.question.belongsTo(models.foundation, {
+				foreignKey: "id_fundacion"
+				
+			});
 		}
 	}
 	question.init({

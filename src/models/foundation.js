@@ -9,7 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 		static associate(models) {
-			// define association here
+			models.foundation.hasMany(models.employee, {
+				foreignKey: "id_fundacion",
+				as: "employee"
+			});
+			models.foundation.hasMany(models.post, {
+				foreignKey: "id_fundacion",
+				as: "post"
+			});
+			models.foundation.hasMany(models.animal, {
+				foreignKey: "id_fundacion",
+				as: "animal"
+			});
+			models.foundation.hasMany(models.question, {
+				foreignKey: "id_fundacion",
+				as: "question"
+			});
 		}
 	}
 	foundation.init({

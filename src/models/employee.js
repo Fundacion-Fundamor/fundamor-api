@@ -3,6 +3,7 @@
 const {
 	Model
 } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
 	class employee extends Model {
 		/**
@@ -11,7 +12,13 @@ module.exports = (sequelize, DataTypes) => {
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			// define association here
+			models.employee.belongsTo(models.foundation, {
+				foreignKey: "id_fundacion"
+			});
+			models.employee.hasMany(models.adoption, {
+				foreignKey: "id_empleado",
+				as: "adoption"
+			});
 		}
 	}
 	employee.init({
