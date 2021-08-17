@@ -2,20 +2,23 @@
 "use strict";
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable("postImages", {
+		await queryInterface.createTable("trackings", {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
-			id_noticia: {
+			id_adopcion: {
 				type: Sequelize.INTEGER
 			},
-			id_imagen_noticia: {
+			id_seguimiento: {
 				type: Sequelize.INTEGER
 			},
-			ruta: {
+			fecha_hora: {
+				type: Sequelize.DATE
+			},
+			anotaciones: {
 				type: Sequelize.STRING
 			},
 			createdAt: {
@@ -29,6 +32,6 @@ module.exports = {
 		});
 	}, // eslint-disable-next-line no-unused-vars
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable("postImages");
+		await queryInterface.dropTable("trackings");
 	}
 };

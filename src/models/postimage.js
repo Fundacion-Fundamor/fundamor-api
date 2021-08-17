@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			// define association here
 		}
-	};
+	}
 	postImage.init({
 		id_imagen_publicacion: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
 		id_publicacion: { type: DataTypes.INTEGER, allowNull: false },

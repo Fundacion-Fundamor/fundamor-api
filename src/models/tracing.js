@@ -4,7 +4,7 @@ const {
 	Model
 } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-	class tracing extends Model {
+	class tracking extends Model {
 		/**
 		 * Helper method for defining associations.
 		 * This method is not a part of Sequelize lifecycle.
@@ -13,17 +13,17 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			// define association here
 		}
-	};
-	tracing.init({
+	}
+	tracking.init({
 		id_seguimiento: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
 		id_adopcion: { allowNull: false, type: DataTypes.INTEGER },
 		fecha_hora: { allowNull: false, type: DataTypes.DATE },
 		anotaciones: { allowNull: false, type: DataTypes.STRING(500) }
 	}, {
 		sequelize,
-		modelName: "tracing",
+		modelName: "tracking",
 		tableName: "seguimiento",
 		timestamps: false
 	});
-	return tracing;
+	return tracking;
 };

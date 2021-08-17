@@ -27,7 +27,7 @@ module.exports = {
 				type: Sequelize.DATE
 			}
 		});
-	},
+	}, // eslint-disable-next-line no-unused-vars
 	down: async (queryInterface, Sequelize) => {
 		await queryInterface.dropTable("adoptionQuestions");
 	}

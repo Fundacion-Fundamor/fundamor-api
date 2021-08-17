@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			// define association here
 		}
-	};
+	}
 	adoptionQuestion.init({
 		id_pregunta_adopcion: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
 		id_adopcion: { allowNull: false, type: DataTypes.INTEGER },
