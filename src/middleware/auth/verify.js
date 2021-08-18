@@ -1,16 +1,24 @@
+const jwt = require("jsonwebtoken");
 
+/**Módulo que verifica la existencia y validez de un token
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
+module.exports = (req, res, next) => {
+	const token = req.header("x-auth-token");
+	if (!token) {
+		return res.status(401).json({ message: "Acceso no autorizado" });
+	}
 
-// Authorization: Bearer <token>
-const verify = (req, res, next) =>{
-	const bearerHeader = req.headers["authorization"];
-
-	if(typeof bearerHeader !== "undefined"){
-		const bearerToken = bearerHeader.split(" ")[1];
-		req.token = bearerToken;
+	try {
+		const validateToken = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+		req.userSession = validateToken.employee;
 		next();
-	}else{
-		res.sendStatus(403);
+	} catch (error) {
+		res.status(401).json({ message: "Token no válido" });
 	}
 };
 
-module.exports = {verify};
