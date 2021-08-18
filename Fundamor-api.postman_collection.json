@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5bfac9d9-b23a-4a17-8218-9cf988fc6d7d",
+		"_postman_id": "e1197927-be56-4068-a8a0-5dbeb31a11a0",
 		"name": "Fundamor-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,17 +14,22 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUGV0ZXIiLCJlbWFpbCI6InBldGVyQGV4YW1wbGUuY29tIn0sImlhdCI6MTYyODk4MjY5NiwiZXhwIjoxNjI4OTg0NDk2fQ.HXOB25jeIASY8SbD0iB0uSbA5lXIdf8Ibatv00W4GYw",
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIn0sImlhdCI6MTYyOTI1NjU5MiwiZXhwIjoxNjI5MjU4MzkyfQ.tXlR2wMeSOn7Quy4egHypQ8RrRAM-IK4i2P4xkb2kfk",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/api/news/post",
+							"raw": "localhost:4000/api/news/post",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "4000",
 							"path": [
 								"api",
 								"news",
@@ -44,16 +49,24 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\":\"juan@gmail.com\",\r\n    \"contrasenia\":\"hola\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:3000/api/auth//token",
+							"raw": "localhost:4000/api/auth/token",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "4000",
 							"path": [
 								"api",
 								"auth",
-								"",
 								"token"
 							]
 						}
@@ -67,10 +80,216 @@
 			"item": [
 				{
 					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/employees",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contrasenia\":\"hola\",\r\n    \"id_empleado\":\"1000\",\r\n    \"id_fundacion\":1,\r\n    \"nombre\":\"juan talamera\",\r\n    \"rol\":\"colaborador\",\r\n    \"correo\":\"juan@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/employees",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "foundations",
+			"item": [
+				{
+					"name": "Create foundation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"fundacion@gmail.com\",\r\n    \"telefono\": null,\r\n    \"nombre\": \"Cuidado animal armenia\",\r\n    \"cuenta_donaciones\": \"123213-231123-213\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/foundations",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"foundations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Fundation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/foundations/13",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"foundations",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE foundation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"fundacion@gmail.com\",\r\n    \"telefono\": null,\r\n    \"id_fundacion\":\"12\",\r\n    \"nombre\": \"las cuencas\",\r\n    \"cuenta_donaciones\": \"123213-231123-213\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/foundations",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"foundations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List foundations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/foundations",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"foundations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get foundations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/foundations/14",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"foundations",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "animals",
+			"item": [
+				{
+					"name": "create animal",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "      ",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/animals",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"animals"
+							]
+						}
 					},
 					"response": []
 				}
