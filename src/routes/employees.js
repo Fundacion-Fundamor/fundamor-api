@@ -15,6 +15,6 @@ router.post("/", employeesController.create);
 router.put("/", employeesController.update);
 
 // delete employee
-router.delete("/", employeesController.delete);
+router.delete("/:id", employeesController.delete);
 
 module.exports = router;

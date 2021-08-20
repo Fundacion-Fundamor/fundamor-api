@@ -6,9 +6,15 @@ const foundation = require("../models").foundation;
 exports.create = async (req, res) => {
 
     try {
+
+        let condition = [{ nombre: req.body.nombre }];
+
+        if (req.body.correo) {
+            condition.push({ correo: req.body.correo });
+        }
         const searchResult = await foundation.findAll({
             where: {
-                nombre: req.body.nombre
+                [Op.or]: condition
             }
         });
 
@@ -69,13 +75,9 @@ exports.delete = async (req, res) => {
 exports.get = async (req, res) => {
 
     try {
-        const searchResult = await foundation.findAll({
-            where: {
-                id_fundacion: req.params["id"]
-            }
-        });
+        const searchResult = await foundation.findByPk(req.params["id"]);
 
-        if (searchResult.length !== 0) {
+        if (searchResult) {
 
             res.status(200).json({
                 state: true,
@@ -124,7 +126,7 @@ exports.update = async (req, res) => {
             res.status(200).json({
                 state: true,
                 message: "Los datos de la fundación se han actualizado exitosamente",
-                data:searchResult
+                data: searchResult
             });
 
         } else {
@@ -145,7 +147,7 @@ exports.update = async (req, res) => {
     }
 };
 exports.list = async (req, res) => {
-    
+
 
     try {
         const searchResult = await foundation.findAll({});

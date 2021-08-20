@@ -1,3 +1,5 @@
+
+/* eslint-disable camelcase */
 const jwt = require("jsonwebtoken");
 const employee = require("../models").employee;
 const helpers = require("../helpers/helpers");
@@ -18,7 +20,8 @@ exports.create = async (req, res) => {
 				const payload = {
 					employee:{
 						id: searchResult.id_empleado,
-						email: searchResult.correo
+						email: searchResult.correo,
+						id_fundacion: searchResult.correo
 					}
 				
 				};

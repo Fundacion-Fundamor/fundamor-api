@@ -1,13 +1,23 @@
 
 /* eslint-disable camelcase */
 const employee = require("../models").employee;
+const { Op } = require("sequelize");
 const helpers = require("../helpers/helpers");
 exports.create = async (req, res) => {
 
 	try {
-		const searchResult = await employee.findByPk(req.body.id_empleado);
-		if (!searchResult) {
+		const searchResult = await employee.findAll({
+			where: {
+				[Op.or]: [
+					{ id_empleado: req.body.id_empleado },
+					{ correo: req.body.correo }
+				]
+			}
+		});
+		if (searchResult.length === 0) {
+			req.body.id_fundacion = req.userSession.id_fundacion;
 			req.body.contrasenia = await helpers.encryptPassword(req.body.contrasenia);
+
 			const result = await employee.create(req.body);
 			res.status(201).json({
 				state: true,
@@ -17,8 +27,7 @@ exports.create = async (req, res) => {
 		} else {
 			res.status(409).json({
 				state: false,
-				message: "Ya existe un colaborador registrado con esta identificación"
-
+				message: "Ya existe un colaborador registrado con esta identificación o correo"
 			});
 		}
 
@@ -33,29 +42,133 @@ exports.create = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
+	try {
 
-	res.status(200).json({
-		message: "NOT IMPLEMENTED: Employee delete"
-	});
+		const result = await employee.destroy({
+			where: {
+				id_empleado: req.params["id"]
+			}
+		});
+
+		if (result === 1) {
+			res.status(200).json({
+				state: true,
+				message: "El colaborador se ha eliminado exitosamente"
+			});
+		} else {
+			res.status(404).json({
+				state: false,
+				message: "El colaborador no existe"
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al eliminar el colaborador"
+		});
+	}
 };
 
-exports.get = (req, res) => {
-	res.status(200).json({
-		message: "NOT IMPLEMENTED: Employee get"
-	});
+exports.get = async (req, res) => {
+	try {
+		const searchResult = await employee.findByPk(req.params["id"]);
+
+		if (searchResult) {
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+		} else {
+			res.status(404).json({
+				state: false,
+				message: "El colaborador no existe"
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener el colaborador"
+		});
+	}
 };
 
-exports.update = (req, res) => {
-	console.log(req.body);
-	res.status(200).json({
-		message: "NOT IMPLEMENTED: Employee update"
-	});
+exports.update = async (req, res) => {
+	try {
+
+		const searchResult = await employee.findAll({
+			where: {
+				correo: req.body.correo,
+				id_empleado:
+				{
+					[Op.ne]: req.body.id_empleado
+				}
+			}
+		});
+
+		if (searchResult.length === 0) {
+			await employee.update(req.body, {
+				where: {
+					id_fundacion: req.body.id_fundacion
+				}
+			});
+
+			res.status(200).json({
+				state: true,
+				message: "Los datos del colaborado se han actualizado exitosamente",
+				data: searchResult
+			});
+
+		} else {
+			res.status(409).json({
+				state: false,
+				message: "Ya existe un colabor registrado con este correo"
+			});
+		}
+
+	} catch (error) {
+
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al actualizar los datos del colaborador"
+		});
+
+	}
 };
 exports.list = async (req, res) => {
 
-	console.log(req.body);
-	res.status(200).json({
-		message: "NOT IMPLEMENTED: Employee list"
-	});
+	try {
+		const searchResult = await employee.findAll({
+			where: {
+				id_fundacion: req.userSession.id_fundacion
+			}
+		});
 
+		if (searchResult.length !== 0) {
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+		} else {
+			res.status(404).json({
+				state: false,
+				message: "No existen registros en la base de datos"
+
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener la lista de fundaciones"
+		});
+	}
 };
