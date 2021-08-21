@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const foundationsController = require("../controllers/foundationsController");
-const {check} = require ("express-validator");
+const { foundationValidationRules, validate } = require("../middleware/validator");
 
 // foundation list
 router.get("/", foundationsController.list);
@@ -10,12 +10,7 @@ router.get("/", foundationsController.list);
 router.get("/:id", foundationsController.get);
 
 // create foundation
-router.post("/",
-	[
-		check("nombre", "El nombre es obligatorio").not().isEmpty(),
-		check("correo", "Correo electrónico inválido").isEmail(),
-		check("telefono", "El telefono debe ser de al menos 6 caracteres").isLength({min: 6})
-	], foundationsController.create);
+router.post("/", foundationValidationRules(), validate, foundationsController.create);
 
 // update foundation
 router.put("/", foundationsController.update);

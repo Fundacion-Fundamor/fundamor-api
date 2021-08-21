@@ -2,16 +2,11 @@
 /* eslint-disable camelcase */
 const { Op } = require("sequelize");
 const foundation = require("../models").foundation;
-const {validationResult} = require("express-validator");
 
 exports.create = async (req, res) => {
 
     
     try {
-        const errors = validationResult(req);
-        if(!errors.isEmpty()) {
-            return res.status(400).json({errores: errors.array()});
-        }
 
         let condition = [{ nombre: req.body.nombre }];
 
