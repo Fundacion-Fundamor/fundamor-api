@@ -39,7 +39,7 @@ exports.create = async (req, res) => {
 			}
 
 		} else {
-			res.status(400).json({
+			res.status(404).json({
 				state: false,
 				message: "El usuario no existe",
 				data: searchResult

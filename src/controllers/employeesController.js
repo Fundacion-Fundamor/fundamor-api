@@ -119,14 +119,14 @@ exports.update = async (req, res) => {
 
 			res.status(200).json({
 				state: true,
-				message: "Los datos del colaborado se han actualizado exitosamente",
+				message: "Los datos del colaborador se han actualizado exitosamente",
 				data: searchResult
 			});
 
 		} else {
 			res.status(409).json({
 				state: false,
-				message: "Ya existe un colabor registrado con este correo"
+				message: "Ya existe un colaborador registrado con este correo"
 			});
 		}
 
@@ -168,7 +168,7 @@ exports.list = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al obtener la lista de fundaciones"
+			message: "Ha ocurrido un error al obtener la lista de colaboradores"
 		});
 	}
 };
