@@ -19,3 +19,13 @@ exports.create = async (req, res) => {
 		});
 	}
 };
+
+
+exports.uploadImages = async (req, res, err) => {
+
+	console.log(err);
+	res.status(201).json({
+		state: true,
+		message: "Las imagenes se han subido correctamente"
+	});
+};

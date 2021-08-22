@@ -14,14 +14,13 @@ exports.create = async (req, res) => {
 
 		if (searchResult) {
 
-
 			const validPassword = await helpers.comparePassword(req.body.contrasenia, searchResult.contrasenia);
 			if (validPassword) {
 				const payload = {
 					employee:{
 						id: searchResult.id_empleado,
 						email: searchResult.correo,
-						id_fundacion: searchResult.correo
+						id_fundacion: searchResult.id_fundacion
 					}
 				
 				};
