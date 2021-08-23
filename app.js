@@ -5,7 +5,7 @@ const morgan = require("morgan");
 
 const employeesRoutes = require("./src/routes/employees");
 const authRoutes = require("./src/routes/auth");
-const newsRoutes = require("./src/routes/news");
+const postRoutes = require("./src/routes/post");
 const foundationRoutes = require("./src/routes/foundations");
 
 // const animalsRoutes= require("./routes/animals");
@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 
 //Routes setting up handle requests
 app.use("/api/employees", employeesRoutes);
-app.use("/api/news", newsRoutes);
+app.use("/api/post", postRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/foundations", foundationRoutes);
 // app.use("/api/animals", animalsRoutes);
