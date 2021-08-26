@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
 	try {
 
 		req.body.id_fundacion = req.userSession.id_fundacion;
-		req.body.fecha_publicacion = moment().format();
+		req.body.fecha_creacion = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
 		const result = await post.create(req.body);
 		res.status(201).json({
 			state: true,
@@ -31,7 +31,7 @@ exports.uploadImages = async (req, res) => {
 
 	let images = [];
 
-	
+
 	(req.files.postImages).forEach(element => {
 		let image = {
 
@@ -51,7 +51,7 @@ exports.uploadImages = async (req, res) => {
 			data: result.id_imagen_publicacion
 		});
 	} catch (error) {
-		console.error( error);
+		console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al crear la publicación"
@@ -92,11 +92,14 @@ exports.get = async (req, res) => {
 		const searchResult = await post.findByPk(req.params["id"]);
 
 		if (searchResult) {
-
+		
+			
 			res.status(200).json({
 				state: true,
 				message: "Resultados obtenidos",
-				data: searchResult
+				data: searchResult,
+				bla: moment(searchResult.fecha_creacion).format("YYYY-MM-DD HH:mm:ss")
+
 			});
 		} else {
 			res.status(404).json({
@@ -169,7 +172,7 @@ exports.delete = async (req, res) => {
 			});
 
 			const result = await searchResult.destroy();
-			
+
 			if (result) {
 				res.status(200).json({
 					state: true,
@@ -179,7 +182,7 @@ exports.delete = async (req, res) => {
 				res.status(404).json({
 					state: false,
 					message: "Error al eliminar la publicación",
-					data:result
+					data: result
 				});
 			}
 		} else {
