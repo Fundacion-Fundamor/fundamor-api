@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "News",
+			"name": "Post",
 			"item": [
 				{
 					"name": "Create post",
@@ -15,7 +15,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIn0sImlhdCI6MTYyOTI1NjU5MiwiZXhwIjoxNjI5MjU4MzkyfQ.tXlR2wMeSOn7Quy4egHypQ8RrRAM-IK4i2P4xkb2kfk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5OTQ1MzY4LCJleHAiOjE2Mjk5NDcxNjh9.M9Qi9vGitmQzA_7o5qKa7VZDPTuDZGduPwA8OP-HT_E",
 								"type": "text"
 							},
 							{
@@ -24,16 +24,143 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"titulo\":\"TEST DE NOTICI 22A\",\r\n    \"cuerpo\":\"Vacunas en la uniquindio\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:4000/api/news/post",
+							"raw": "localhost:4000/api/post",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
 								"api",
-								"news",
 								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadImages",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5Njg1MzI0LCJleHAiOjE2Mjk2ODcxMjR9.j41o_NxF6MdCVk4mdbbatjTJd1DGLLGARmfXz1eA3Yw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "postImages",
+									"type": "file",
+									"src": [
+										"/C:/Users/nfs/Downloads/noticia3.jpg",
+										"/C:/Users/nfs/Downloads/noticia2.jpg"
+									]
+								},
+								{
+									"key": "id_publicacion",
+									"value": "9",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/api/post/uploadImages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"uploadImages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5Njg1MzI0LCJleHAiOjE2Mjk2ODcxMjR9.j41o_NxF6MdCVk4mdbbatjTJd1DGLLGARmfXz1eA3Yw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:4000/api/post/9",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get post",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5OTQ1MzY4LCJleHAiOjE2Mjk5NDcxNjh9.M9Qi9vGitmQzA_7o5qKa7VZDPTuDZGduPwA8OP-HT_E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/post/22",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"post",
+								"22"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -288,6 +415,45 @@
 							"path": [
 								"api",
 								"animals"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Adopter",
+			"item": [
+				{
+					"name": "Create adopter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5OTQ1MzY4LCJleHAiOjE2Mjk5NDcxNjh9.M9Qi9vGitmQzA_7o5qKa7VZDPTuDZGduPwA8OP-HT_E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_adoptante\": \"10021301293\",\r\n    \"nombre\": \"Juan camilo perez\",\r\n    \"telefono_celular\": \"3156627271312\",\r\n    \"ciudad\": \"Armenia quindio\",\r\n    \"ocupacion\": \"Odontologo\",\r\n    \"correo\": \"juap@gmail.com\",\r\n    \"contrasenia\": \"meloski\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/adopters",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adopters"
 							]
 						}
 					},

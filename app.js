@@ -7,10 +7,9 @@ const employeesRoutes = require("./src/routes/employees");
 const authRoutes = require("./src/routes/auth");
 const postRoutes = require("./src/routes/post");
 const foundationRoutes = require("./src/routes/foundations");
-
+const adoptersRoutes= require("./src/routes/adopters");
 // const animalsRoutes= require("./routes/animals");
 // const adoptionsRoutes= require("./routes/adoptions");
-// const adoptersRoutes= require("./routes/adopters");
 // const analyticsRoutes = require("./routes/analytics");
 
 //enable express.json (in the request the header should be application/json)
@@ -23,9 +22,10 @@ app.use("/api/employees", employeesRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/foundations", foundationRoutes);
+app.use("/api/adopters", adoptersRoutes);
 // app.use("/api/animals", animalsRoutes);
 // app.use("/api/adoptions", adoptionsRoutes);
-// app.use("/api/adopters", adoptersRoutes);
+
 // app.use("/api/analytics", analyticsRoutes);
 
 

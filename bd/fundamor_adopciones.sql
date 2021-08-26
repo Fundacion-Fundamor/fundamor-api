@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2021 a las 23:50:56
+-- Tiempo de generación: 26-08-2021 a las 04:55:08
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 7.3.28
 
@@ -38,6 +38,16 @@ CREATE TABLE `adopcion` (
   `id_empleado` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `adopcion`
+--
+
+INSERT INTO `adopcion` (`id_adopcion`, `id_animal`, `fecha_estudio`, `fecha_entrega`, `estado`, `observaciones`, `id_adoptante`, `id_empleado`) VALUES
+(1, 1, '2021-08-17', NULL, 'En proceso', 'sasd', '10050932423', '2'),
+(2, 1, '2021-08-17', NULL, 'En proceso', 'sasd', '10050932423', '2'),
+(3, 1, '2021-08-25', NULL, 'En proceso', '123', '012390132', '2'),
+(4, 1, '2021-08-25', NULL, 'En proceso', '123', '012390132', '2');
+
 -- --------------------------------------------------------
 
 --
@@ -47,13 +57,22 @@ CREATE TABLE `adopcion` (
 CREATE TABLE `adoptante` (
   `id_adoptante` varchar(45) NOT NULL,
   `nombre` varchar(70) NOT NULL,
-  `telefono_casa` varchar(45) NOT NULL,
+  `telefono_casa` varchar(45) DEFAULT NULL,
   `telefono_celular` varchar(45) NOT NULL,
   `ciudad` varchar(90) NOT NULL,
   `ocupacion` varchar(90) NOT NULL,
-  `correo` varchar(90) NOT NULL,
-  `contrasenia` varchar(300) NOT NULL
+  `correo` varchar(90) DEFAULT NULL,
+  `contrasenia` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `adoptante`
+--
+
+INSERT INTO `adoptante` (`id_adoptante`, `nombre`, `telefono_casa`, `telefono_celular`, `ciudad`, `ocupacion`, `correo`, `contrasenia`) VALUES
+('012390132', 'andres', '123', '123', '123123', '123', '123', '123'),
+('10021301293', 'Juan camilo perez', NULL, '3156627271312', 'Armenia quindio', 'Odontologo', 'juap@gmail.com', '$2a$10$kyaPtVvlb/ketPSGoIBvYeClH2WDo1e41UJ6a7tmdWMh8oaTRl4/S'),
+('10050932423', 'Carlos andres Gonzales', '312', '', 'asd', 'sad', 'sad', 'sad');
 
 -- --------------------------------------------------------
 
@@ -79,6 +98,13 @@ CREATE TABLE `animal` (
   `estado` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `animal`
+--
+
+INSERT INTO `animal` (`id_animal`, `id_fundacion`, `especie`, `nombre`, `fecha_nacimiento`, `sexo`, `caracteristicas`, `sitio_rescate`, `fecha_rescate`, `color`, `vacunas`, `esterilizado`, `desparasitado`, `tamanio`, `estado`) VALUES
+(1, 1, 'gato', 'paco', '2021-08-10', '', 'agradable', 'guaduales de la villa', '2021-08-09', 'pardo', 'sisi', 1, 1, 'mediano', 'En proceso');
+
 -- --------------------------------------------------------
 
 --
@@ -99,7 +125,8 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id_empleado`, `id_fundacion`, `correo`, `contrasenia`, `nombre`, `rol`) VALUES
-('', 1, 'test@gmail.com', '12345678', 'Test User ', 'administrador');
+('1000', 1, 'juan@gmail.com', '$2a$10$W9xRMFd.pJd2CSHPp.beuOsYbVKkb5vChHxgHfGtO1J1WFiHBSn.S', 'juan talamera', 'colaborador'),
+('2', 1, 'test@gmail.com', '12345678', 'Test User ', 'administrador');
 
 -- --------------------------------------------------------
 
@@ -269,13 +296,13 @@ ALTER TABLE `seguimiento`
 -- AUTO_INCREMENT de la tabla `adopcion`
 --
 ALTER TABLE `adopcion`
-  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `fundacion`

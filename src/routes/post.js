@@ -13,7 +13,7 @@ const uploadImage = require("../middleware/upload");
  * 	cuerpo:String
  * } 
  */
-router.post("/create", verify, postController.create);
+router.post("/", verify, postController.create);
 
 
 /**upload images of post

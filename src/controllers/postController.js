@@ -97,9 +97,7 @@ exports.get = async (req, res) => {
 			res.status(200).json({
 				state: true,
 				message: "Resultados obtenidos",
-				data: searchResult,
-				bla: moment(searchResult.fecha_creacion).format("YYYY-MM-DD HH:mm:ss")
-
+				data: searchResult
 			});
 		} else {
 			res.status(404).json({

@@ -13,17 +13,17 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			models.adopter.hasMany(models.adoption, {
 				foreignKey: "id_adopcion",
-				as:"adoption"
+				as: "adoption"
 			});
 		}
 	}
 	adopter.init({
-		id_adoptante: { primaryKey: true, type: DataTypes.STRING(45) },
-		nombre: { type: DataTypes.STRING(70) },
+		id_adoptante: { primaryKey: true, type: DataTypes.STRING(45), allowNull: false },
+		nombre: { type: DataTypes.STRING(70), allowNull: false},
 		telefono_casa: { type: DataTypes.STRING(45) },
-		telefono_celular: { type: DataTypes.STRING(45) },
+		telefono_celular: { type: DataTypes.STRING(45), allowNull: false},
 		ciudad: { type: DataTypes.STRING(90) },
-		ocupacion: { type: DataTypes.STRING(90) },
+		ocupacion: { type: DataTypes.STRING(90), allowNull: false },
 		correo: { type: DataTypes.STRING(45) },
 		contrasenia: { type: DataTypes.STRING(300) }
 	}, {
