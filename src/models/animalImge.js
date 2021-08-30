@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			models.animalImage.belongsTo(models.animal, {
-				foreignKey: "id_fundacion"
+				foreignKey: "id_animal"
 			});
 		}
 	}

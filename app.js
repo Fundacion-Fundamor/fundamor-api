@@ -8,7 +8,7 @@ const authRoutes = require("./src/routes/auth");
 const postRoutes = require("./src/routes/post");
 const foundationRoutes = require("./src/routes/foundations");
 const adoptersRoutes= require("./src/routes/adopters");
-// const animalsRoutes= require("./routes/animals");
+const animalsRoutes= require("./src/routes/animals");
 // const adoptionsRoutes= require("./routes/adoptions");
 // const analyticsRoutes = require("./routes/analytics");
 
@@ -23,7 +23,7 @@ app.use("/api/post", postRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/foundations", foundationRoutes);
 app.use("/api/adopters", adoptersRoutes);
-// app.use("/api/animals", animalsRoutes);
+app.use("/api/animals", animalsRoutes);
 // app.use("/api/adoptions", adoptionsRoutes);
 
 // app.use("/api/analytics", analyticsRoutes);

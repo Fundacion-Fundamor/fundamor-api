@@ -43,18 +43,17 @@ exports.uploadImages = async (req, res) => {
 	});
 
 	try {
-		const result = await postImage.bulkCreate(images);
+		await postImage.bulkCreate(images);
 
 		res.status(201).json({
 			state: true,
-			message: "Las imagenes se han subido correctamente",
-			data: result.id_imagen_publicacion
+			message: "Las imagenes se han subido correctamente"
 		});
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al crear la publicación"
+			message: "Ha ocurrido un error al registrar las imágenes de la publicación"
 		});
 	}
 
@@ -73,7 +72,7 @@ exports.update = async (req, res) => {
 
 		res.status(200).json({
 			state: true,
-			message: "Los datos de la fundación se han actualizado exitosamente"
+			message: "Los datos de la publicación se han actualizado exitosamente"
 		});
 
 	} catch (error) {
@@ -81,7 +80,7 @@ exports.update = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al actualizar los datos de la fundación"
+			message: "Ha ocurrido un error al actualizar los datos de la publicación"
 		});
 
 	}
@@ -92,8 +91,8 @@ exports.get = async (req, res) => {
 		const searchResult = await post.findByPk(req.params["id"]);
 
 		if (searchResult) {
-		
-			
+
+
 			res.status(200).json({
 				state: true,
 				message: "Resultados obtenidos",
