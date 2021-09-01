@@ -1,54 +1,48 @@
-
 /* eslint-disable camelcase */
-const adoption = require("../models").adoption;
+const tracking = require("../models").tracking;
 const moment = require("moment");
-
-
 exports.create = async (req, res) => {
 
 	try {
 
-		
-		//? como obtengo las adopciones de una fundacion
-		// req.body.id_fundacion = req.userSession.id_fundacion;
-		req.body.id_empleado = req.userSession.id;
-		req.body.fecha_estudio = moment(new Date()).format("YYYY-MM-DD");
-		const result = await adoption.create(req.body);
+		req.body.fecha_hora = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+
+		const result = await tracking.create(req.body);
 		res.status(201).json({
 			state: true,
-			message: "La adopción se ha registrado con éxito",
-			data: result.id_adopcion // id assigned
+			message: "El seguimiento se ha registrado con éxito",
+			data: result.id_seguimiento // id assigned
 		});
 
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al registrar la adopción"
+			message: "Ha ocurrido un error al registrar el seguimiento"
 		});
 	}
+
 };
 
 exports.delete = async (req, res) => {
 	try {
 
-		const result = await adoption.destroy({
+		const result = await tracking.destroy({
 			where: {
-				id_adopcion: req.params["id"]
-			},
-			include:"tracking"
-
+				id_seguimiento: req.params["id"]
+			}
+	
 		});
 
 		if (result === 1) {
 			res.status(200).json({
 				state: true,
-				message: "La adopción se ha eliminado exitosamente"
+				message: "El seguimiento se ha eliminado exitosamente"
 			});
 		} else {
 			res.status(404).json({
 				state: false,
-				message: "La adopción no existe"
+				message: "El seguimiento no existe"
 			});
 		}
 
@@ -56,14 +50,14 @@ exports.delete = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al eliminar la adopción"
+			message: "Ha ocurrido un error al eliminar el seguimiento"
 		});
 	}
 };
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await adoption.findByPk(req.params["id"]);
+		const searchResult = await tracking.findByPk(req.params["id"]);
 
 		if (searchResult) {
 			res.status(200).json({
@@ -74,7 +68,7 @@ exports.get = async (req, res) => {
 		} else {
 			res.status(404).json({
 				state: false,
-				message: "La adopción no existe"
+				message: "El seguimiento no existe"
 			});
 		}
 
@@ -82,7 +76,7 @@ exports.get = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al obtener la adopción"
+			message: "Ha ocurrido un error al obtener el seguimiento"
 		});
 	}
 };
@@ -90,24 +84,24 @@ exports.get = async (req, res) => {
 exports.update = async (req, res) => {
 	try {
 
-		await adoption.update(req.body, {
+		await tracking.update(req.body, {
 			where: {
-				id_adopcion: req.body.id_adopcion
+				id_seguimiento: req.body.id_seguimiento
 			}
 		});
 
 		res.status(200).json({
 			state: true,
-			message: "Los datos de la adopción se han actualizado exitosamente"
-		});
+			message: "Los datos del seguimiento se han actualizado exitosamente"
 
+		});
 
 	} catch (error) {
 
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al actualizar los datos de la adopción"
+			message: "Ha ocurrido un error al actualizar los datos del seguimiento"
 		});
 
 	}
@@ -115,10 +109,9 @@ exports.update = async (req, res) => {
 exports.list = async (req, res) => {
 
 	try {
-		const searchResult = await adoption.findAll({
-			//? como listo las adopciones de una fundación
+		const searchResult = await tracking.findAll({
 			where: {
-				id_fundacion: req.userSession.id_fundacion
+				id_adopcion: req.body.id_adopcion
 			}
 		});
 
@@ -141,7 +134,7 @@ exports.list = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al obtener la lista de la adopciones"
+			message: "Ha ocurrido un error al obtener la lista de seguimientos de esta adopcion"
 		});
 	}
 };

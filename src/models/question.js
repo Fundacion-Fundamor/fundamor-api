@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
 
 			models.question.hasMany(models.adoptionQuestion, {
 				foreignKey: "id_pregunta",
-				as: "adoptionQuestion"
+				as: "adoptionQuestions"
 			});
 			models.question.hasMany(models.questionOption, {
 				foreignKey: "id_pregunta",
-				as: "questionOption"
+				as: "questionOptions"
 			});
 			models.question.belongsTo(models.foundation, {
 				foreignKey: "id_fundacion"

@@ -30,7 +30,7 @@ exports.delete = async (req, res) => {
 			where: {
 				id_pregunta: req.params["id"]
 			},
-			include: "questionOption"
+			include: "questionOptions"
 		});
 
 		if (result === 1) {
@@ -56,7 +56,7 @@ exports.delete = async (req, res) => {
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await question.findByPk(req.params["id"]);
+		const searchResult = await question.findByPk(req.params["id"], { include: "questionOptions" });
 
 		if (searchResult) {
 			res.status(200).json({
@@ -75,16 +75,13 @@ exports.get = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al obtener La pregunta"
+			message: "Ha ocurrido un error al obtener la pregunta"
 		});
 	}
 };
 
 exports.update = async (req, res) => {
 	try {
-
-
-		//? como actualizar la cedula
 
 		await question.update(req.body, {
 			where: {
@@ -97,8 +94,6 @@ exports.update = async (req, res) => {
 			message: "Los datos de la pregunta se han actualizado exitosamente"
 
 		});
-
-
 
 	} catch (error) {
 
@@ -117,7 +112,7 @@ exports.list = async (req, res) => {
 			where: {
 				id_fundacion: req.userSession.id_fundacion
 			},
-			// include: "questionOption"
+			include: "questionOptions"
 
 		});
 

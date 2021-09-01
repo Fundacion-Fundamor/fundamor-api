@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 				foreignKey: "id_adopcion",
 				as: "tracking"
 			});
-			models.adoption.hasMany(models.question, {
+			models.adoption.hasMany(models.adoptionQuestion, {
 				foreignKey: "id_adopcion",
 				as: "question"
 			});

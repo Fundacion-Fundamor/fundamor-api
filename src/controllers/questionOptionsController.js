@@ -1,54 +1,45 @@
-
 /* eslint-disable camelcase */
-const adoption = require("../models").adoption;
-const moment = require("moment");
-
+const questionOption = require("../models").questionOption;
 
 exports.create = async (req, res) => {
 
 	try {
 
-		
-		//? como obtengo las adopciones de una fundacion
-		// req.body.id_fundacion = req.userSession.id_fundacion;
-		req.body.id_empleado = req.userSession.id;
-		req.body.fecha_estudio = moment(new Date()).format("YYYY-MM-DD");
-		const result = await adoption.create(req.body);
+		const result = await questionOption.create(req.body);
 		res.status(201).json({
 			state: true,
-			message: "La adopción se ha registrado con éxito",
-			data: result.id_adopcion // id assigned
+			message: "El item de respuesta se ha registrado con éxito",
+			data: result.id_opcion // id assigned
 		});
 
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al registrar la adopción"
+			message: "Ha ocurrido un error al registrar el item"
 		});
 	}
+
 };
 
 exports.delete = async (req, res) => {
 	try {
 
-		const result = await adoption.destroy({
+		const result = await questionOption.destroy({
 			where: {
-				id_adopcion: req.params["id"]
-			},
-			include:"tracking"
-
+				id_opcion: req.params["id"]
+			}
 		});
 
 		if (result === 1) {
 			res.status(200).json({
 				state: true,
-				message: "La adopción se ha eliminado exitosamente"
+				message: "El item se ha eliminado exitosamente"
 			});
 		} else {
 			res.status(404).json({
 				state: false,
-				message: "La adopción no existe"
+				message: "El item no existe"
 			});
 		}
 
@@ -56,14 +47,14 @@ exports.delete = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al eliminar la adopción"
+			message: "Ha ocurrido un error al eliminar el item"
 		});
 	}
 };
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await adoption.findByPk(req.params["id"]);
+		const searchResult = await questionOption.findByPk(req.params["id"]);
 
 		if (searchResult) {
 			res.status(200).json({
@@ -74,7 +65,7 @@ exports.get = async (req, res) => {
 		} else {
 			res.status(404).json({
 				state: false,
-				message: "La adopción no existe"
+				message: "El item no existe"
 			});
 		}
 
@@ -82,7 +73,7 @@ exports.get = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al obtener la adopción"
+			message: "Ha ocurrido un error al obtener el item"
 		});
 	}
 };
@@ -90,24 +81,24 @@ exports.get = async (req, res) => {
 exports.update = async (req, res) => {
 	try {
 
-		await adoption.update(req.body, {
+		await questionOption.update(req.body, {
 			where: {
-				id_adopcion: req.body.id_adopcion
+				id_opcion: req.body.id_opcion
 			}
 		});
 
 		res.status(200).json({
 			state: true,
-			message: "Los datos de la adopción se han actualizado exitosamente"
-		});
+			message: "Los datos del item se han actualizado exitosamente"
 
+		});
 
 	} catch (error) {
 
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al actualizar los datos de la adopción"
+			message: "Ha ocurrido un error al actualizar los datos del item"
 		});
 
 	}
@@ -115,10 +106,9 @@ exports.update = async (req, res) => {
 exports.list = async (req, res) => {
 
 	try {
-		const searchResult = await adoption.findAll({
-			//? como listo las adopciones de una fundación
+		const searchResult = await questionOption.findAll({
 			where: {
-				id_fundacion: req.userSession.id_fundacion
+				id_pregunta: req.id_pregunta
 			}
 		});
 
@@ -141,7 +131,7 @@ exports.list = async (req, res) => {
 		console.error(error);
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al obtener la lista de la adopciones"
+			message: "Ha ocurrido un error al obtener la lista de items de esta pregunta"
 		});
 	}
 };
