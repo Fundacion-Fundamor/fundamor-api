@@ -74,7 +74,7 @@ exports.delete = async (req, res) => {
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await adopter.findByPk(req.params["id"]);
+		const searchResult = await adopter.findByPk(req.params["id"], { attributes: { exclude: ["contrasenia"] } });
 
 		if (searchResult) {
 			res.status(200).json({
@@ -145,10 +145,12 @@ exports.update = async (req, res) => {
 exports.list = async (req, res) => {
 
 	try {
+		//? como obtengo los adoptantes de una fundacion?
 		const searchResult = await adopter.findAll({
 			where: {
 				id_fundacion: req.userSession.id_fundacion
-			}
+			},
+			attributes: { exclude: ["contrasenia"] }
 		});
 
 		if (searchResult.length !== 0) {

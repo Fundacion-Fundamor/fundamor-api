@@ -2,20 +2,20 @@ const express = require("express");
 const router = express.Router();
 const employeesController = require("../controllers/employeesController");
 
-
+const verify = require("../middleware/auth/verify");
 //create employee
-router.post("/", employeesController.create);
+router.post("/", verify, employeesController.create);
 
 // employee list
-router.get("/", employeesController.list);
+router.get("/", verify, employeesController.list);
 
 // get employee
-router.get("/:id", employeesController.get);
+router.get("/:id", verify, employeesController.get);
 
 // update employee
-router.put("/", employeesController.update);
+router.put("/", verify, employeesController.update);
 
 // delete employee
-router.delete("/:id", employeesController.delete);
+router.delete("/:id", verify, employeesController.delete);
 
 module.exports = router;

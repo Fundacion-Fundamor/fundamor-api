@@ -3,6 +3,7 @@ const router = express.Router();
 const adoptersController = require("../controllers/adoptersController");
 
 
+const verify = require("../middleware/auth/verify");
 /**create adopter
  *
  * expected objet:
@@ -18,20 +19,18 @@ const adoptersController = require("../controllers/adoptersController");
  * }
  *
  */
-router.post("/", adoptersController.create);
+router.post("/", verify, adoptersController.create);
 
 // adopter list
-router.get("/", adoptersController.list);
+router.get("/", verify, adoptersController.list);
 
 // get adopter
-router.get("/:id", adoptersController.get);
-
-
+router.get("/:id", verify, adoptersController.get);
 
 // update adopter
-router.put("/", adoptersController.update);
+router.put("/", verify, adoptersController.update);
 
 // delete adopter
-router.delete("/:id", adoptersController.delete);
+router.delete("/:id", verify, adoptersController.delete);
 
 module.exports = router;

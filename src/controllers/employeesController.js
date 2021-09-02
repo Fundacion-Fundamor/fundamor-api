@@ -73,7 +73,7 @@ exports.delete = async (req, res) => {
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await employee.findByPk(req.params["id"]);
+		const searchResult = await employee.findByPk(req.params["id"], { attributes: { exclude: ["contrasenia"] } });
 
 		if (searchResult) {
 			res.status(200).json({
@@ -146,7 +146,8 @@ exports.list = async (req, res) => {
 		const searchResult = await employee.findAll({
 			where: {
 				id_fundacion: req.userSession.id_fundacion
-			}
+			},
+			attributes: { exclude: ["contrasenia"] }
 		});
 
 		if (searchResult.length !== 0) {

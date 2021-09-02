@@ -77,8 +77,7 @@ exports.deleteMultiple = async (req, res) => {
 		if (result > 0) {
 			res.status(200).json({
 				state: true,
-				message: "Las preguntas se han eliminado exitosamente",
-				result:result
+				message: "Las preguntas se han eliminado exitosamente"
 			});
 		} else {
 			res.status(404).json({
