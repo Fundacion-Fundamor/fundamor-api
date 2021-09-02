@@ -18,4 +18,7 @@ router.put("/", verify, questionsController.update);
 // delete question
 router.delete("/:id", verify, questionsController.delete);
 
+// delete multiple question
+router.delete("/", verify, questionsController.deleteMultiple);
+
 module.exports = router;

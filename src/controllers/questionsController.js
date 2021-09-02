@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 const question = require("../models").question;
+const questionOption = require("../models").questionOption;
 
 exports.create = async (req, res) => {
 
@@ -7,6 +8,15 @@ exports.create = async (req, res) => {
 
 		req.body.id_fundacion = req.userSession.id_fundacion;
 		const result = await question.create(req.body);
+
+		if (req.body.opciones_pregunta.length !== 0) {
+			let questionOptions = [];
+			(req.body.opciones_pregunta).forEach(element => {
+				element.id_pregunta = result.id_pregunta;
+				questionOptions.push(element);
+			});
+			await questionOption.bulkCreate(questionOptions);
+		}
 		res.status(201).json({
 			state: true,
 			message: "La pregunta se ha registrado con éxito",
@@ -53,6 +63,40 @@ exports.delete = async (req, res) => {
 		});
 	}
 };
+
+exports.deleteMultiple = async (req, res) => {
+	try {
+
+		const result = await question.destroy({
+			where: {
+				id_pregunta: req.body.id_preguntas
+			},
+			include: "questionOptions"
+		});
+
+		if (result > 0) {
+			res.status(200).json({
+				state: true,
+				message: "Las preguntas se han eliminado exitosamente",
+				result:result
+			});
+		} else {
+			res.status(404).json({
+				state: false,
+				message: "Las preguntas no existen"
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al eliminar las preguntas"
+		});
+	}
+};
+
+
 
 exports.get = async (req, res) => {
 	try {
