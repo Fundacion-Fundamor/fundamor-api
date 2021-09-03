@@ -2,7 +2,7 @@
 /* eslint-disable camelcase */
 
 const animal = require("../models").animal;
-const animalImage = require("../models").animalImage;
+
 const fs = require("fs").promises;
 
 exports.create = async (req, res) => {
@@ -25,39 +25,6 @@ exports.create = async (req, res) => {
 
 };
 
-exports.uploadImages = async (req, res) => {
-
-	let images = [];
-
-	(req.files.animalImages).forEach(element => {
-		let image = {
-
-			id_animal: req.body.id_animal,
-			ruta: "images/animalImages/" + element.filename
-
-		};
-		images.push(image);
-	});
-
-	try {
-		await animalImage.bulkCreate(images);
-
-		res.status(201).json({
-			state: true,
-			message: "Las imagenes se han subido correctamente"
-
-		});
-	} catch (error) {
-		console.error(error);
-		res.status(400).json({
-			state: false,
-			message: "Ha ocurrido un error al registrar las imágenes del animal"
-		});
-	}
-
-};
-
-
 exports.delete = async (req, res) => {
 	try {
 		const searchResult = await animal.findOne({
@@ -70,8 +37,7 @@ exports.delete = async (req, res) => {
 
 		if (searchResult) {
 
-			console.log(searchResult);
-
+	
 			(searchResult.animalImage).forEach(async (element) => {
 				await fs.unlink(`./src/public/${element.ruta}`);
 			});

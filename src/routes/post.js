@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const postController = require("../controllers/postController");
 const verify = require("../middleware/auth/verify");
-const uploadImage = require("../middleware/upload");
 
 
 /**create post
@@ -14,17 +13,6 @@ const uploadImage = require("../middleware/upload");
  * } 
  */
 router.post("/", verify, postController.create);
-
-
-/**upload images of post
- *
- * expected formData:
- * {
- *	id_noticia:String
- *  postImages: Array
- * }
- */
-router.post("/uploadImages", verify, uploadImage, postController.uploadImages);
 
 //list post
 router.get("/", verify, postController.list);

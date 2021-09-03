@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const post = require("../models").post;
-const postImage = require("../models").postImage;
+
 const fs = require("fs").promises;
 const moment = require("moment");
 
@@ -25,40 +25,6 @@ exports.create = async (req, res) => {
 		});
 	}
 };
-
-
-exports.uploadImages = async (req, res) => {
-
-	let images = [];
-
-
-	(req.files.postImages).forEach(element => {
-		let image = {
-
-			id_publicacion: req.body.id_publicacion,
-			ruta: "images/postImages/" + element.filename
-
-		};
-		images.push(image);
-	});
-
-	try {
-		await postImage.bulkCreate(images);
-
-		res.status(201).json({
-			state: true,
-			message: "Las imagenes se han subido correctamente"
-		});
-	} catch (error) {
-		console.error(error);
-		res.status(400).json({
-			state: false,
-			message: "Ha ocurrido un error al registrar las imágenes de la publicación"
-		});
-	}
-
-};
-
 
 
 exports.update = async (req, res) => {
