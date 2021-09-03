@@ -12,6 +12,7 @@ const animalsRoutes = require("./src/routes/animals");
 const adoptionsRoutes = require("./src/routes/adoptions");
 const questionsRoutes = require("./src/routes/questions");
 const questionsOptionsRoutes = require("./src/routes/questionOptions");
+const adoptionQuestionsRoutes = require("./src/routes/adoptionQuestions");
 const trackingRoutes = require("./src/routes/tracking");
 // const analyticsRoutes = require("./routes/analytics");
 
@@ -31,6 +32,7 @@ app.use("/api/adoptions", adoptionsRoutes);
 app.use("/api/questions", questionsRoutes);
 app.use("/api/questionOptions", questionsOptionsRoutes);
 app.use("/api/tracking", trackingRoutes);
+app.use("/api/adoptionQuestions", adoptionQuestionsRoutes);
 // app.use("/api/analytics", analyticsRoutes);
 
 
