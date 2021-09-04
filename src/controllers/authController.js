@@ -3,6 +3,8 @@
 const jwt = require("jsonwebtoken");
 const employee = require("../models").employee;
 const helpers = require("../helpers/helpers");
+
+const nodemailer = require("nodemailer");
 exports.create = async (req, res) => {
 	try {
 
@@ -17,12 +19,12 @@ exports.create = async (req, res) => {
 			const validPassword = await helpers.comparePassword(req.body.contrasenia, searchResult.contrasenia);
 			if (validPassword) {
 				const payload = {
-					employee:{
+					employee: {
 						id: searchResult.id_empleado,
 						email: searchResult.correo,
 						id_fundacion: searchResult.id_fundacion
 					}
-				
+
 				};
 				jwt.sign(payload, process.env.TOKEN_SECRET_KEY, { expiresIn: "30m" }, (err, token) => {
 					res.status(200).json({
@@ -36,6 +38,78 @@ exports.create = async (req, res) => {
 
 				});
 			}
+
+		} else {
+			res.status(404).json({
+				state: false,
+				message: "El usuario no existe",
+				data: searchResult
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al generar el token"
+		});
+	}
+};
+
+
+
+exports.recoveryPassword = async (req, res) => {
+
+	try {
+
+		const searchResult = await employee.findOne({
+			where: {
+				correo: req.body.correo
+			}
+		});
+
+		if (searchResult) {
+
+			let newPassword = helpers.generatePassword();
+			let encryptedNewPassword = await helpers.encryptPassword(newPassword);
+
+			searchResult.contrasenia = encryptedNewPassword; // update password in the instance
+			await searchResult.save(); //update password in db
+
+			// Generate test SMTP service account from ethereal.email
+			// Only needed if you don't have a real mail account for testing
+			let testAccount = await nodemailer.createTestAccount();
+
+			// create reusable transporter object using the default SMTP transport
+			let transporter = nodemailer.createTransport({
+				host: "smtp.ethereal.email",
+				port: 587,
+				secure: false, // true for 465, false for other ports
+				auth: {
+					user: testAccount.user, // generated ethereal user
+					pass: testAccount.pass // generated ethereal password
+				}
+			});
+
+			// send mail with defined transport object
+			let info = await transporter.sendMail({
+				from: "adopcionesFundamos@support.com", // sender address
+				to: req.body.correo, // list of receivers
+				subject: "Plataforma de adopción", // Subject line
+				text: "Recuperacion de contraseña", // plain text body
+				html: `<b>La nueva contraseña es ${newPassword}</b>` // html body
+			});
+
+			console.log("Message sent: %s", info.messageId);
+			// Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+			// Preview only available when sending through an Ethereal account
+			console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+			// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+			res.status(200).json({
+				message: "Sí el correo ingresado existe recibira un mensaje con su nueva contraseña"
+			});
 
 		} else {
 			res.status(404).json({

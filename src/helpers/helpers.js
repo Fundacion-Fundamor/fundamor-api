@@ -43,4 +43,30 @@ helpers.formatDate = (mysqlDate) => {
 		return "no establecida";
 	}
 };
+
+helpers.generatePassword = () => {
+
+	var lowerCaseAlp = "abcdefghijklmnopqrstuvwxyz";
+	var upperCaseAlp = lowerCaseAlp.toUpperCase();
+	var numbers = "0123456789";
+
+	var res = "";
+	for (var i = 0; i < 8; i++) {
+		var r4 = Math.floor(Math.random() * (3 - 0) + 0);
+		if (r4 == 0) {
+			var r1 = Math.floor(Math.random() * (lowerCaseAlp.length - 0) + 0);
+			res += lowerCaseAlp.charAt(r1);
+		} else if (r4 == 1) {
+			var r2 = Math.floor(Math.random() * (upperCaseAlp.length - 0) + 0);
+			res += upperCaseAlp.charAt(r2);
+		} else {
+			var r3 = Math.floor(Math.random() * (numbers.length - 0) + 0);
+			res += numbers.charAt(r3);
+		}
+	}
+
+	return res;
+
+};
+
 module.exports = helpers;
