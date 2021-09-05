@@ -108,7 +108,7 @@ exports.list = async (req, res) => {
 	try {
 		const searchResult = await questionOption.findAll({
 			where: {
-				id_pregunta: req.id_pregunta
+				id_pregunta: req.body.id_pregunta
 			}
 		});
 

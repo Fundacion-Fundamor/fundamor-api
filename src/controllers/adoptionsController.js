@@ -1,18 +1,12 @@
 
 /* eslint-disable camelcase */
 const adoption = require("../models").adoption;
-const moment = require("moment");
-
-
+const animal = require("../models").animal;
+const adoptionQuestion = require("../models").adoptionQuestion;
 exports.create = async (req, res) => {
-
 	try {
-
-		
-		//? como obtengo las adopciones de una fundacion
-		// req.body.id_fundacion = req.userSession.id_fundacion;
 		req.body.id_empleado = req.userSession.id;
-		req.body.fecha_estudio = moment(new Date()).format("YYYY-MM-DD");
+		req.body.fecha_estudio = Date.now();
 		const result = await adoption.create(req.body);
 		res.status(201).json({
 			state: true,
@@ -36,11 +30,16 @@ exports.delete = async (req, res) => {
 			where: {
 				id_adopcion: req.params["id"]
 			},
-			include:"tracking"
+			include: "tracking"
 
 		});
+		await adoptionQuestion.destroy({
+			where: {
+				id_adopcion: req.params["id"]
+			}
+		});
 
-		if (result === 1) {
+		if (result > 0) {
 			res.status(200).json({
 				state: true,
 				message: "La adopción se ha eliminado exitosamente"
@@ -63,7 +62,7 @@ exports.delete = async (req, res) => {
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await adoption.findByPk(req.params["id"]);
+		const searchResult = await adoption.findByPk(req.params["id"], { include: "animal" });
 
 		if (searchResult) {
 			res.status(200).json({
@@ -116,10 +115,14 @@ exports.list = async (req, res) => {
 
 	try {
 		const searchResult = await adoption.findAll({
-			//? como listo las adopciones de una fundación
-			where: {
-				id_fundacion: req.userSession.id_fundacion
-			}
+			include: [
+				{
+					model: animal,
+					where: {
+						id_fundacion: req.userSession.id_fundacion
+					}
+				}
+			]
 		});
 
 		if (searchResult.length !== 0) {

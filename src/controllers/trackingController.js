@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
 const tracking = require("../models").tracking;
-const moment = require("moment");
+
 exports.create = async (req, res) => {
 
 	try {
 
-		req.body.fecha_hora = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+		req.body.fecha_hora = Date.now();
 
 		const result = await tracking.create(req.body);
 		res.status(201).json({
@@ -108,6 +108,7 @@ exports.update = async (req, res) => {
 };
 exports.list = async (req, res) => {
 
+	console.log(req.body);
 	try {
 		const searchResult = await tracking.findAll({
 			where: {

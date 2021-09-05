@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
 		req.body.id_fundacion = req.userSession.id_fundacion;
 		const result = await question.create(req.body);
 
-		if (req.body.opciones_pregunta.length !== 0) {
+		if (req.body.opciones_pregunta) {
 			let questionOptions = [];
 			(req.body.opciones_pregunta).forEach(element => {
 				element.id_pregunta = result.id_pregunta;

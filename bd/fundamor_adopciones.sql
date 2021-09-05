@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-08-2021 a las 04:55:08
+-- Tiempo de generación: 06-09-2021 a las 00:11:18
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 7.3.28
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `adopcion` (
   `id_adopcion` int(11) NOT NULL,
   `id_animal` int(11) NOT NULL,
-  `fecha_estudio` date NOT NULL,
-  `fecha_entrega` date DEFAULT NULL,
-  `estado` enum('Finalizada','En proceso') NOT NULL DEFAULT 'En proceso',
+  `fecha_estudio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fecha_entrega` timestamp NULL DEFAULT NULL,
+  `estado` enum('finalizada','en proceso') NOT NULL DEFAULT 'en proceso',
   `observaciones` varchar(200) DEFAULT NULL,
   `id_adoptante` varchar(45) NOT NULL,
   `id_empleado` varchar(45) NOT NULL
@@ -43,10 +43,7 @@ CREATE TABLE `adopcion` (
 --
 
 INSERT INTO `adopcion` (`id_adopcion`, `id_animal`, `fecha_estudio`, `fecha_entrega`, `estado`, `observaciones`, `id_adoptante`, `id_empleado`) VALUES
-(1, 1, '2021-08-17', NULL, 'En proceso', 'sasd', '10050932423', '2'),
-(2, 1, '2021-08-17', NULL, 'En proceso', 'sasd', '10050932423', '2'),
-(3, 1, '2021-08-25', NULL, 'En proceso', '123', '012390132', '2'),
-(4, 1, '2021-08-25', NULL, 'En proceso', '123', '012390132', '2');
+(14, 5, '2021-09-05 20:27:05', NULL, 'finalizada', NULL, '10021301293', '1000');
 
 -- --------------------------------------------------------
 
@@ -70,9 +67,7 @@ CREATE TABLE `adoptante` (
 --
 
 INSERT INTO `adoptante` (`id_adoptante`, `nombre`, `telefono_casa`, `telefono_celular`, `ciudad`, `ocupacion`, `correo`, `contrasenia`) VALUES
-('012390132', 'andres', '123', '123', '123123', '123', '123', '123'),
-('10021301293', 'Juan camilo perez', NULL, '3156627271312', 'Armenia quindio', 'Odontologo', 'juap@gmail.com', '$2a$10$kyaPtVvlb/ketPSGoIBvYeClH2WDo1e41UJ6a7tmdWMh8oaTRl4/S'),
-('10050932423', 'Carlos andres Gonzales', '312', '', 'asd', 'sad', 'sad', 'sad');
+('10021301293', 'Juan camilo perez', NULL, '3156627271312', 'Armenia quindio', 'Vigilante', 'juap@gmail.com', '$2a$10$9pczNMhHVwK96BKxf5qP5uhWGv4cvuQso1vp/kU/NRgTCy1CY9KwS');
 
 -- --------------------------------------------------------
 
@@ -85,13 +80,13 @@ CREATE TABLE `animal` (
   `id_fundacion` int(11) NOT NULL,
   `especie` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
+  `fecha_nacimiento` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `sexo` varchar(10) NOT NULL,
   `caracteristicas` varchar(300) DEFAULT NULL,
   `sitio_rescate` varchar(190) DEFAULT NULL,
-  `fecha_rescate` date DEFAULT NULL,
+  `fecha_rescate` datetime DEFAULT NULL,
   `color` varchar(45) NOT NULL,
-  `vacunas` varchar(100) NOT NULL,
+  `vacunas` varchar(100) DEFAULT NULL,
   `esterilizado` tinyint(4) NOT NULL,
   `desparasitado` tinyint(1) NOT NULL,
   `tamanio` varchar(45) NOT NULL,
@@ -103,7 +98,8 @@ CREATE TABLE `animal` (
 --
 
 INSERT INTO `animal` (`id_animal`, `id_fundacion`, `especie`, `nombre`, `fecha_nacimiento`, `sexo`, `caracteristicas`, `sitio_rescate`, `fecha_rescate`, `color`, `vacunas`, `esterilizado`, `desparasitado`, `tamanio`, `estado`) VALUES
-(1, 1, 'gato', 'paco', '2021-08-10', '', 'agradable', 'guaduales de la villa', '2021-08-09', 'pardo', 'sisi', 1, 1, 'mediano', 'En proceso');
+(5, 3, 'perro', 'nerón', '2021-08-09 00:00:00', 'Macho', 'isisi', 'Armenia', '2021-09-10 00:00:00', 'negro', 'sisas', 0, 0, 'Grande', 'Sin adoptar'),
+(6, 3, 'perro', 'nerón', '2021-08-09 00:00:00', 'Macho', 'nonse', 'Armenia', '2021-09-10 00:00:00', 'negro', 'sisas', 0, 0, 'Grande', 'Sin adoptar');
 
 -- --------------------------------------------------------
 
@@ -125,8 +121,7 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id_empleado`, `id_fundacion`, `correo`, `contrasenia`, `nombre`, `rol`) VALUES
-('1000', 1, 'juan@gmail.com', '$2a$10$W9xRMFd.pJd2CSHPp.beuOsYbVKkb5vChHxgHfGtO1J1WFiHBSn.S', 'juan talamera', 'colaborador'),
-('2', 1, 'test@gmail.com', '12345678', 'Test User ', 'administrador');
+('1000', 3, 'tester@gmail.com', '$2a$10$7mo4cArMWSWyX7l51qG0Y.UBPCub94gmPVu8UDKKuoV7XM0o7PQjG', 'Test User', 'colaborador');
 
 -- --------------------------------------------------------
 
@@ -147,7 +142,7 @@ CREATE TABLE `fundacion` (
 --
 
 INSERT INTO `fundacion` (`id_fundacion`, `correo`, `telefono`, `cuenta_donaciones`, `nombre`) VALUES
-(1, 'fundamor@gmail.com', '3142163213', '102-213-1232-31123', 'Fundación Fundamor de Calarcá');
+(3, 'fundacionFundamor@gmail.com', '3128029383', '123213-231123-213', 'Fundacion Fundamor de Calarcá');
 
 -- --------------------------------------------------------
 
@@ -164,14 +159,36 @@ CREATE TABLE `imagen_animal` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `imagen_publicacion`
+--
+
+CREATE TABLE `imagen_publicacion` (
+  `id_publicacion` int(11) NOT NULL,
+  `id_imagen_publicacion` int(11) NOT NULL,
+  `ruta` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `opcion_pregunta`
 --
 
 CREATE TABLE `opcion_pregunta` (
   `id_opcion` int(11) NOT NULL,
   `id_pregunta` int(11) DEFAULT NULL,
-  `descripcion` varchar(70) DEFAULT NULL
+  `descripcion` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `opcion_pregunta`
+--
+
+INSERT INTO `opcion_pregunta` (`id_opcion`, `id_pregunta`, `descripcion`) VALUES
+(29, 20, 'SI'),
+(30, 20, 'SI'),
+(31, 20, 'SIasas'),
+(32, 20, '');
 
 -- --------------------------------------------------------
 
@@ -185,6 +202,14 @@ CREATE TABLE `pregunta` (
   `titulo` varchar(100) NOT NULL,
   `tipo_pregunta` enum('abierta','multiple') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pregunta`
+--
+
+INSERT INTO `pregunta` (`id_pregunta`, `id_fundacion`, `titulo`, `tipo_pregunta`) VALUES
+(20, 3, '¿HAY ?', 'multiple'),
+(21, 3, '¿HAY ?', 'multiple');
 
 -- --------------------------------------------------------
 
@@ -202,15 +227,58 @@ CREATE TABLE `pregunta_adopcion` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `publicacion`
+--
+
+CREATE TABLE `publicacion` (
+  `id_publicacion` int(11) NOT NULL,
+  `id_fundacion` int(11) NOT NULL,
+  `titulo` varchar(200) NOT NULL,
+  `cuerpo` text NOT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `publicacion`
+--
+
+INSERT INTO `publicacion` (`id_publicacion`, `id_fundacion`, `titulo`, `cuerpo`, `fecha_creacion`) VALUES
+(24, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:06:13'),
+(25, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:06:53'),
+(26, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:13:23'),
+(27, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:13:47'),
+(28, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:14:09'),
+(29, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:16:10'),
+(30, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:16:28'),
+(31, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:17:10'),
+(32, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:20:27'),
+(33, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:20:59'),
+(34, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:21:37'),
+(35, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:21:55'),
+(36, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:22:17'),
+(37, 3, 'TEST DE NOTICIA', 'Vacunas en la uniquindio', '2021-09-05 03:23:26'),
+(38, 3, 'TEST DE NOTICIA22', 'Vacunas en la uniquindio', '2021-09-05 22:07:53');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `seguimiento`
 --
 
 CREATE TABLE `seguimiento` (
   `id_adopcion` int(11) NOT NULL,
   `id_seguimiento` int(11) NOT NULL,
-  `fecha_hora` date NOT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `anotaciones` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `seguimiento`
+--
+
+INSERT INTO `seguimiento` (`id_adopcion`, `id_seguimiento`, `fecha_hora`, `anotaciones`) VALUES
+(14, 4, '2021-09-05 21:20:47', 'No contesta'),
+(14, 5, '2021-09-05 21:20:48', 'No contesta');
 
 --
 -- Índices para tablas volcadas
@@ -259,6 +327,13 @@ ALTER TABLE `imagen_animal`
   ADD KEY `fkIdx_178` (`id_animal`);
 
 --
+-- Indices de la tabla `imagen_publicacion`
+--
+ALTER TABLE `imagen_publicacion`
+  ADD PRIMARY KEY (`id_imagen_publicacion`,`id_publicacion`),
+  ADD KEY `fkIdx_79` (`id_publicacion`);
+
+--
 -- Indices de la tabla `opcion_pregunta`
 --
 ALTER TABLE `opcion_pregunta`
@@ -282,6 +357,13 @@ ALTER TABLE `pregunta_adopcion`
   ADD KEY `fkIdx_141` (`id_pregunta`);
 
 --
+-- Indices de la tabla `publicacion`
+--
+ALTER TABLE `publicacion`
+  ADD PRIMARY KEY (`id_publicacion`),
+  ADD KEY `fkIdx_206` (`id_fundacion`);
+
+--
 -- Indices de la tabla `seguimiento`
 --
 ALTER TABLE `seguimiento`
@@ -296,49 +378,61 @@ ALTER TABLE `seguimiento`
 -- AUTO_INCREMENT de la tabla `adopcion`
 --
 ALTER TABLE `adopcion`
-  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `fundacion`
 --
 ALTER TABLE `fundacion`
-  MODIFY `id_fundacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_fundacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen_animal`
 --
 ALTER TABLE `imagen_animal`
-  MODIFY `id_imagen_animal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_imagen_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `imagen_publicacion`
+--
+ALTER TABLE `imagen_publicacion`
+  MODIFY `id_imagen_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `opcion_pregunta`
 --
 ALTER TABLE `opcion_pregunta`
-  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta_adopcion`
 --
 ALTER TABLE `pregunta_adopcion`
-  MODIFY `id_pregunta_adopcion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pregunta_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `publicacion`
+--
+ALTER TABLE `publicacion`
+  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `seguimiento`
 --
 ALTER TABLE `seguimiento`
-  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -371,10 +465,16 @@ ALTER TABLE `imagen_animal`
   ADD CONSTRAINT `FK_177` FOREIGN KEY (`id_animal`) REFERENCES `animal` (`id_animal`);
 
 --
+-- Filtros para la tabla `imagen_publicacion`
+--
+ALTER TABLE `imagen_publicacion`
+  ADD CONSTRAINT `FK_78` FOREIGN KEY (`id_publicacion`) REFERENCES `publicacion` (`id_publicacion`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `opcion_pregunta`
 --
 ALTER TABLE `opcion_pregunta`
-  ADD CONSTRAINT `fk_pregunta` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id_pregunta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_pregunta` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id_pregunta`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `pregunta`
@@ -388,6 +488,12 @@ ALTER TABLE `pregunta`
 ALTER TABLE `pregunta_adopcion`
   ADD CONSTRAINT `FK_140` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id_pregunta`),
   ADD CONSTRAINT `FK_141` FOREIGN KEY (`id_adopcion`) REFERENCES `adopcion` (`id_adopcion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `publicacion`
+--
+ALTER TABLE `publicacion`
+  ADD CONSTRAINT `FK_205` FOREIGN KEY (`id_fundacion`) REFERENCES `fundacion` (`id_fundacion`);
 
 --
 -- Filtros para la tabla `seguimiento`

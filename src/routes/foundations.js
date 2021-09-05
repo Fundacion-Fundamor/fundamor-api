@@ -2,20 +2,21 @@ const express = require("express");
 const router = express.Router();
 const foundationsController = require("../controllers/foundationsController");
 const { foundationValidationRules, validate } = require("../middleware/validator");
+const verify = require("../middleware/auth/verify");
 
 // foundation list
-router.get("/", foundationsController.list);
+router.get("/", verify, foundationsController.list);
 
 // get foundation
-router.get("/:id", foundationsController.get);
+router.get("/:id", verify, foundationsController.get);
 
 // create foundation
-router.post("/", foundationValidationRules(), validate, foundationsController.create);
+router.post("/", verify, foundationValidationRules(), validate, foundationsController.create);
 
 // update foundation
-router.put("/", foundationsController.update);
+router.put("/", verify, foundationsController.update);
 
 // delete foundation
-router.delete("/:id", foundationsController.delete);
+router.delete("/:id", verify, foundationsController.delete);
 
 module.exports = router;

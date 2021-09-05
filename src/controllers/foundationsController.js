@@ -28,7 +28,7 @@ exports.create = async (req, res) => {
 		} else {
 			res.status(409).json({
 				state: false,
-				message: "Ya existe una fundación registrada con este nombre"
+				message: "Ya existe una fundación registrada con este nombre o correo"
 
 			});
 		}

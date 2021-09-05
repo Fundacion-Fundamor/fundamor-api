@@ -109,7 +109,7 @@ exports.update = async (req, res) => {
 				}
 			}
 		});
-		//? como actualizar la cedula
+	
 		if (searchResult.length === 0) {
 			await employee.update(req.body, {
 				where: {

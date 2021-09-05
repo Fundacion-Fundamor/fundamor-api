@@ -9,24 +9,19 @@
 			"name": "Post",
 			"item": [
 				{
-					"name": "Create post",
+					"name": "update",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5OTQ1MzY4LCJleHAiOjE2Mjk5NDcxNjh9.M9Qi9vGitmQzA_7o5qKa7VZDPTuDZGduPwA8OP-HT_E",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n    \"titulo\":\"TEST DE NOTICI 22A\",\r\n    \"cuerpo\":\"Vacunas en la uniquindio\"\r\n\r\n}",
+							"raw": "{\r\n    \"id_publicacion\": \"38\",\r\n    \"titulo\": \"TEST DE NOTICIA22\",\r\n    \"cuerpo\": \"Vacunas en la uniquindio\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -48,44 +43,34 @@
 					"response": []
 				},
 				{
-					"name": "uploadImages",
+					"name": "Create",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5Njg1MzI0LCJleHAiOjE2Mjk2ODcxMjR9.j41o_NxF6MdCVk4mdbbatjTJd1DGLLGARmfXz1eA3Yw",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
 								"type": "text"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "postImages",
-									"type": "file",
-									"src": [
-										"/C:/Users/nfs/Downloads/noticia3.jpg",
-										"/C:/Users/nfs/Downloads/noticia2.jpg"
-									]
-								},
-								{
-									"key": "id_publicacion",
-									"value": "9",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"titulo\":\"TEST DE NOTICIA\",\r\n    \"cuerpo\":\"Vacunas en la uniquindio\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
-							"raw": "localhost:4000/api/post/uploadImages",
+							"raw": "localhost:4000/api/post",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
 								"api",
-								"post",
-								"uploadImages"
+								"post"
 							]
 						}
 					},
@@ -131,7 +116,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5OTQ1MzY4LCJleHAiOjE2Mjk5NDcxNjh9.M9Qi9vGitmQzA_7o5qKa7VZDPTuDZGduPwA8OP-HT_E",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTE5ODUsImV4cCI6MTYzMDgxMzc4NX0.hvQcz65XdXouFpfYRMyJvpAcujo9s-b5x8r5fkZgCxc",
 								"type": "text"
 							}
 						],
@@ -145,7 +130,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000/api/post/22",
+							"raw": "localhost:4000/api/post/25",
 							"host": [
 								"localhost"
 							],
@@ -153,7 +138,7 @@
 							"path": [
 								"api",
 								"post",
-								"22"
+								"25"
 							],
 							"query": [
 								{
@@ -165,36 +150,27 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Auth",
-			"item": [
+				},
 				{
-					"name": "Token",
+					"name": "list post",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"correo\":\"juan@gmail.com\",\r\n    \"contrasenia\":\"hola\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTE5ODUsImV4cCI6MTYzMDgxMzc4NX0.hvQcz65XdXouFpfYRMyJvpAcujo9s-b5x8r5fkZgCxc",
+								"type": "text"
 							}
-						},
+						],
 						"url": {
-							"raw": "localhost:4000/api/auth/token",
+							"raw": "localhost:4000/api/post",
 							"host": [
 								"localhost"
 							],
 							"port": "4000",
 							"path": [
 								"api",
-								"auth",
-								"token"
+								"post"
 							]
 						}
 					},
@@ -212,7 +188,13 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.{{TOKEN ACTUAL}}.HDzD9wv9NSlcPG9Rgl7kEwxLGyyuG_zpN3sbMRLGLZk",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -240,10 +222,16 @@
 					"name": "create employee",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTAwNzcsImV4cCI6MTYzMDgxMTg3N30.HDzD9wv9NSlcPG9Rgl7kEwxLGyyuG_zpN3sbMRLGLZk",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"contrasenia\":\"hola\",\r\n    \"id_empleado\":\"1000\",\r\n    \"id_fundacion\":1,\r\n    \"nombre\":\"juan talamera\",\r\n    \"rol\":\"colaborador\",\r\n    \"correo\":\"juan@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"contrasenia\":\"hola\",\r\n    \"id_empleado\":\"1001\",\r\n    \"id_fundacion\":3,\r\n    \"nombre\":\"Test User2\",\r\n    \"rol\":\"colaborador\",\r\n    \"correo\":\"aurelio@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -263,6 +251,106 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update Employee",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTAwNzcsImV4cCI6MTYzMDgxMTg3N30.HDzD9wv9NSlcPG9Rgl7kEwxLGyyuG_zpN3sbMRLGLZk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contrasenia\":\"hola\",\r\n    \"id_empleado\":\"1001\",\r\n    \"id_fundacion\":3,\r\n    \"nombre\":\"aurelio@gmail.com\",\r\n    \"rol\":\"colaborador\",\r\n    \"correo\":\"aurelio@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/employees",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete employee",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTAwNzcsImV4cCI6MTYzMDgxMTg3N30.HDzD9wv9NSlcPG9Rgl7kEwxLGyyuG_zpN3sbMRLGLZk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/employees/1001",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees",
+								"1001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get employee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTAwNzcsImV4cCI6MTYzMDgxMTg3N30.HDzD9wv9NSlcPG9Rgl7kEwxLGyyuG_zpN3sbMRLGLZk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:4000/api/employees/1000",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees",
+								"1000"
+							],
+							"query": [
+								{
+									"key": "x-auth-token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTAwNzcsImV4cCI6MTYzMDgxMTg3N30.HDzD9wv9NSlcPG9Rgl7kEwxLGyyuG_zpN3sbMRLGLZk",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -276,7 +364,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"correo\": \"fundacion@gmail.com\",\r\n    \"telefono\": null,\r\n    \"nombre\": \"Cuidado animal armenia\",\r\n    \"cuenta_donaciones\": \"123213-231123-213\"\r\n}",
+							"raw": "{\r\n    \"correo\": \"fundacionFundamor@gmail.com\",\r\n    \"telefono\": \"3128029383\",\r\n    \"nombre\": \"Fundacion Fundamor de Calarcá\",\r\n    \"cuenta_donaciones\": \"123213-231123-213\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -301,9 +389,21 @@
 					"name": "Delete Fundation",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTAwNzcsImV4cCI6MTYzMDgxMTg3N30.HDzD9wv9NSlcPG9Rgl7kEwxLGyyuG_zpN3sbMRLGLZk",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
-							"raw": "localhost:4000/api/foundations/13",
+							"raw": "localhost:4000/api/foundations/2",
 							"host": [
 								"localhost"
 							],
@@ -311,7 +411,7 @@
 							"path": [
 								"api",
 								"foundations",
-								"13"
+								"2"
 							]
 						}
 					},
@@ -321,10 +421,16 @@
 					"name": "UPDATE foundation",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Njc4OTksImV4cCI6MTYzMDg2OTY5OX0.eJUBdiV7t5WPEoT9A1ELY1noT6vieUbAdGrCNhWPiro",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"correo\": \"fundacion@gmail.com\",\r\n    \"telefono\": null,\r\n    \"id_fundacion\":\"12\",\r\n    \"nombre\": \"las cuencas\",\r\n    \"cuenta_donaciones\": \"123213-231123-213\"\r\n}",
+							"raw": "{\r\n    \"correo\": \"fundacion@gmail.com\",\r\n    \"telefono\": null,\r\n    \"id_fundacion\":\"12\",\r\n    \"nombre\": \"las cuencas\",\r\n    \"cuenta_donaciones\": \"123213-231123-2135\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -349,7 +455,13 @@
 					"name": "List foundations",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Njc4OTksImV4cCI6MTYzMDg2OTY5OX0.eJUBdiV7t5WPEoT9A1ELY1noT6vieUbAdGrCNhWPiro",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:4000/api/foundations",
 							"host": [
@@ -368,7 +480,13 @@
 					"name": "Get foundations",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Njc4OTksImV4cCI6MTYzMDg2OTY5OX0.eJUBdiV7t5WPEoT9A1ELY1noT6vieUbAdGrCNhWPiro",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:4000/api/foundations/14",
 							"host": [
@@ -391,18 +509,178 @@
 			"item": [
 				{
 					"name": "create animal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzEyMzQsImV4cCI6MTYzMDg3MzAzNH0.FomzYW_bWq7CngJwrm3MVdoZ_zrExbzPEMQndqf80yg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "      {\r\n          \"especie\":\"perro\",\r\n          \"nombre\":\"nerón\",\r\n          \"fecha_nacimiento\":\"2021-08-09\",\r\n          \"sexo\":\"Macho\",\r\n          \"caracteristicas\":\"nonse\",\r\n          \"sitio_rescate\":\"Armenia\",\r\n          \"fecha_rescate\":\"2021-09-10\",\r\n          \"color\":\"negro\",\r\n          \"vacunas\":\"sisas\",\r\n          \"esterilizado\":\"sisas\",\r\n          \"desparasitado\":\"nonas\",\r\n          \"tamanio\":\"Grande\",\r\n          \"estado\":\"Sin adoptar\"\r\n\r\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/animals",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"animals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteImages",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTAwNzcsImV4cCI6MTYzMDgxMTg3N30.HDzD9wv9NSlcPG9Rgl7kEwxLGyyuG_zpN3sbMRLGLZk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_imagenes\":[\"5\",\"6\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/animalImages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"animalImages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get animal",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Njc4OTksImV4cCI6MTYzMDg2OTY5OX0.eJUBdiV7t5WPEoT9A1ELY1noT6vieUbAdGrCNhWPiro",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "      ",
+							"raw": "{\r\n    \"id_animal\":3,\r\n    \"nombre\":\"Auron\"\r\n}",
 							"options": {
 								"raw": {
-									"language": "text"
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/animals/4",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"animals",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List animals",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzEyMzQsImV4cCI6MTYzMDg3MzAzNH0.FomzYW_bWq7CngJwrm3MVdoZ_zrExbzPEMQndqf80yg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/animals",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"animals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete animal",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzEyMzQsImV4cCI6MTYzMDg3MzAzNH0.FomzYW_bWq7CngJwrm3MVdoZ_zrExbzPEMQndqf80yg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/animals/4",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"animals",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update animal",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzEyMzQsImV4cCI6MTYzMDg3MzAzNH0.FomzYW_bWq7CngJwrm3MVdoZ_zrExbzPEMQndqf80yg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "      {\r\n          \"especie\":\"perro\",\r\n          \"nombre\":\"nerón\",\r\n          \"fecha_nacimiento\":\"2021-08-09\",\r\n          \"sexo\":\"Macho\",\r\n          \"caracteristicas\":\"isisi\",\r\n          \"id_animal\":\"5\"\r\n       \r\n\r\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
 							}
 						},
@@ -432,13 +710,13 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjI5OTQ1MzY4LCJleHAiOjE2Mjk5NDcxNjh9.M9Qi9vGitmQzA_7o5qKa7VZDPTuDZGduPwA8OP-HT_E",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzQ5MjEsImV4cCI6MTYzMDg3NjcyMX0.J4Ejjgna7HRX14qfTXYQxFRcy2h2GlsR_xON34ZMltY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id_adoptante\": \"10021301293\",\r\n    \"nombre\": \"Juan camilo perez\",\r\n    \"telefono_celular\": \"3156627271312\",\r\n    \"ciudad\": \"Armenia quindio\",\r\n    \"ocupacion\": \"Odontologo\",\r\n    \"correo\": \"juap@gmail.com\",\r\n    \"contrasenia\": \"meloski\"\r\n}",
+							"raw": "{\r\n    \"id_adoptante\": \"10023\",\r\n    \"nombre\": \"Juan camilo perez\",\r\n    \"telefono_celular\": \"3156627271312\",\r\n    \"ciudad\": \"Armenia quindio\",\r\n    \"ocupacion\": \"Odontologo\",\r\n    \"correo\": \"jua2p@gmail.com\",\r\n    \"contrasenia\": \"meloski\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -458,8 +736,1245 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "delete adopter",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzQ5MjEsImV4cCI6MTYzMDg3NjcyMX0.J4Ejjgna7HRX14qfTXYQxFRcy2h2GlsR_xON34ZMltY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/adopters/10023",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adopters",
+								"10023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update adopter",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzMwNTksImV4cCI6MTYzMDg3NDg1OX0.M-h-3YedHV16kWIN96Kq2KFUggoLxhkKZxD5-O9jJpE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_adoptante\": \"10021301293\",\r\n    \"nombre\": \"Juan camilo perez\",\r\n    \"telefono_celular\": \"3156627271312\",\r\n    \"ciudad\": \"Armenia quindio\",\r\n    \"ocupacion\": \"Vigilante\",\r\n    \"correo\": \"juap@gmail.com\"\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/adopters",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adopters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List adopter",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzQ5MjEsImV4cCI6MTYzMDg3NjcyMX0.J4Ejjgna7HRX14qfTXYQxFRcy2h2GlsR_xON34ZMltY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/adopters",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adopters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get adopter",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzQ5MjEsImV4cCI6MTYzMDg3NjcyMX0.J4Ejjgna7HRX14qfTXYQxFRcy2h2GlsR_xON34ZMltY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/adopters/10021301293",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adopters",
+								"10021301293"
+							]
+						}
+					},
+					"response": []
 				}
 			]
+		},
+		{
+			"name": "Adoptions",
+			"item": [
+				{
+					"name": "create adoption",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzEyMzQsImV4cCI6MTYzMDg3MzAzNH0.FomzYW_bWq7CngJwrm3MVdoZ_zrExbzPEMQndqf80yg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_animal\":5,\r\n    \"estado\":\"Aprobada\",\r\n    \"id_adoptante\":\"10021301293\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/adoptions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptions"
+							],
+							"query": [
+								{
+									"key": "x-auth-token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjMwMzc2NDk5LCJleHAiOjE2MzAzNzgyOTl9.uFFHgH0CkrlmLN4M-8GRsOVBvG56C7Z5qfHozjC3MrA",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update adoption",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzMwNTksImV4cCI6MTYzMDg3NDg1OX0.M-h-3YedHV16kWIN96Kq2KFUggoLxhkKZxD5-O9jJpE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_adopcion\":14,\r\n    \"estado\":\"finalizada\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/adoptions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptions"
+							],
+							"query": [
+								{
+									"key": "x-auth-token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6Imp1YW5AZ21haWwuY29tIiwiaWRfZnVuZGFjaW9uIjoxfSwiaWF0IjoxNjMwMzc2NDk5LCJleHAiOjE2MzAzNzgyOTl9.uFFHgH0CkrlmLN4M-8GRsOVBvG56C7Z5qfHozjC3MrA",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list adoptions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzEyMzQsImV4cCI6MTYzMDg3MzAzNH0.FomzYW_bWq7CngJwrm3MVdoZ_zrExbzPEMQndqf80yg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/adoptions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Adoption",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzMwNTksImV4cCI6MTYzMDg3NDg1OX0.M-h-3YedHV16kWIN96Kq2KFUggoLxhkKZxD5-O9jJpE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/adoptions/15",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptions",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Adoption",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzMwNTksImV4cCI6MTYzMDg3NDg1OX0.M-h-3YedHV16kWIN96Kq2KFUggoLxhkKZxD5-O9jJpE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/adoptions/15",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptions",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tracking",
+			"item": [
+				{
+					"name": "List tracking",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_adopcion\":\"14\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/tracking",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"tracking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create tracking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_adopcion\":\"14\",\r\n    \"anotaciones\":\"No contesta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/tracking",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"tracking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update tracking",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_seguimiento\":\"3\",\r\n    \"anotaciones\":\"No contestass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/tracking",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"tracking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get tracking",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/tracking/1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"tracking",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Tracking",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/tracking/3",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"tracking",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QuestionOptions",
+			"item": [
+				{
+					"name": "Get Question Option",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questionOptions/29",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questionOptions",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Question optios of question",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_pregunta\":\"20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questionOptions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questionOptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id_pregunta\":\"20\",\r\n  \"descripcion\":\"SI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questionOptions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questionOptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update question option",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id_opcion\":\"31\",\r\n  \"descripcion\":\"SIasas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questionOptions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questionOptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete question of adoption",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_opcion\":\"1\",\r\n    \"descripcion\":\"AA mentiras\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questionOptions/1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questionOptions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\":\"tester@gmail.com\",\r\n    \"contrasenia\":\"hola\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/auth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recoveryPassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\":\"juan@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/auth/recoveryPassword",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"recoveryPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Get questions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questions"
+							],
+							"query": [
+								{
+									"key": "x-auth-token",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get question",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questions/21",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questions",
+								"21"
+							],
+							"query": [
+								{
+									"key": "x-auth-token",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete questions",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questions/22",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questions",
+								"22"
+							],
+							"query": [
+								{
+									"key": "x-auth-token",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update question",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_pregunta\":\"22\",\r\n    \"titulo\": \"¿HAYaa ?\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questions"
+							],
+							"query": [
+								{
+									"key": "x-auth-token",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create questions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4NzY3NDcsImV4cCI6MTYzMDg3ODU0N30.zGNsWy2EoNXqoXmof_dqO8sKrk24RDrtpsu8jpjHB1s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"¿HAY ?\",\r\n    \"tipo_pregunta\": \"multiple\",\r\n    \"opciones_pregunta\": [\r\n        {\r\n            \"descripcion\": \"SI\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/questions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"questions"
+							],
+							"query": [
+								{
+									"key": "x-auth-token",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AdoptionQuestion",
+			"item": [
+				{
+					"name": "get questions of adoption",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/api/adoptionQuestions/1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptionQuestions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate questions to adoption",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asociaciones\": [\r\n        {\r\n            \"id_adopcion\": \"14\",\r\n            \"id_pregunta\":\"20\",\r\n            \"respuesta\":\"SI\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/adoptionQuestions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptionQuestions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete adoptionQuestion associations",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/adoptionQuestions/7",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptionQuestions",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete multiple adoptionQuestion associations",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asociaciones\":[\"8\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/adoptionQuestions",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"adoptionQuestions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "postImages",
+			"item": [
+				{
+					"name": "uploadImages",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "postImages",
+									"type": "file",
+									"src": [
+										"/C:/Users/nfs/Downloads/noticia3.jpg",
+										"/C:/Users/nfs/Downloads/noticia2.jpg"
+									]
+								},
+								{
+									"key": "id_publicacion",
+									"value": "38",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/api/postImages/uploadImages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"postImages",
+								"uploadImages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteImages",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_imagenes\":[\"17\",\"18\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/postImages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"postImages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "animalImages",
+			"item": [
+				{
+					"name": "uploadImages",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "animalImages",
+									"type": "file",
+									"src": [
+										"/C:/Users/nfs/Downloads/noticia3.jpg",
+										"/C:/Users/nfs/Downloads/noticia2.jpg"
+									]
+								},
+								{
+									"key": "id_animal",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/api/animalImages/uploadImages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"animalImages",
+								"uploadImages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteImages",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4Nzg1NjAsImV4cCI6MTYzMDg4MDM2MH0.aMbM0lko7s6xpSXSGCOaApU5fRRSstuZSHrd7UIx2_Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_imagenes\":[\"7\",\"8\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/animalImages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"animalImages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "TOKEN ACTUAL",
+			"value": "eyJlbXBsb3llZSI6eyJpZCI6IjEwMDAiLCJlbWFpbCI6InRlc3RlckBnbWFpbC5jb20iLCJpZF9mdW5kYWNpb24iOjN9LCJpYXQiOjE2MzA4MTAwNzcsImV4cCI6MTYzMDgxMTg3N30"
 		}
 	]
 }

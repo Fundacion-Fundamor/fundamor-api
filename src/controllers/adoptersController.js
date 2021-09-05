@@ -1,6 +1,8 @@
 
 /* eslint-disable camelcase */
 const adopter = require("../models").adopter;
+const adoption = require("../models").adoption;
+const animal = require("../models").animal;
 const { Op } = require("sequelize");
 const helpers = require("../helpers/helpers");
 exports.create = async (req, res) => {
@@ -112,7 +114,7 @@ exports.update = async (req, res) => {
 		});
 
 		if (searchResult.length === 0) {
-			//? como actualizar la cedula
+
 			await adopter.update(req.body, {
 				where: {
 					id_adoptante: req.body.id_adoptante
@@ -121,8 +123,7 @@ exports.update = async (req, res) => {
 
 			res.status(200).json({
 				state: true,
-				message: "Los datos del adoptante se han actualizado exitosamente",
-				data: searchResult
+				message: "Los datos del adoptante se han actualizado exitosamente"
 			});
 
 		} else {
@@ -147,12 +148,21 @@ exports.list = async (req, res) => {
 	try {
 		//? como obtengo los adoptantes de una fundacion?
 		const searchResult = await adopter.findAll({
-			where: {
-				id_fundacion: req.userSession.id_fundacion
-			},
-			attributes: { exclude: ["contrasenia"] }
+			attributes: { exclude: ["contrasenia"] },
+			include: [
+				{
+					model: adoption, as: "adoption",
+					where: {
+						id_adoptante: "$adoption.id_adoptante$"
+					}
+				}
+			]
 		});
+		res.status(200).json({
+			state: true,
+			message: "En proceso de desarrollo"
 
+		});
 		if (searchResult.length !== 0) {
 
 			res.status(200).json({
@@ -175,4 +185,5 @@ exports.list = async (req, res) => {
 			message: "Ha ocurrido un error al obtener la lista de adoptantes"
 		});
 	}
+	
 };

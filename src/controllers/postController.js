@@ -1,15 +1,13 @@
 /* eslint-disable camelcase */
 const post = require("../models").post;
-
 const fs = require("fs").promises;
-const moment = require("moment");
 
 exports.create = async (req, res) => {
 
 	try {
 
 		req.body.id_fundacion = req.userSession.id_fundacion;
-		req.body.fecha_creacion = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+		req.body.fecha_creacion = Date.now();
 		const result = await post.create(req.body);
 		res.status(201).json({
 			state: true,

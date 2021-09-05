@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 		id_fundacion: { allowNull: false, type: DataTypes.INTEGER },
 		titulo: { type: DataTypes.STRING(200), allowNull: false },
 		cuerpo: { type: DataTypes.TEXT, allowNull: false },
-		fecha_creacion: { type: DataTypes.DATE(6), allowNull: false }
+		fecha_creacion: { type: DataTypes.DATE, allowNull: false }
 	}, {
 		sequelize,
 		modelName: "post",
