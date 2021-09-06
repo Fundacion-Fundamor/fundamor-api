@@ -1,4 +1,3 @@
-
 /* eslint-disable camelcase */
 const employee = require("../models").employee;
 const { Op } = require("sequelize");

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const postController = require("../controllers/postController");
 const verify = require("../middleware/auth/verify");
+const {postValidationRules, validate } = require("../middleware/validator");
 
 
 /**create post
@@ -12,7 +13,7 @@ const verify = require("../middleware/auth/verify");
  * 	cuerpo:String
  * } 
  */
-router.post("/", verify, postController.create);
+router.post("/", verify, postValidationRules(), validate, postController.create);
 
 //list post
 router.get("/", verify, postController.list);

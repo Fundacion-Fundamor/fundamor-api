@@ -3,6 +3,8 @@ const router = express.Router();
 const animalImagesController = require("../controllers/animalImagesController");
 const uploadImage = require("../middleware/upload");
 const verify = require("../middleware/auth/verify");
+const { animalImageValidationRules, validate } = require("../middleware/validator");
+
 
 
 /**upload images of animal
@@ -13,7 +15,7 @@ const verify = require("../middleware/auth/verify");
  *  animalImages: Array
  * }
  */
-router.post("/uploadImages", verify, uploadImage, animalImagesController.upload);
+router.post("/uploadImages", verify, animalImageValidationRules(), validate, uploadImage, animalImagesController.upload);
 
 
 /**

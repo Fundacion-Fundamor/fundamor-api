@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const adoptersController = require("../controllers/adoptersController");
+const {adopterValidationRules, validate } = require("../middleware/validator");
 
 
 const verify = require("../middleware/auth/verify");
 /**create adopter
  *
- * expected objet:
+ * expected object:
  * {
  *       id_adoptante: String,
  *       nombre:String,
@@ -19,7 +20,7 @@ const verify = require("../middleware/auth/verify");
  * }
  *
  */
-router.post("/", verify, adoptersController.create);
+router.post("/", verify, adopterValidationRules(), validate, adoptersController.create);
 
 // adopter list
 router.get("/", verify, adoptersController.list);
@@ -28,7 +29,7 @@ router.get("/", verify, adoptersController.list);
 router.get("/:id", verify, adoptersController.get);
 
 // update adopter
-router.put("/", verify, adoptersController.update);
+router.put("/", verify, adopterValidationRules(), validate, adoptersController.update);
 
 // delete adopter
 router.delete("/:id", verify, adoptersController.delete);

@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const questionsController = require("../controllers/questionsController");
+const { questionValidationRules, validate } = require("../middleware/validator");
 const verify = require("../middleware/auth/verify");
 
 // question list
-router.get("/", verify, questionsController.list);
+router.get("/", verify, questionValidationRules(), validate, questionsController.list);
 
 // get question
 router.get("/:id", verify, questionsController.get);
@@ -13,7 +14,7 @@ router.get("/:id", verify, questionsController.get);
 router.post("/", verify, questionsController.create);
 
 // update question
-router.put("/", verify, questionsController.update);
+router.put("/", verify, questionValidationRules(), validate, questionsController.update);
 
 // delete question
 router.delete("/:id", verify, questionsController.delete);
