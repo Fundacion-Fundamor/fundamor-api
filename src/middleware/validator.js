@@ -22,7 +22,6 @@ const questionOptionValidationRules = () => {
 
 const employeeValidationRules = () => {
 	return 	[
-		check("id_fundacion", "Debe especificar la fundación").not().isEmpty(),
 		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
 		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({min: 6}).not().isEmpty(),
 		check("nombre", "El nombre es obligatorio").not().isEmpty()
@@ -42,17 +41,15 @@ const adopterValidationRules = () => {
 const adoptionValidationRules = () => {
 	return 	[
 		check("id_animal", "Debe especificar el animal a adoptar").not().isEmpty(),
-		check("fecha_estudio", "La fecha del estudio es obligatoria").not().isEmpty(),
+		// check("fecha_estudio", "La fecha del estudio es obligatoria").not().isEmpty(), //se asume que es la actual
 		//check("fecha_entrega", "La fecha de la entrega es obligatoria").not().isEmpty(),
 		check("estado", "El estado de la adopción debe ser 'Finalizada' o 'En proceso'").isIn(["Finalizada", "En proceso"]).not().isEmpty(),
 		//check("observaciones", "Las observaciones son un campo obligatorio").not().isEmpty(),
-		check("id_adoptante", "El adoptante es obligatorio").not().isEmpty(),
-		check("id_empleado", "Debe haber un empleado relacionado a la adopción").not().isEmpty()
+		check("id_adoptante", "El adoptante es obligatorio").not().isEmpty()
 	];
 };
 const animalValidationRules = () => {
 	return 	[
-		check("id_fundacion", "Debe especificar la fundación que tiene el animal").not().isEmpty(),
 		check("especie", "Se debe especificar la especie del animal").not().isEmpty(),
 		check("nombre", "El nombre del animal es obligatorio").not().isEmpty(),
 		check("fecha_nacimiento", "La fecha de nacimiento es un campo obligatorio").not().isEmpty(),
@@ -74,21 +71,20 @@ const postValidationRules = () => {
 };
 const questionValidationRules = () => {
 	return 	[
-		check("id_fundacion", "Debe especificar la fundación").not().isEmpty(),
+
 		check("titulo", "La pregunta debe llevar un titulo").not().isEmpty(),
 		check("estado", "El tipo de pregunta debe ser debe ser 'abierta' o 'multiple'").isIn(["abierta", "multiple"]).not().isEmpty()
 	];
 };
 const adoptionQuestionValidationRules = () => {
 	return 	[
-		check("id_fundacion", "Debe especificar la fundación").not().isEmpty(),
+
 		check("id_pregunta", "El campo id_pregunta es obligatorio").not().isEmpty()
 	];
 };
 const trackingValidationRules = () => {
 	return 	[
 		check("id_adopcion", "Debe especificar la adopcion").not().isEmpty(),
-		check("fecha_hora", "Debe especificar la fecha y hora del registro de seguimiento").not().isEmpty(),
 		check("anotaciones", "El registro de seguimiento debe llevar anotaciones").not().isEmpty(),
 		check("estado", "El tipo de pregunta debe ser debe ser 'abierta' o 'multiple'").isIn(["abierta", "multiple"]).not().isEmpty()
 	];

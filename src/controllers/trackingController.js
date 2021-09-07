@@ -5,7 +5,7 @@ exports.create = async (req, res) => {
 
 	try {
 
-		req.body.fecha_hora = Date.now();
+		req.body.fecha = Date.now();
 
 		const result = await tracking.create(req.body);
 		res.status(201).json({

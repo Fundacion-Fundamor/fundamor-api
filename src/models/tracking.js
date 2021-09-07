@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 	tracking.init({
 		id_seguimiento: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
 		id_adopcion: { allowNull: false, type: DataTypes.INTEGER },
-		fecha_hora: { allowNull: false, type: DataTypes.DATE },
+		fecha: { allowNull: false, type: DataTypes.DATE },
 		anotaciones: { allowNull: false, type: DataTypes.STRING(500) }
 	}, {
 		sequelize,
