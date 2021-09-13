@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-
+const cors = require("cors");
 
 const employeesRoutes = require("./src/routes/employees");
 const authRoutes = require("./src/routes/auth");
@@ -21,7 +21,7 @@ const postImagesRoutes = require("./src/routes/postImages");
 //enable express.json (in the request the header should be application/json)
 app.use(express.json({ extended: true }));
 app.use(morgan("dev"));
-
+app.use(cors());
 
 //Routes setting up handle requests
 app.use("/api/employees", employeesRoutes);

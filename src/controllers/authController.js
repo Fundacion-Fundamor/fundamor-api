@@ -57,6 +57,32 @@ exports.create = async (req, res) => {
 };
 
 
+exports.authenticatedUser = async (req, res) => {
+
+	try {
+		const searchResult = await employee.findByPk(req.userSession.id, { attributes: { exclude: ["contrasenia"] } });
+
+		if (searchResult) {
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+		} else {
+			res.status(404).json({
+				state: false,
+				message: "El colaborador no existe"
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener el colaborador"
+		});
+	}
+};
 
 exports.recoveryPassword = async (req, res) => {
 
