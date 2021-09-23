@@ -45,9 +45,9 @@ exports.delete = async (req, res) => {
 
 
 		if (searchResult) {
-			searchResult.forEach(async (element) => {
+			for (let element of searchResult) {
 				await fs.unlink(`./src/public/${element.ruta}`);
-			});
+			}
 
 			const result = await postImage.destroy({
 				where: {

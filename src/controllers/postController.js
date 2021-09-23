@@ -127,10 +127,9 @@ exports.delete = async (req, res) => {
 
 		if (searchResult) {
 
-
-			(searchResult.postImage).forEach(async (element) => {
+			for (let element of searchResult.postImage) {
 				await fs.unlink(`./src/public/${element.ruta}`);
-			});
+			}
 
 			const result = await searchResult.destroy();
 
