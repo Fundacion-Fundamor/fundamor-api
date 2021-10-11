@@ -1,45 +1,52 @@
 const { check, validationResult } = require("express-validator");
 
 const animalImageValidationRules = () => {
-	return 	[
+	return [
 		check("id_animal", "El nombre es obligatorio").not().isEmpty(),
 		check("ruta", "La ruta es obligatoria").not().isEmpty()
 	];
 };
 const postImageValidationRules = () => {
-	return 	[
+	return [
 		check("id_publicacion", "La imagen se debe asociar a una publicación").not().isEmpty(),
 		check("ruta", "La ruta es obligatoria").not().isEmpty()
 	];
 };
 
 const questionOptionValidationRules = () => {
-	return 	[
+	return [
 		check("id_pregunta", "El campo id_pregunta es obligatorio").not().isEmpty(),
 		check("descripcion", "La descripción de la pregunta es obligatoria").not().isEmpty()
 	];
 };
 
 const employeeValidationRules = () => {
-	return 	[
+	return [
 		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
-		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({min: 6}).not().isEmpty(),
+		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({ min: 6 }).not().isEmpty(),
+		check("nombre", "El nombre es obligatorio").not().isEmpty()
+	];
+};
+
+const employeeValidationEditRules = () => {
+	return [
+		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
 		check("nombre", "El nombre es obligatorio").not().isEmpty()
 	];
 };
 const adopterValidationRules = () => {
-	return 	[
+	return [
 		check("nombre", "El nombre es obligatorio").not().isEmpty(),
 		//check("telefono_casa", "El telefono de la casa es un campo obligatorio").not().isEmpty(),
 		check("telefono_celular", "El telefono celular es un campo obligatorio").not().isEmpty(),
 		check("ciudad", "La ciudad es un campo obligatorio").not().isEmpty(),
 		check("ocupacion", "La ocupación es un campo obligatorio").not().isEmpty(),
 		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
-		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({min: 6}).not().isEmpty()
+		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({ min: 6 }).not().isEmpty()
 	];
 };
 const adoptionValidationRules = () => {
-	return 	[
+	return [
 		check("id_animal", "Debe especificar el animal a adoptar").not().isEmpty(),
 		// check("fecha_estudio", "La fecha del estudio es obligatoria").not().isEmpty(), //se asume que es la actual
 		//check("fecha_entrega", "La fecha de la entrega es obligatoria").not().isEmpty(),
@@ -49,7 +56,7 @@ const adoptionValidationRules = () => {
 	];
 };
 const animalValidationRules = () => {
-	return 	[
+	return [
 		check("especie", "Se debe especificar la especie del animal").not().isEmpty(),
 		check("nombre", "El nombre del animal es obligatorio").not().isEmpty(),
 		check("fecha_nacimiento", "La fecha de nacimiento es un campo obligatorio").not().isEmpty(),
@@ -65,41 +72,41 @@ const animalValidationRules = () => {
 	];
 };
 const postValidationRules = () => {
-	return 	[
+	return [
 		check("nombre", "El nombre es obligatorio").not().isEmpty()
 	];
 };
 const questionValidationRules = () => {
-	return 	[
+	return [
 
 		check("titulo", "La pregunta debe llevar un titulo").not().isEmpty(),
 		check("estado", "El tipo de pregunta debe ser debe ser 'abierta' o 'multiple'").isIn(["abierta", "multiple"]).not().isEmpty()
 	];
 };
 const adoptionQuestionValidationRules = () => {
-	return 	[
+	return [
 
 		check("id_pregunta", "El campo id_pregunta es obligatorio").not().isEmpty()
 	];
 };
 const trackingValidationRules = () => {
-	return 	[
+	return [
 		check("id_adopcion", "Debe especificar la adopcion").not().isEmpty(),
 		check("anotaciones", "El registro de seguimiento debe llevar anotaciones").not().isEmpty(),
 		check("estado", "El tipo de pregunta debe ser debe ser 'abierta' o 'multiple'").isIn(["abierta", "multiple"]).not().isEmpty()
 	];
 };
 const foundationValidationRules = () => {
-	return 	[
+	return [
 		check("nombre", "El nombre es obligatorio").not().isEmpty()
 		// check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
 		// check("telefono", "El telefono debe ser de al menos 6 caracteres").isLength({min: 6}).not().isEmpty()
 	];
 };
 const tokenValidationRules = () => {
-	return 	[
+	return [
 		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
-		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({min: 6}).not().isEmpty()
+		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({ min: 6 }).not().isEmpty()
 	];
 };
 
@@ -109,7 +116,7 @@ const validate = (req, res, next) => {
 		return next();
 	}
 	const extractedErrors = [];
-	errors.array().map(err => extractedErrors.push( err.msg ));
+	errors.array().map(err => extractedErrors.push(err.msg));
 
 	return res.status(422).json({
 		errors: extractedErrors
@@ -118,6 +125,7 @@ const validate = (req, res, next) => {
 
 module.exports = {
 	employeeValidationRules,
+	employeeValidationEditRules,
 	adopterValidationRules,
 	adoptionValidationRules,
 	animalValidationRules,

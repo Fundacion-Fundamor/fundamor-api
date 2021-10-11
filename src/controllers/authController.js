@@ -34,7 +34,7 @@ exports.create = async (req, res) => {
 			} else {
 				res.status(400).json({
 					state: false,
-					message: "La contraseña ingresada es incorrecta"
+					message: "El correo o la contraseña son incorrectos"
 
 				});
 			}
