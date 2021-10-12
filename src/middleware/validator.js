@@ -106,7 +106,7 @@ const foundationValidationRules = () => {
 const tokenValidationRules = () => {
 	return [
 		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
-		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({ min: 6 }).not().isEmpty()
+		check("contrasenia", "La contraseña es obligatoria").not().isEmpty()
 	];
 };
 
