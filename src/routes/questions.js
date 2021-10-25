@@ -5,13 +5,13 @@ const { questionValidationRules, validate } = require("../middleware/validator")
 const verify = require("../middleware/auth/verify");
 
 // question list
-router.get("/", verify, questionValidationRules(), validate, questionsController.list);
+router.get("/", verify, questionsController.list);
 
 // get question
 router.get("/:id", verify, questionsController.get);
 
 // create question
-router.post("/", verify, questionsController.create);
+router.post("/", verify, questionValidationRules(), validate, questionsController.create);
 
 // update question
 router.put("/", verify, questionValidationRules(), validate, questionsController.update);

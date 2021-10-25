@@ -52,7 +52,8 @@ const adoptionValidationRules = () => {
 		//check("fecha_entrega", "La fecha de la entrega es obligatoria").not().isEmpty(),
 		check("estado", "El estado de la adopción debe ser 'Finalizada' o 'En proceso'").isIn(["Finalizada", "En proceso"]).not().isEmpty(),
 		//check("observaciones", "Las observaciones son un campo obligatorio").not().isEmpty(),
-		check("id_adoptante", "El adoptante es obligatorio").not().isEmpty()
+		check("id_adoptante", "El adoptante es obligatorio").not().isEmpty(),
+		check("id_adopcion", "El identificador de adopción es obligatorio").not().isEmpty()
 	];
 };
 const animalValidationRules = () => {
