@@ -81,7 +81,7 @@ const questionValidationRules = () => {
 	return [
 
 		check("titulo", "La pregunta debe llevar un titulo").not().isEmpty(),
-		check("estado", "El tipo de pregunta debe ser debe ser 'abierta' o 'multiple'").isIn(["abierta", "multiple"]).not().isEmpty()
+		check("tipo_pregunta", "El tipo de pregunta debe ser debe ser 'abierta' o 'multiple'").isIn(["abierta", "multiple"]).not().isEmpty()
 	];
 };
 const adoptionQuestionValidationRules = () => {
