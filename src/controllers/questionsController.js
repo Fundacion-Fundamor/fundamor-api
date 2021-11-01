@@ -43,17 +43,10 @@ exports.delete = async (req, res) => {
 			include: "questionOptions"
 		});
 
-		if (result === 1) {
-			res.status(200).json({
-				state: true,
-				message: "La pregunta se ha eliminado exitosamente"
-			});
-		} else {
-			res.status(404).json({
-				state: false,
-				message: "La pregunta no existe"
-			});
-		}
+		res.status(200).json({
+			state: result === 1,
+			message: result === 1 ? "La pregunta se ha eliminado exitosamente" : "La pregunta no existe"
+		});
 
 	} catch (error) {
 		console.error(error);
@@ -74,17 +67,10 @@ exports.deleteMultiple = async (req, res) => {
 			include: "questionOptions"
 		});
 
-		if (result > 0) {
-			res.status(200).json({
-				state: true,
-				message: "Las preguntas se han eliminado exitosamente"
-			});
-		} else {
-			res.status(404).json({
-				state: false,
-				message: "Las preguntas no existen"
-			});
-		}
+		res.status(200).json({
+			state: result > 0,
+			message: result > 0 ? "Las preguntas se han eliminado exitosamente" : "Las preguntas no existen"
+		});
 
 	} catch (error) {
 		console.error(error);
@@ -101,18 +87,11 @@ exports.get = async (req, res) => {
 	try {
 		const searchResult = await question.findByPk(req.params["id"], { include: "questionOptions" });
 
-		if (searchResult) {
-			res.status(200).json({
-				state: true,
-				message: "Resultados obtenidos",
-				data: searchResult
-			});
-		} else {
-			res.status(404).json({
-				state: false,
-				message: "La pregunta no existe"
-			});
-		}
+		res.status(200).json({
+			state: searchResult !== null,
+			message: searchResult !== null ? "Resultados obtenidos" : "La pregunta no existe",
+			data: searchResult
+		});
 
 	} catch (error) {
 		console.error(error);
@@ -159,20 +138,11 @@ exports.list = async (req, res) => {
 
 		});
 
-		if (searchResult.length !== 0) {
-
-			res.status(200).json({
-				state: true,
-				message: "Resultados obtenidos",
-				data: searchResult
-			});
-		} else {
-			res.status(404).json({
-				state: false,
-				message: "No existen registros en la base de datos"
-
-			});
-		}
+		res.status(200).json({
+			state: searchResult.length !== 0,
+			message: searchResult.length !== 0 ? "Resultados obtenidos" : "No existen registros en la base de datos",
+			data: searchResult
+		});
 
 	} catch (error) {
 		console.error(error);
