@@ -106,3 +106,5 @@ dist
 #Folder for private files and notes
 private
 .vscode/fundamor-api.code-workspace
+
+public/
