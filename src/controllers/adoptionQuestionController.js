@@ -38,7 +38,7 @@ exports.delete = async (req, res) => {
 				message: "La pregunta se ha desasociado exitosamente"
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "La pregunta no existe"
 			});
@@ -70,7 +70,7 @@ exports.deleteMultiple = async (req, res) => {
 				message: `Se han desasociado ${result} preguntas exitosamente`
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "Las preguntas no existen"
 			});
@@ -105,7 +105,7 @@ exports.list = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "No existen preguntas asociadas a esta adopción"
 

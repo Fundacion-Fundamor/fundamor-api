@@ -37,7 +37,7 @@ exports.delete = async (req, res) => {
 				message: "El item se ha eliminado exitosamente"
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El item no existe"
 			});
@@ -63,7 +63,7 @@ exports.get = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El item no existe"
 			});
@@ -120,7 +120,7 @@ exports.list = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "No existen registros en la base de datos"
 

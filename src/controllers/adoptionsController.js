@@ -45,7 +45,7 @@ exports.delete = async (req, res) => {
 				message: "La adopción se ha eliminado exitosamente"
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "La adopción no existe"
 			});
@@ -71,7 +71,7 @@ exports.get = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "La adopción no existe"
 			});
@@ -133,7 +133,7 @@ exports.list = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "No existen registros en la base de datos"
 

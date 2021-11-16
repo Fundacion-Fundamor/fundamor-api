@@ -63,7 +63,7 @@ exports.get = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "La publicación no existe"
 
@@ -98,7 +98,7 @@ exports.list = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "No existen registros en la base de datos"
 
@@ -139,14 +139,14 @@ exports.delete = async (req, res) => {
 					message: "La publicación se ha eliminado exitosamente"
 				});
 			} else {
-				res.status(404).json({
+				res.status(200).json({
 					state: false,
 					message: "Error al eliminar la publicación",
 					data: result
 				});
 			}
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "La publicación no existe"
 			});

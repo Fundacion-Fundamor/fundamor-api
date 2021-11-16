@@ -28,7 +28,7 @@ exports.create = async (req, res) => {
 				data: result.id_adoptante // id assigned
 			});
 		} else {
-			res.status(409).json({
+			res.status(200).json({
 				state: false,
 				message: "Ya existe un adoptante registrado con esta identificación o correo"
 			});
@@ -59,7 +59,7 @@ exports.delete = async (req, res) => {
 				message: "El adoptante se ha eliminado exitosamente"
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El adoptante no existe"
 			});
@@ -127,7 +127,7 @@ exports.update = async (req, res) => {
 			});
 
 		} else {
-			res.status(409).json({
+			res.status(200).json({
 				state: false,
 				message: "Ya existe un adoptante registrado con este correo"
 			});
@@ -171,7 +171,7 @@ exports.list = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "No existen registros en la base de datos"
 

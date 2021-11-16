@@ -24,7 +24,7 @@ exports.create = async (req, res) => {
 				data: result.id_empleado // id assigned
 			});
 		} else {
-			res.status(409).json({
+			res.status(200).json({
 				state: false,
 				message: "Ya existe un colaborador registrado con esta identificación o correo"
 			});
@@ -55,7 +55,7 @@ exports.delete = async (req, res) => {
 				message: "El colaborador se ha eliminado exitosamente"
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El colaborador no existe"
 			});
@@ -81,7 +81,7 @@ exports.get = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El colaborador no existe"
 			});
@@ -123,7 +123,7 @@ exports.update = async (req, res) => {
 			});
 
 		} else {
-			res.status(409).json({
+			res.status(200).json({
 				state: false,
 				message: "Ya existe un colaborador registrado con este correo"
 			});
@@ -157,7 +157,7 @@ exports.list = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "No existen registros en la base de datos"
 

@@ -62,14 +62,14 @@ exports.delete = async (req, res) => {
 					message: "Las imágenes se han eliminado exitosamente"
 				});
 			} else {
-				res.status(404).json({
+				res.status(200).json({
 					state: false,
 					message: "Error al eliminar las imágenes",
 					data: result
 				});
 			}
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "Las imágenes no existen"
 			});

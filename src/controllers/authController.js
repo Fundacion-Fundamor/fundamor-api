@@ -32,7 +32,7 @@ exports.create = async (req, res) => {
 					});
 				});
 			} else {
-				res.status(400).json({
+				res.status(200).json({
 					state: false,
 					message: "El correo o la contraseña son incorrectos"
 
@@ -40,7 +40,7 @@ exports.create = async (req, res) => {
 			}
 
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El usuario no existe",
 				data: searchResult
@@ -69,7 +69,7 @@ exports.authenticatedUser = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El colaborador no existe"
 			});
@@ -138,7 +138,7 @@ exports.recoveryPassword = async (req, res) => {
 			});
 
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El usuario no existe",
 				data: searchResult
