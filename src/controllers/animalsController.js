@@ -38,7 +38,13 @@ exports.delete = async (req, res) => {
 		if (searchResult) {
 
 			for (let element of searchResult.animalImage) {
-				await fs.unlink(`./src/public/${element.ruta}`);
+				fs.access(`./src/public/${element.ruta}`, (error) => {
+					if (error) {
+						console.log("ERROR AL ELIMINAR IMAGENES", error);
+						return;
+					}
+					fs.unlink(`./src/public/${element.ruta}`);
+				});
 			}
 
 			const result = await searchResult.destroy();
@@ -72,7 +78,7 @@ exports.delete = async (req, res) => {
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await animal.findByPk(req.params["id"], {include:"animalImage"});
+		const searchResult = await animal.findByPk(req.params["id"], { include: "animalImage" });
 
 		if (searchResult) {
 
