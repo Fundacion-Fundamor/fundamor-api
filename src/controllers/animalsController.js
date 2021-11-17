@@ -12,7 +12,7 @@ exports.create = async (req, res) => {
 		const result = await animal.create(req.body);
 		res.status(200).json({
 			state: true,
-			message: "Se ha agregado el animal con éxito",
+			message: "Se ha registrado el animal con éxito",
 			data: result.id_animal // id assigned
 		});
 	} catch (error) {
@@ -72,7 +72,7 @@ exports.delete = async (req, res) => {
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await animal.findByPk(req.params["id"]);
+		const searchResult = await animal.findByPk(req.params["id"], {include:"animalImage"});
 
 		if (searchResult) {
 
@@ -129,7 +129,8 @@ exports.list = async (req, res) => {
 		const searchResult = await animal.findAll({
 			where: {
 				id_fundacion: req.userSession.id_fundacion
-			}
+			},
+			include: "animalImage"
 		});
 
 		if (searchResult.length !== 0) {

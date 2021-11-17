@@ -63,7 +63,6 @@ const animalValidationRules = () => {
 		check("fecha_nacimiento", "La fecha de nacimiento es un campo obligatorio").not().isEmpty(),
 		check("sexo", "Se debe especificar el sexo del animal").not().isEmpty(),
 		check("color", "Se debe especificar el color del animal").not().isEmpty(),
-		check("vacunas", "Se deben especificar las vacunas del animal").not().isEmpty(),
 		check("esterilizado", "Se debe especificar si el animal ha sido esterilizado").not().isEmpty(),
 		check("esterilizado", "'Esterilizado' debe ser un valor binario").isBoolean(),
 		check("desparasitado", "Se debe especificar si el animal ha sido desparasitado").not().isEmpty(),
