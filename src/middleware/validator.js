@@ -40,9 +40,9 @@ const adopterValidationRules = () => {
 		//check("telefono_casa", "El telefono de la casa es un campo obligatorio").not().isEmpty(),
 		check("telefono_celular", "El telefono celular es un campo obligatorio").not().isEmpty(),
 		check("ciudad", "La ciudad es un campo obligatorio").not().isEmpty(),
-		check("ocupacion", "La ocupación es un campo obligatorio").not().isEmpty(),
-		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
-		check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({ min: 6 }).not().isEmpty()
+		check("ocupacion", "La ocupación es un campo obligatorio").not().isEmpty()
+		// check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
+		// check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({ min: 6 }).not().isEmpty()
 	];
 };
 const adoptionValidationRules = () => {

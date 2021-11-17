@@ -9,16 +9,15 @@ exports.create = async (req, res) => {
 
 	try {
 		const searchResult = await adopter.findAll({
-			where: {
+			where: req.body.correo ? {
 				[Op.or]: [
 					{ id_adoptante: req.body.id_adoptante },
 					{ correo: req.body.correo }
 				]
-			}
+			} : { correo: req.body.correo }
 		});
 		if (searchResult.length === 0) {
-			//? req.body.id_fundacion = req.userSession.id_fundacion;
-			if (req.body.contrasenia !== undefined) {
+			if (req.body.contrasenia) {
 				req.body.contrasenia = await helpers.encryptPassword(req.body.contrasenia);
 			}
 			const result = await adopter.create(req.body);
@@ -104,8 +103,13 @@ exports.update = async (req, res) => {
 	try {
 
 		const searchResult = await adopter.findAll({
-			where: {
+			where: req.body.correo ? {
 				correo: req.body.correo,
+				id_adoptante:
+				{
+					[Op.ne]: req.body.id_adoptante
+				}
+			} : {
 				id_adoptante:
 				{
 					[Op.ne]: req.body.id_adoptante
@@ -114,7 +118,9 @@ exports.update = async (req, res) => {
 		});
 
 		if (searchResult.length === 0) {
-
+			if (req.body.contrasenia) {
+				req.body.contrasenia = await helpers.encryptPassword(req.body.contrasenia);
+			}
 			await adopter.update(req.body, {
 				where: {
 					id_adoptante: req.body.id_adoptante
@@ -148,21 +154,19 @@ exports.list = async (req, res) => {
 	try {
 		//? como obtengo los adoptantes de una fundacion?
 		const searchResult = await adopter.findAll({
+
 			attributes: { exclude: ["contrasenia"] },
-			include: [
-				{
-					model: adoption, as: "adoption",
+			include: {
+				model: adoption, as: "adoption",
+				include: {
+					model: animal, as: "animal",
 					where: {
-						id_adoptante: "$adoption.id_adoptante$"
+						id_fundacion: req.userSession.id_fundacion
 					}
 				}
-			]
+			}
 		});
-		res.status(200).json({
-			state: true,
-			message: "En proceso de desarrollo"
 
-		});
 		if (searchResult.length !== 0) {
 
 			res.status(200).json({
@@ -185,5 +189,5 @@ exports.list = async (req, res) => {
 			message: "Ha ocurrido un error al obtener la lista de adoptantes"
 		});
 	}
-	
+
 };

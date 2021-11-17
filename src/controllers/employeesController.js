@@ -108,8 +108,12 @@ exports.update = async (req, res) => {
 				}
 			}
 		});
-	
+
 		if (searchResult.length === 0) {
+
+			if (req.body.contrasenia) {
+				req.body.contrasenia = await helpers.encryptPassword(req.body.contrasenia);
+			}
 			await employee.update(req.body, {
 				where: {
 					id_empleado: req.body.id_empleado
