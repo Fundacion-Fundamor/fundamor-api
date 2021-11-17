@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2021 a las 04:09:20
+-- Tiempo de generación: 17-11-2021 a las 19:12:03
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 7.3.28
 
@@ -98,7 +98,39 @@ CREATE TABLE `animal` (
 --
 
 INSERT INTO `animal` (`id_animal`, `id_fundacion`, `especie`, `nombre`, `fecha_nacimiento`, `sexo`, `caracteristicas`, `sitio_rescate`, `fecha_rescate`, `color`, `vacunas`, `esterilizado`, `desparasitado`, `tamanio`, `estado`) VALUES
-(1, 2, 'perro', 'nerón', '2021-08-09', 'Macho', 'nonse', 'Armenia', '2021-09-10', 'negro', 'sisas', 1, 0, 'Grande', 'Sin adoptar');
+(1, 2, 'perro', 'nerón', '2021-08-09', 'macho', 'nonse', 'Armenia', '2021-09-10', 'negro', 'sisas', 1, 0, 'grande', 'Adoptado'),
+(27, 2, 'perro', 'sadsad', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(28, 2, 'perro', 'sadsad', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(29, 2, 'perro', 'sadsad', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(30, 2, 'gato', 'sdada', '2021-11-10', 'macho', 'asdsad', 'sadsad', '2021-11-11', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(31, 2, 'gato', 'asdasd', '2021-11-05', 'macho', 'asdsad', 'sadasd', '2021-11-12', 'cafe', 'asdasdasd', 1, 1, 'mediano', 'Sin adoptar'),
+(32, 2, 'gato', 'xzcxzc', '2021-11-11', 'macho', 'sadasd', 'sadasd', '2021-11-12', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(33, 2, 'gato', 'xzcxzc', '2021-11-11', 'macho', 'sadasd', 'sadasd', '2021-11-12', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(34, 2, 'gato', 'xzcxzc', '2021-11-11', 'macho', 'sadasd', 'sadasd', '2021-11-12', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(35, 2, 'gato', 'xzcxzc', '2021-11-11', 'macho', 'sadasd', 'sadasd', '2021-11-12', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(36, 2, 'perro', 'sdasd', '2021-11-11', 'macho', 'sadad', 'asdasd', '2021-11-02', 'sadasd', 'sdasdasd', 1, 1, 'mediano', 'Sin adoptar'),
+(37, 2, 'perro', 'sdasd', '2021-11-11', 'macho', 'sadad', 'asdasd', '2021-11-02', 'sadasd', 'sdasdasd', 1, 1, 'mediano', 'Sin adoptar'),
+(38, 2, 'perro', 'adssad', '2021-11-05', 'hembra', 'asdsad', 'sadasd', '2021-11-10', 'asdasd', 'sadasd', 1, 0, 'mediano', 'Sin adoptar'),
+(39, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(40, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(41, 2, 'gato', 'Morioh', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(42, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(43, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(44, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(45, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(46, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(47, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(48, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(49, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(50, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(51, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(52, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
+(53, 2, 'gato', 'asdsad', '2021-11-11', 'macho', 'sadsad', 'sadas', '2021-11-03', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(54, 2, 'perro', 'dad', '2021-11-11', 'macho', 'sadasd', 'asdasd', '2021-11-13', 'sadd', 'sadasd', 1, 1, 'mediano', 'Sin adoptar'),
+(56, 2, 'gato', 'sadsad', '2021-11-06', 'macho', 'asdsad', 'sadasd', '2021-11-10', 'asdasd', 'sadsad', 1, 1, 'pequeño', 'Sin adoptar'),
+(57, 2, 'gato', 'sadsad', '2021-11-06', 'macho', 'asdsad', 'sadasd', '2021-11-10', 'asdasd', 'sadsad', 1, 1, 'pequeño', 'Sin adoptar'),
+(58, 2, 'gato', 'asdsad', '2021-11-03', 'macho', 'sadsad', 'sadas', '2021-11-04', 'sadasd', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(59, 2, 'gato', 'asd', '2021-11-12', 'macho', 'sadasd', 'sadsad', '2021-11-10', 'asdasd', 'sadasd', 1, 1, 'grande', 'Sin adoptar');
 
 -- --------------------------------------------------------
 
@@ -120,7 +152,12 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id_empleado`, `id_fundacion`, `correo`, `contrasenia`, `nombre`, `rol`) VALUES
-('1001', 2, 'aurelio@gmail.com', '$2a$10$PW9wNChN5NlmhLg3YBb3yeFh06uno/D1IeCeRgloW1bGBiY/YuLD.', 'Test User2', 'colaborador');
+('1001', 2, 'aurelio@gmail.com', '$2a$10$PW9wNChN5NlmhLg3YBb3yeFh06uno/D1IeCeRgloW1bGBiY/YuLD.', 'Test User2', 'colaborador'),
+('11005095547', 2, 'juanp@gmailt.com', '12345678', 'juan danez', 'colaborador'),
+('1232132', 2, 'elmerw@gmail.com', '$2a$10$x68khiImilla.Kpepxw8UOeNDQLhuWLA0CDhV16iQvVtQqWfCsRCG', 'elmer', 'colaborador'),
+('2132139', 2, 'jan@fundamor.com', '$2a$10$O7LILFz6q3gOrEJUKrGfJusb2MWwHUAPDmhGBJ6w6n/ZqfTuDxKgC', 'jan', 'colaborador'),
+('2837362', 2, 'hernan@gmail.com', '$2a$10$LiBmfojREVeccWLK3nggp.OU06ArgQQHU9265gJQki5fI7oXJ90C6', 'hernan', 'colaborador'),
+('32213123', 2, 'paquito@fundamor.com', '$2a$10$s0OhGT5EXK.ImOLiuWNoW./9ewEUZERP2Tuzy0YHLWDvbdVoWHNoK', 'paco', 'colaborador');
 
 -- --------------------------------------------------------
 
@@ -155,6 +192,25 @@ CREATE TABLE `imagen_animal` (
   `ruta` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `imagen_animal`
+--
+
+INSERT INTO `imagen_animal` (`id_imagen_animal`, `id_animal`, `ruta`) VALUES
+(11, 35, 'images/animalImages/04cfb401-4620-47c5-944f-528a88052c9e.jpg'),
+(12, 35, 'images/animalImages/4e3fc31c-17ab-4531-b0e2-2b90fd5c6023.jpg'),
+(13, 35, 'images/animalImages/92b39cf6-d4f2-4d85-ac48-3ec6149bedc3.jpg'),
+(14, 39, 'images/animalImages/40c0a5b9-6d34-43d7-8ae7-10092b04b1e1.jpg'),
+(15, 40, 'images/animalImages/4a6afc36-0cfd-4202-acaa-945470c0874f.jpg'),
+(17, 42, 'images/animalImages/404cb80c-cd55-4a19-838e-7cbf4c70155a.jpg'),
+(18, 43, 'images/animalImages/b50fe136-8676-4bbc-945b-d7c7d2bd0103.jpg'),
+(19, 44, 'images/animalImages/24eaf879-ce4e-403e-8246-efc232b089f3.jpg'),
+(20, 45, 'images/animalImages/7bf2da70-3102-44a9-9cd0-420431396e37.jpg'),
+(21, 46, 'images/animalImages/e4c5f90a-bfbb-4d3d-aa23-eb0f1d7cfe21.jpg'),
+(22, 47, 'images/animalImages/d1d0d83d-0a76-40b9-8a58-ef1336a5c0b7.jpg'),
+(23, 48, 'images/animalImages/e234aee9-fb04-47a1-acdf-a862487e66da.jpg'),
+(35, 41, 'images/animalImages/2a9d9957-6d94-4feb-8ab1-1eb7a072bc3c.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -179,6 +235,14 @@ CREATE TABLE `opcion_pregunta` (
   `descripcion` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `opcion_pregunta`
+--
+
+INSERT INTO `opcion_pregunta` (`id_opcion`, `id_pregunta`, `descripcion`) VALUES
+(10, 29, 'Sisas'),
+(11, 29, 'Nonas');
+
 -- --------------------------------------------------------
 
 --
@@ -191,6 +255,14 @@ CREATE TABLE `pregunta` (
   `titulo` varchar(100) NOT NULL,
   `tipo_pregunta` enum('abierta','multiple') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pregunta`
+--
+
+INSERT INTO `pregunta` (`id_pregunta`, `id_fundacion`, `titulo`, `tipo_pregunta`) VALUES
+(27, 2, 'sadsad', 'abierta'),
+(29, 2, 'melos?', 'multiple');
 
 -- --------------------------------------------------------
 
@@ -343,7 +415,7 @@ ALTER TABLE `adopcion`
 -- AUTO_INCREMENT de la tabla `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `fundacion`
@@ -355,7 +427,7 @@ ALTER TABLE `fundacion`
 -- AUTO_INCREMENT de la tabla `imagen_animal`
 --
 ALTER TABLE `imagen_animal`
-  MODIFY `id_imagen_animal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_imagen_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen_publicacion`
@@ -367,13 +439,13 @@ ALTER TABLE `imagen_publicacion`
 -- AUTO_INCREMENT de la tabla `opcion_pregunta`
 --
 ALTER TABLE `opcion_pregunta`
-  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta_adopcion`
@@ -421,7 +493,7 @@ ALTER TABLE `empleado`
 -- Filtros para la tabla `imagen_animal`
 --
 ALTER TABLE `imagen_animal`
-  ADD CONSTRAINT `FK_177` FOREIGN KEY (`id_animal`) REFERENCES `animal` (`id_animal`);
+  ADD CONSTRAINT `FK_177` FOREIGN KEY (`id_animal`) REFERENCES `animal` (`id_animal`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `imagen_publicacion`
