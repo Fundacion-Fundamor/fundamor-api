@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2021 a las 19:12:03
+-- Tiempo de generación: 20-11-2021 a las 00:04:09
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 7.3.28
 
@@ -32,18 +32,11 @@ CREATE TABLE `adopcion` (
   `id_animal` int(11) NOT NULL,
   `fecha_estudio` date NOT NULL,
   `fecha_entrega` date DEFAULT NULL,
-  `estado` enum('finalizada','en proceso') NOT NULL DEFAULT 'en proceso',
+  `estado` enum('en espera','finalizada','en proceso') NOT NULL DEFAULT 'en proceso',
   `observaciones` varchar(200) DEFAULT NULL,
   `id_adoptante` varchar(45) NOT NULL,
-  `id_empleado` varchar(45) NOT NULL
+  `id_empleado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `adopcion`
---
-
-INSERT INTO `adopcion` (`id_adopcion`, `id_animal`, `fecha_estudio`, `fecha_entrega`, `estado`, `observaciones`, `id_adoptante`, `id_empleado`) VALUES
-(2, 1, '2021-09-07', NULL, 'en proceso', NULL, '10023', '1001');
 
 -- --------------------------------------------------------
 
@@ -58,16 +51,18 @@ CREATE TABLE `adoptante` (
   `telefono_celular` varchar(45) NOT NULL,
   `ciudad` varchar(90) NOT NULL,
   `ocupacion` varchar(90) NOT NULL,
-  `correo` varchar(90) DEFAULT NULL,
-  `contrasenia` varchar(300) DEFAULT NULL
+  `correo` varchar(90) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `adoptante`
 --
 
-INSERT INTO `adoptante` (`id_adoptante`, `nombre`, `telefono_casa`, `telefono_celular`, `ciudad`, `ocupacion`, `correo`, `contrasenia`) VALUES
-('10023', 'Juan camilo perez', NULL, '3156627271312', 'Armenia quindio', 'Odontologo', 'jua2p@gmail.com', '$2a$10$rv.HYzeHlMnpA/QM4s7SQ.naYmxHYep0A65b0CvOfPpe1fQv3KFzi');
+INSERT INTO `adoptante` (`id_adoptante`, `nombre`, `telefono_casa`, `telefono_celular`, `ciudad`, `ocupacion`, `correo`) VALUES
+('10023', 'Juan camilo perez', NULL, '3156627271312', 'Armenia quindio', 'Odontologo', 'jua2p@gmail.com'),
+('1005095547', 'mel', '123132', '213123', 'asd', 'asd', 'mel@gmailt.com'),
+('100509554722', 'asdsad', NULL, '213213', '123123', 'asasd', 'jua2p@gmail.comc'),
+('213123', 'sad', '213', '3213', 'daasd', 'adasd', 'asda@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -153,11 +148,9 @@ CREATE TABLE `empleado` (
 
 INSERT INTO `empleado` (`id_empleado`, `id_fundacion`, `correo`, `contrasenia`, `nombre`, `rol`) VALUES
 ('1001', 2, 'aurelio@gmail.com', '$2a$10$PW9wNChN5NlmhLg3YBb3yeFh06uno/D1IeCeRgloW1bGBiY/YuLD.', 'Test User2', 'colaborador'),
-('11005095547', 2, 'juanp@gmailt.com', '12345678', 'juan danez', 'colaborador'),
-('1232132', 2, 'elmerw@gmail.com', '$2a$10$x68khiImilla.Kpepxw8UOeNDQLhuWLA0CDhV16iQvVtQqWfCsRCG', 'elmer', 'colaborador'),
-('2132139', 2, 'jan@fundamor.com', '$2a$10$O7LILFz6q3gOrEJUKrGfJusb2MWwHUAPDmhGBJ6w6n/ZqfTuDxKgC', 'jan', 'colaborador'),
-('2837362', 2, 'hernan@gmail.com', '$2a$10$LiBmfojREVeccWLK3nggp.OU06ArgQQHU9265gJQki5fI7oXJ90C6', 'hernan', 'colaborador'),
-('32213123', 2, 'paquito@fundamor.com', '$2a$10$s0OhGT5EXK.ImOLiuWNoW./9ewEUZERP2Tuzy0YHLWDvbdVoWHNoK', 'paco', 'colaborador');
+('10011', 2, 'asdas@malo.com', '$2a$10$rpCJXlt.h3RvKBjCf.8G/eu1RqvhALJjfqY8u/Lnq.odIXmi1NR3W', 'sadasd', 'administrador'),
+('123123', 2, 'aurelio@gmail.comx', '$2a$10$zaS77dgdIKWxCW41heSAc.iUf2/KSEJQkj5hxK7glXqoBSui2VQ9C', 'asdads', 'colaborador'),
+('23213', 2, 'asdsada@gmail.com', '12345678', 'papillon', 'colaborador');
 
 -- --------------------------------------------------------
 
@@ -209,7 +202,9 @@ INSERT INTO `imagen_animal` (`id_imagen_animal`, `id_animal`, `ruta`) VALUES
 (21, 46, 'images/animalImages/e4c5f90a-bfbb-4d3d-aa23-eb0f1d7cfe21.jpg'),
 (22, 47, 'images/animalImages/d1d0d83d-0a76-40b9-8a58-ef1336a5c0b7.jpg'),
 (23, 48, 'images/animalImages/e234aee9-fb04-47a1-acdf-a862487e66da.jpg'),
-(35, 41, 'images/animalImages/2a9d9957-6d94-4feb-8ab1-1eb7a072bc3c.jpg');
+(35, 41, 'images/animalImages/2a9d9957-6d94-4feb-8ab1-1eb7a072bc3c.jpg'),
+(39, 31, 'images/animalImages/ad0f2760-0fa7-4e0b-acf2-734999a854d8.jpg'),
+(41, 29, 'images/animalImages/2a7db08d-9568-42a3-8f2f-49c26c5307e7.png');
 
 -- --------------------------------------------------------
 
@@ -303,13 +298,6 @@ CREATE TABLE `seguimiento` (
   `fecha` date NOT NULL,
   `anotaciones` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `seguimiento`
---
-
-INSERT INTO `seguimiento` (`id_adopcion`, `id_seguimiento`, `fecha`, `anotaciones`) VALUES
-(2, 1, '2021-09-07', 'No contesta');
 
 --
 -- Índices para tablas volcadas
@@ -427,7 +415,7 @@ ALTER TABLE `fundacion`
 -- AUTO_INCREMENT de la tabla `imagen_animal`
 --
 ALTER TABLE `imagen_animal`
-  MODIFY `id_imagen_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_imagen_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen_publicacion`
@@ -473,9 +461,9 @@ ALTER TABLE `seguimiento`
 -- Filtros para la tabla `adopcion`
 --
 ALTER TABLE `adopcion`
-  ADD CONSTRAINT `FK_134` FOREIGN KEY (`id_adoptante`) REFERENCES `adoptante` (`id_adoptante`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_170` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_190` FOREIGN KEY (`id_animal`) REFERENCES `animal` (`id_animal`);
+  ADD CONSTRAINT `FK_170` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`) ON DELETE SET NULL,
+  ADD CONSTRAINT `FK_190` FOREIGN KEY (`id_animal`) REFERENCES `animal` (`id_animal`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_adoptante_adopcion` FOREIGN KEY (`id_adoptante`) REFERENCES `adoptante` (`id_adoptante`);
 
 --
 -- Filtros para la tabla `animal`

@@ -36,10 +36,10 @@ module.exports = (sequelize, DataTypes) => {
 		id_animal: { type: DataTypes.INTEGER, allowNull: false },
 		fecha_estudio: { type: DataTypes.DATE, allowNull: false },
 		fecha_entrega: DataTypes.DATE,
-		estado: { type: DataTypes.ENUM("finalizada", "en proceso"), allowNull: false },
+		estado: { type: DataTypes.ENUM("en espera", "finalizada", "en proceso"), allowNull: false },
 		observaciones: { type: DataTypes.STRING(200) },
 		id_adoptante: { type: DataTypes.STRING(45), allowNull: false },
-		id_empleado: { type: DataTypes.STRING(45), allowNull: false }
+		id_empleado: { type: DataTypes.STRING(45) }
 	}, {
 		sequelize,
 		modelName: "adoption",
