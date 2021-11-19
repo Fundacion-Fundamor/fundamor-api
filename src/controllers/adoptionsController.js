@@ -3,6 +3,7 @@
 const adoption = require("../models").adoption;
 const animal = require("../models").animal;
 const adoptionQuestion = require("../models").adoptionQuestion;
+const adopter = require("../models").adopter;
 exports.create = async (req, res) => {
 	try {
 		req.body.id_empleado = req.userSession.id;
@@ -62,7 +63,7 @@ exports.delete = async (req, res) => {
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await adoption.findByPk(req.params["id"], { include: "animal" });
+		const searchResult = await adoption.findByPk(req.params["id"], { include: ["animal", { model: adopter }] });
 
 		if (searchResult) {
 			res.status(200).json({
@@ -121,6 +122,9 @@ exports.list = async (req, res) => {
 					where: {
 						id_fundacion: req.userSession.id_fundacion
 					}
+				},
+				{
+					model: adopter
 				}
 			]
 		});
