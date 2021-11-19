@@ -24,8 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 		telefono_celular: { type: DataTypes.STRING(45), allowNull: false},
 		ciudad: { type: DataTypes.STRING(90) },
 		ocupacion: { type: DataTypes.STRING(90), allowNull: false },
-		correo: { type: DataTypes.STRING(45) },
-		contrasenia: { type: DataTypes.STRING(300) }
+		correo: { type: DataTypes.STRING(45) }
 	}, {
 		sequelize,
 		modelName: "adopter",

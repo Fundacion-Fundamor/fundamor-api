@@ -4,7 +4,7 @@ const adopter = require("../models").adopter;
 const adoption = require("../models").adoption;
 const animal = require("../models").animal;
 const { Op } = require("sequelize");
-const helpers = require("../helpers/helpers");
+
 exports.create = async (req, res) => {
 
 	try {
@@ -17,9 +17,6 @@ exports.create = async (req, res) => {
 			} : { correo: req.body.correo }
 		});
 		if (searchResult.length === 0) {
-			if (req.body.contrasenia) {
-				req.body.contrasenia = await helpers.encryptPassword(req.body.contrasenia);
-			}
 			const result = await adopter.create(req.body);
 			res.status(201).json({
 				state: true,
@@ -118,9 +115,6 @@ exports.update = async (req, res) => {
 		});
 
 		if (searchResult.length === 0) {
-			if (req.body.contrasenia) {
-				req.body.contrasenia = await helpers.encryptPassword(req.body.contrasenia);
-			}
 			await adopter.update(req.body, {
 				where: {
 					id_adoptante: req.body.id_adoptante
