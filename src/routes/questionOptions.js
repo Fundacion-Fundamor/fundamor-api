@@ -19,4 +19,7 @@ router.put("/", verify, questionOptionValidationRules(), validate, questionOptio
 // delete question options
 router.delete("/:id", verify, questionOptionsController.delete);
 
+// delete multiple question options
+router.delete("/", verify, questionOptionsController.deleteMultiple);
+
 module.exports = router;

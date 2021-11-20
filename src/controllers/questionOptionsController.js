@@ -5,11 +5,11 @@ exports.create = async (req, res) => {
 
 	try {
 
-		const result = await questionOption.create(req.body);
+		await questionOption.bulkCreate(req.body.opciones, { updateOnDuplicate: ["descripcion"] });
+
 		res.status(201).json({
 			state: true,
-			message: "El item de respuesta se ha registrado con éxito",
-			data: result.id_opcion // id assigned
+			message: "El item de respuesta se ha registrado con éxito"
 		});
 
 	} catch (error) {
@@ -51,7 +51,35 @@ exports.delete = async (req, res) => {
 		});
 	}
 };
+exports.deleteMultiple = async (req, res) => {
+	try {
 
+		const result = await questionOption.destroy({
+			where: {
+				id_opcion: req.body.ids_opciones
+			}
+		});
+
+		if (result) {
+			res.status(200).json({
+				state: true,
+				message: "El item se ha eliminado exitosamente"
+			});
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "El item no existe"
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al eliminar el item"
+		});
+	}
+};
 exports.get = async (req, res) => {
 	try {
 		const searchResult = await questionOption.findByPk(req.params["id"]);

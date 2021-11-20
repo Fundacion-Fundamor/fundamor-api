@@ -15,8 +15,8 @@ const postImageValidationRules = () => {
 
 const questionOptionValidationRules = () => {
 	return [
-		check("id_pregunta", "El campo id_pregunta es obligatorio").not().isEmpty(),
-		check("descripcion", "La descripción de la pregunta es obligatoria").not().isEmpty()
+		check("opciones", "Solo se admite un arreglo de datos").isArray()
+
 	];
 };
 
