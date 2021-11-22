@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
 
 	try {
 		//se espera un array de objetos
-		const result = await adoptionQuestion.bulkCreate(req.body.asociaciones);
+		const result = await adoptionQuestion.bulkCreate(req.body.respuestas);
 
 		res.status(201).json({
 			state: true,

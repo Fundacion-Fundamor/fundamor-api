@@ -14,7 +14,10 @@ exports.create = async (req, res) => {
 					{ id_adoptante: req.body.id_adoptante },
 					{ correo: req.body.correo }
 				]
-			} : { correo: req.body.correo }
+			} : {
+				id_adoptante: req.body.id_adoptante
+
+			}
 		});
 		if (searchResult.length === 0) {
 			const result = await adopter.create(req.body);
@@ -98,21 +101,18 @@ exports.get = async (req, res) => {
 
 exports.update = async (req, res) => {
 	try {
-
-		const searchResult = await adopter.findAll({
-			where: req.body.correo ? {
-				correo: req.body.correo,
-				id_adoptante:
-				{
-					[Op.ne]: req.body.id_adoptante
+		let searchResult = [];
+		if (req.body.correo) {
+			searchResult = await adopter.findAll({
+				where: {
+					correo: req.body.correo,
+					id_adoptante:
+					{
+						[Op.ne]: req.body.id_adoptante
+					}
 				}
-			} : {
-				id_adoptante:
-				{
-					[Op.ne]: req.body.id_adoptante
-				}
-			}
-		});
+			});
+		}
 
 		if (searchResult.length === 0) {
 			await adopter.update(req.body, {

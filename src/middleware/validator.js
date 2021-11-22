@@ -50,10 +50,10 @@ const adoptionValidationRules = () => {
 		check("id_animal", "Debe especificar el animal a adoptar").not().isEmpty(),
 		// check("fecha_estudio", "La fecha del estudio es obligatoria").not().isEmpty(), //se asume que es la actual
 		//check("fecha_entrega", "La fecha de la entrega es obligatoria").not().isEmpty(),
-		check("estado", "El estado de la adopción debe ser 'Finalizada' o 'En proceso'").isIn(["Finalizada", "En proceso"]).not().isEmpty(),
+		check("estado", "El estado de la adopción debe ser 'Finalizada' o 'En proceso'").isIn(["Finalizada", "En proceso", "En espera"]).not().isEmpty(),
 		//check("observaciones", "Las observaciones son un campo obligatorio").not().isEmpty(),
-		check("id_adoptante", "El adoptante es obligatorio").not().isEmpty(),
-		check("id_adopcion", "El identificador de adopción es obligatorio").not().isEmpty()
+		check("id_adoptante", "El adoptante es obligatorio").not().isEmpty()
+
 	];
 };
 const animalValidationRules = () => {
@@ -86,7 +86,7 @@ const questionValidationRules = () => {
 const adoptionQuestionValidationRules = () => {
 	return [
 
-		check("id_pregunta", "El campo id_pregunta es obligatorio").not().isEmpty()
+		check("respuestas", "Solo se admite un arreglo de datos").isArray()
 	];
 };
 const trackingValidationRules = () => {
