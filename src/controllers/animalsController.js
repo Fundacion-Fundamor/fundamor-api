@@ -131,10 +131,13 @@ exports.update = async (req, res) => {
 };
 
 exports.list = async (req, res) => {
+
+	console.log(req.query);
 	try {
 		const searchResult = await animal.findAll({
 			where: {
-				id_fundacion: req.userSession.id_fundacion
+				id_fundacion: req.userSession.id_fundacion,
+				...req.query
 			},
 			include: "animalImage"
 		});
