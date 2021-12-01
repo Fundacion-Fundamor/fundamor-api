@@ -2,7 +2,10 @@
 /* eslint-disable camelcase */
 const adoption = require("../models").adoption;
 const animal = require("../models").animal;
+const employee = require("../models").employee;
+
 const adoptionQuestion = require("../models").adoptionQuestion;
+const question = require("../models").question;
 const adopter = require("../models").adopter;
 exports.create = async (req, res) => {
 	try {
@@ -63,7 +66,11 @@ exports.delete = async (req, res) => {
 
 exports.get = async (req, res) => {
 	try {
-		const searchResult = await adoption.findByPk(req.params["id"], { include: ["animal", { model: adopter }] });
+		const searchResult = await adoption.findByPk(req.params["id"], {
+			include: [
+				"animal", { model: adopter }, { model: employee }, "tracking"
+			]
+		});
 
 		if (searchResult) {
 			res.status(200).json({
