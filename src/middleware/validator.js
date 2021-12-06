@@ -47,12 +47,16 @@ const adopterValidationRules = () => {
 };
 const adoptionValidationRules = () => {
 	return [
-		check("id_animal", "Debe especificar el animal a adoptar").not().isEmpty(),
-		// check("fecha_estudio", "La fecha del estudio es obligatoria").not().isEmpty(), //se asume que es la actual
-		//check("fecha_entrega", "La fecha de la entrega es obligatoria").not().isEmpty(),
-		check("estado", "El estado de la adopción debe ser 'Finalizada' o 'En proceso'").isIn(["Finalizada", "En proceso", "En espera"]).not().isEmpty(),
-		//check("observaciones", "Las observaciones son un campo obligatorio").not().isEmpty(),
-		check("id_adoptante", "El adoptante es obligatorio").not().isEmpty()
+		check("adoptionData", "Debe especificar los datos de la adopcion").isObject(),
+		check("adopterData", "Debe especificar los datos del adoptante").isObject()
+
+	];
+};
+const adoptionValidationUpdateRules = () => {
+	return [
+		check("id_adopcion", "Debe especificar el id de la adopción").not().isEmpty(),
+		check("estado", "Debe especificar el estado de la adopción").not().isEmpty()
+
 
 	];
 };
@@ -128,6 +132,7 @@ module.exports = {
 	employeeValidationEditRules,
 	adopterValidationRules,
 	adoptionValidationRules,
+	adoptionValidationUpdateRules,
 	animalValidationRules,
 	adoptionQuestionValidationRules,
 	postValidationRules,

@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
 					}
 
 				};
-				jwt.sign(payload, process.env.TOKEN_SECRET_KEY, { expiresIn: "30m" }, (err, token) => {
+				jwt.sign(payload, process.env.TOKEN_SECRET_KEY, { expiresIn: "300m" }, (err, token) => {
 					res.status(200).json({
 						token
 					});
