@@ -45,7 +45,11 @@ exports.create = async (req, res) => {
 
 exports.delete = async (req, res) => {
 	try {
-
+		await adoption.destroy({
+			where: {
+				id_adoptante: req.params["id"]
+			}
+		});
 		const result = await adopter.destroy({
 			where: {
 				id_adoptante: req.params["id"]
