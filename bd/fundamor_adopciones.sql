@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2021 a las 00:04:09
+-- Tiempo de generación: 08-12-2021 a las 23:09:21
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 7.3.28
 
@@ -38,6 +38,14 @@ CREATE TABLE `adopcion` (
   `id_empleado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `adopcion`
+--
+
+INSERT INTO `adopcion` (`id_adopcion`, `id_animal`, `fecha_estudio`, `fecha_entrega`, `estado`, `observaciones`, `id_adoptante`, `id_empleado`) VALUES
+(29, 28, '2021-12-05', '2021-12-24', 'finalizada', 'asdsad', '23', '1001'),
+(30, 29, '2021-12-05', NULL, 'finalizada', 'asdasd', '23213', '1001');
+
 -- --------------------------------------------------------
 
 --
@@ -59,10 +67,9 @@ CREATE TABLE `adoptante` (
 --
 
 INSERT INTO `adoptante` (`id_adoptante`, `nombre`, `telefono_casa`, `telefono_celular`, `ciudad`, `ocupacion`, `correo`) VALUES
-('10023', 'Juan camilo perez', NULL, '3156627271312', 'Armenia quindio', 'Odontologo', 'jua2p@gmail.com'),
-('1005095547', 'mel', '123132', '213123', 'asd', 'asd', 'mel@gmailt.com'),
-('100509554722', 'asdsad', NULL, '213213', '123123', 'asasd', 'jua2p@gmail.comc'),
-('213123', 'sad', '213', '3213', 'daasd', 'adasd', 'asda@gmail.com');
+('23', 'Juan manuel giraldo gonzales', '213', '213', 'asd', 'asd', 'aads@gmailt.ocm'),
+('23213', 'adrian david trejos', 'asd', 'asd', 'asd', 'asd', NULL),
+('asd', 'Efran rojas patiño', 'sad', 'sad', 'asd', 'da', NULL);
 
 -- --------------------------------------------------------
 
@@ -93,16 +100,11 @@ CREATE TABLE `animal` (
 --
 
 INSERT INTO `animal` (`id_animal`, `id_fundacion`, `especie`, `nombre`, `fecha_nacimiento`, `sexo`, `caracteristicas`, `sitio_rescate`, `fecha_rescate`, `color`, `vacunas`, `esterilizado`, `desparasitado`, `tamanio`, `estado`) VALUES
-(1, 2, 'perro', 'nerón', '2021-08-09', 'macho', 'nonse', 'Armenia', '2021-09-10', 'negro', 'sisas', 1, 0, 'grande', 'Adoptado'),
-(27, 2, 'perro', 'sadsad', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
-(28, 2, 'perro', 'sadsad', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
-(29, 2, 'perro', 'sadsad', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
-(30, 2, 'gato', 'sdada', '2021-11-10', 'macho', 'asdsad', 'sadsad', '2021-11-11', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
-(31, 2, 'gato', 'asdasd', '2021-11-05', 'macho', 'asdsad', 'sadasd', '2021-11-12', 'cafe', 'asdasdasd', 1, 1, 'mediano', 'Sin adoptar'),
-(32, 2, 'gato', 'xzcxzc', '2021-11-11', 'macho', 'sadasd', 'sadasd', '2021-11-12', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
-(33, 2, 'gato', 'xzcxzc', '2021-11-11', 'macho', 'sadasd', 'sadasd', '2021-11-12', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
-(34, 2, 'gato', 'xzcxzc', '2021-11-11', 'macho', 'sadasd', 'sadasd', '2021-11-12', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
-(35, 2, 'gato', 'xzcxzc', '2021-11-11', 'macho', 'sadasd', 'sadasd', '2021-11-12', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
+(27, 2, 'perro', 'paco', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'En proceso de adopción'),
+(28, 2, 'perro', 'sadsad', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Adoptado'),
+(29, 2, 'perro', 'sadsad', '2021-11-10', 'macho', 'assadsad', 'asdasd', '2021-11-05', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Adoptado'),
+(30, 2, 'gato', 'sdada', '2021-11-10', 'macho', 'asdsad', 'sadsad', '2021-11-11', 'sadsad', 'sadsad', 1, 1, 'mediano', 'En proceso de adopción'),
+(31, 2, 'gato', 'asdasd', '2021-11-05', 'macho', 'asdsad', 'sadasd', '2021-11-12', 'cafe', 'asdasdasd', 1, 1, 'mediano', 'Adoptado'),
 (36, 2, 'perro', 'sdasd', '2021-11-11', 'macho', 'sadad', 'asdasd', '2021-11-02', 'sadasd', 'sdasdasd', 1, 1, 'mediano', 'Sin adoptar'),
 (37, 2, 'perro', 'sdasd', '2021-11-11', 'macho', 'sadad', 'asdasd', '2021-11-02', 'sadasd', 'sdasdasd', 1, 1, 'mediano', 'Sin adoptar'),
 (38, 2, 'perro', 'adssad', '2021-11-05', 'hembra', 'asdsad', 'sadasd', '2021-11-10', 'asdasd', 'sadasd', 1, 0, 'mediano', 'Sin adoptar'),
@@ -148,7 +150,7 @@ CREATE TABLE `empleado` (
 
 INSERT INTO `empleado` (`id_empleado`, `id_fundacion`, `correo`, `contrasenia`, `nombre`, `rol`) VALUES
 ('1001', 2, 'aurelio@gmail.com', '$2a$10$PW9wNChN5NlmhLg3YBb3yeFh06uno/D1IeCeRgloW1bGBiY/YuLD.', 'Test User2', 'colaborador'),
-('10011', 2, 'asdas@malo.com', '$2a$10$rpCJXlt.h3RvKBjCf.8G/eu1RqvhALJjfqY8u/Lnq.odIXmi1NR3W', 'sadasd', 'administrador'),
+('10011', 2, 'asdas@malo.com', '$2a$10$rpCJXlt.h3RvKBjCf.8G/eu1RqvhALJjfqY8u/Lnq.odIXmi1NR3W', 'aurelio mejia', 'administrador'),
 ('123123', 2, 'aurelio@gmail.comx', '$2a$10$zaS77dgdIKWxCW41heSAc.iUf2/KSEJQkj5hxK7glXqoBSui2VQ9C', 'asdads', 'colaborador'),
 ('23213', 2, 'asdsada@gmail.com', '12345678', 'papillon', 'colaborador');
 
@@ -190,9 +192,6 @@ CREATE TABLE `imagen_animal` (
 --
 
 INSERT INTO `imagen_animal` (`id_imagen_animal`, `id_animal`, `ruta`) VALUES
-(11, 35, 'images/animalImages/04cfb401-4620-47c5-944f-528a88052c9e.jpg'),
-(12, 35, 'images/animalImages/4e3fc31c-17ab-4531-b0e2-2b90fd5c6023.jpg'),
-(13, 35, 'images/animalImages/92b39cf6-d4f2-4d85-ac48-3ec6149bedc3.jpg'),
 (14, 39, 'images/animalImages/40c0a5b9-6d34-43d7-8ae7-10092b04b1e1.jpg'),
 (15, 40, 'images/animalImages/4a6afc36-0cfd-4202-acaa-945470c0874f.jpg'),
 (17, 42, 'images/animalImages/404cb80c-cd55-4a19-838e-7cbf4c70155a.jpg'),
@@ -235,8 +234,8 @@ CREATE TABLE `opcion_pregunta` (
 --
 
 INSERT INTO `opcion_pregunta` (`id_opcion`, `id_pregunta`, `descripcion`) VALUES
-(10, 29, 'Sisas'),
-(11, 29, 'Nonas');
+(55, 36, 'Mañana'),
+(56, 36, 'Hoy');
 
 -- --------------------------------------------------------
 
@@ -256,8 +255,10 @@ CREATE TABLE `pregunta` (
 --
 
 INSERT INTO `pregunta` (`id_pregunta`, `id_fundacion`, `titulo`, `tipo_pregunta`) VALUES
-(27, 2, 'sadsad', 'abierta'),
-(29, 2, 'melos?', 'multiple');
+(32, 2, 'melos?', 'abierta'),
+(35, 2, 'Le interesa', 'abierta'),
+(36, 2, '¿Cuando es el dia de la independencia?', 'multiple'),
+(37, 2, 'meloski', 'abierta');
 
 -- --------------------------------------------------------
 
@@ -271,6 +272,20 @@ CREATE TABLE `pregunta_adopcion` (
   `id_pregunta` int(11) NOT NULL,
   `respuesta` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pregunta_adopcion`
+--
+
+INSERT INTO `pregunta_adopcion` (`id_pregunta_adopcion`, `id_adopcion`, `id_pregunta`, `respuesta`) VALUES
+(39, 29, 36, 'Mañana'),
+(40, 29, 32, 'as'),
+(41, 29, 35, 'as'),
+(42, 29, 37, 'as'),
+(43, 30, 36, 'Mañana'),
+(44, 30, 32, 'asd'),
+(45, 30, 35, 'sad'),
+(46, 30, 37, 'sad');
 
 -- --------------------------------------------------------
 
@@ -397,7 +412,7 @@ ALTER TABLE `seguimiento`
 -- AUTO_INCREMENT de la tabla `adopcion`
 --
 ALTER TABLE `adopcion`
-  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `animal`
@@ -427,19 +442,19 @@ ALTER TABLE `imagen_publicacion`
 -- AUTO_INCREMENT de la tabla `opcion_pregunta`
 --
 ALTER TABLE `opcion_pregunta`
-  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta_adopcion`
 --
 ALTER TABLE `pregunta_adopcion`
-  MODIFY `id_pregunta_adopcion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pregunta_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `publicacion`
@@ -451,7 +466,7 @@ ALTER TABLE `publicacion`
 -- AUTO_INCREMENT de la tabla `seguimiento`
 --
 ALTER TABLE `seguimiento`
-  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -505,8 +520,8 @@ ALTER TABLE `pregunta`
 -- Filtros para la tabla `pregunta_adopcion`
 --
 ALTER TABLE `pregunta_adopcion`
-  ADD CONSTRAINT `FK_140` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id_pregunta`),
-  ADD CONSTRAINT `FK_141` FOREIGN KEY (`id_adopcion`) REFERENCES `adopcion` (`id_adopcion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_140` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id_pregunta`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_141` FOREIGN KEY (`id_adopcion`) REFERENCES `adopcion` (`id_adopcion`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `publicacion`

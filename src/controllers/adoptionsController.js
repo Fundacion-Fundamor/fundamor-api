@@ -24,7 +24,6 @@ exports.create = async (req, res) => {
 
 		let id_adopter = "";
 
-		console.log(adopterData);
 		if (adopterData.selected) {
 			id_adopter = adopterData.id_adoptante;
 		} else {
@@ -125,23 +124,43 @@ exports.create = async (req, res) => {
 	}
 };
 
+/**Si se elimina una adopción se elimina en cascada
+ * seguimientos y respuesta a las preguntas
+ * 
+ * se elimina el adoptante asociado si y solo si no esta asociado a otras adopciones
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.delete = async (req, res) => {
 	try {
 
-		const result = await adoption.destroy({
-			where: {
-				id_adopcion: req.params["id"]
-			},
-			include: "tracking"
+
+		const result = await adoption.findByPk(req.params["id"], {
+
+			include: ["tracking", "question"]
 
 		});
-		await adoptionQuestion.destroy({
+
+		const searchResult = await adoption.findAll({
 			where: {
-				id_adopcion: req.params["id"]
+				id_adoptante: result.id_adoptante,
+				[Op.not]: {
+					id_adopcion: req.params["id"]
+				}
 			}
 		});
 
-		if (result > 0) {
+
+		let resultDelete = await result.destroy();
+		if (resultDelete) {
+			if (searchResult.length === 0) {
+				await adopter.destroy({
+					where: {
+						id_adoptante: result.id_adoptante
+					}
+				});
+			}
 			res.status(200).json({
 				state: true,
 				message: "La adopción se ha eliminado exitosamente"
@@ -149,7 +168,7 @@ exports.delete = async (req, res) => {
 		} else {
 			res.status(200).json({
 				state: false,
-				message: "La adopción no existe"
+				message: "Ha ocurrido un error al eliminar la adopción"
 			});
 		}
 
@@ -230,7 +249,7 @@ exports.update = async (req, res) => {
 					state: true,
 					message: "Los datos de la adopción se han actualizado exitosamente"
 				});
-			}else{
+			} else {
 				res.status(200).json({
 					state: false,
 					message: "Ha ocurrido un error al actualizar el estado del animal"
