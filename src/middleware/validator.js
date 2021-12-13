@@ -77,7 +77,8 @@ const animalValidationRules = () => {
 };
 const postValidationRules = () => {
 	return [
-		check("nombre", "El nombre es obligatorio").not().isEmpty()
+		// check("titulo", "La publicación debe llevar un titulo").not().isEmpty()
+		check("cuerpo", "La publicación no puede ir vacía").not().isEmpty()
 	];
 };
 const questionValidationRules = () => {
