@@ -28,6 +28,7 @@ exports.create = async (req, res) => {
 				};
 				jwt.sign(payload, process.env.TOKEN_SECRET_KEY, { expiresIn: "300m" }, (err, token) => {
 					res.status(200).json({
+						state: true,
 						token
 					});
 				});
@@ -48,7 +49,6 @@ exports.create = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al generar el token"

@@ -18,6 +18,7 @@ module.exports = (req, res, next) => {
 		req.userSession = validateToken.employee;
 		next();
 	} catch (error) {
+		console.log(error)
 		res.status(401).json({ message: "Su sesión ha expirado, por favor inicie la sesión nuevamente" });
 	}
 };
