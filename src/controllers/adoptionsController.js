@@ -284,7 +284,8 @@ exports.list = async (req, res) => {
 					model: animal,
 					where: {
 						id_fundacion: req.userSession.id_fundacion
-					}
+					},
+					include: "animalImage"
 				},
 				{
 					model: adopter
