@@ -16,7 +16,7 @@ const adoptionQuestionsRoutes = require("./src/routes/adoptionQuestions");
 const trackingRoutes = require("./src/routes/tracking");
 const animalImagesRoutes = require("./src/routes/animalImages");
 const postImagesRoutes = require("./src/routes/postImages");
-// const analyticsRoutes = require("./routes/analytics");
+const analyticsRoutes = require("./src/routes/analytics");
 
 //enable express.json (in the request the header should be application/json)
 app.use(express.json({ extended: true }));
@@ -37,7 +37,7 @@ app.use("/api/tracking", trackingRoutes);
 app.use("/api/adoptionQuestions", adoptionQuestionsRoutes);
 app.use("/api/animalImages", animalImagesRoutes);
 app.use("/api/postImages", postImagesRoutes);
-// app.use("/api/analytics", analyticsRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 
 app.use(express.static("./src/public"));
