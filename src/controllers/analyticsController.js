@@ -153,22 +153,23 @@ exports.rescuedAnimals = async (req, res) => {
             });
         } else {
             console.log("lleaaaa")
+            //toca hacer 2 consultas una para perros y otra para gatos
             searchResult = await animal.findAll({
                 attributes: [
                     [Sequelize.literal(`COUNT(*)`), 'rescued_animals'],
-                    [Sequelize.fn('DATE', Sequelize.col('fecha_rescate')), 'rescue_month']
+                    [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
                 ],
                 where: {
                     id_fundacion: req.userSession.id_fundacion,
                     fecha_rescate: {
 
-                        [Op.lt]:new Date("12-31-2021"),
-                        [Op.gt]:new Date("01-01-2021")
+                        [Op.lt]: new Date("12-31-" + req.query.year ?? "2022"),
+                        [Op.gt]: new Date("01-01-"+ req.query.year ?? "2022")
                     }
 
                 },
                 // group: [Sequelize.fn('date_trunc', 'YEAR', Sequelize.col('fecha_rescate'))]
-                group: [Sequelize.fn('DATE', Sequelize.col('fecha_rescate')), 'rescue_month']
+                group: [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
 
                 // group:["YEAR(date)"]
             });
