@@ -1,5 +1,7 @@
 
 const animal = require("../models").animal;
+const adoption = require("../models").adoption;
+
 const { Op } = require("sequelize");
 var Sequelize = require('sequelize');
 exports.countAnimals = async (req, res) => {
@@ -110,76 +112,59 @@ exports.countAnimals = async (req, res) => {
 
 
 exports.rescuedAnimals = async (req, res) => {
-    console.log(req.query);
+
 
     try {
 
-        let searchResult = 0;
-        let andSentence = [];
+        let actualYear = new Date().getFullYear();
+        //toca hacer 2 consultas una para perros y otra para gatos
+        let dogsRescuedPerMonth = await animal.findAll({
+            attributes: [
+                [Sequelize.literal(`COUNT(*)`), 'rescued_animals'],
+                [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+            ],
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                fecha_rescate: {
 
-        if (req.query) {
-
-
-            //discrimina
-            if (req.query.specie) {
-                if (req.query.specie === "perro") {
-                    andSentence.push({ especie: "perro" })
-                } else if (req.query.specie === "gato") {
-                    andSentence.push({ especie: "gato" })
-                }
-            }
-
-            //discrimina
-            if (req.query.gender) {
-                if (req.query.gender === "macho") {
-                    andSentence.push({ sexo: "macho" })
-                } else if (req.query.gender === "hembra") {
-                    andSentence.push({ sexo: "hembra" })
-                }
-            }
-
-
-        }
-
-        if (andSentence.length !== 0) {
-            console.log("lleaaaa1", andSentence)
-            searchResult = await animal.findAll({
-
-                where: {
-                    id_fundacion: req.userSession.id_fundacion,
-                    [Op.and]: andSentence
-
-                }
-            });
-        } else {
-            console.log("lleaaaa")
-            //toca hacer 2 consultas una para perros y otra para gatos
-            searchResult = await animal.findAll({
-                attributes: [
-                    [Sequelize.literal(`COUNT(*)`), 'rescued_animals'],
-                    [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
-                ],
-                where: {
-                    id_fundacion: req.userSession.id_fundacion,
-                    fecha_rescate: {
-
-                        [Op.lt]: new Date("12-31-" + req.query.year ?? "2022"),
-                        [Op.gt]: new Date("01-01-"+ req.query.year ?? "2022")
-                    }
-
+                    [Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
+                    [Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
                 },
-                // group: [Sequelize.fn('date_trunc', 'YEAR', Sequelize.col('fecha_rescate'))]
-                group: [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+                especie: "perro"
 
-                // group:["YEAR(date)"]
-            });
-        }
+            },
+            // group: [Sequelize.fn('date_trunc', 'YEAR', Sequelize.col('fecha_rescate'))]
+            group: [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+
+            // group:["YEAR(date)"]
+        });
+
+        let catsRescuedPerMonth = await animal.findAll({
+            attributes: [
+                [Sequelize.literal(`COUNT(*)`), 'rescued_animals'],
+                [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+            ],
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                fecha_rescate: {
+
+                    [Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
+                    [Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+                },
+                especie: "gato"
+
+            },
+            // group: [Sequelize.fn('date_trunc', 'YEAR', Sequelize.col('fecha_rescate'))]
+            group: [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+
+            // group:["YEAR(date)"]
+        });
 
 
         res.status(200).json({
             state: true,
             message: "Resultados obtenidos",
-            data: searchResult
+            data: { dogs: dogsRescuedPerMonth, cats: catsRescuedPerMonth }
         });
 
     } catch (error) {
@@ -191,6 +176,197 @@ exports.rescuedAnimals = async (req, res) => {
     }
 
 }
+
+exports.rescuedAnimalsPerGender = async (req, res) => {
+
+
+    try {
+
+        let actualYear = new Date().getFullYear();
+
+        let maleRescuedPerMonth = await animal.findAll({
+            attributes: [
+                [Sequelize.literal(`COUNT(*)`), 'rescued_animals'],
+                [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+            ],
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                fecha_rescate: {
+
+                    [Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
+                    [Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+                },
+                sexo: "macho",
+
+            },
+            group: [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+        });
+
+        let femaleRescuedPerMonth = await animal.findAll({
+            attributes: [
+                [Sequelize.literal(`COUNT(*)`), 'rescued_animals'],
+                [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+            ],
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                fecha_rescate: {
+
+                    [Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
+                    [Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+                },
+                sexo: "hembra",
+
+            },
+            group: [Sequelize.fn('MONTH', Sequelize.col('fecha_rescate')), 'rescue_month']
+        });
+
+
+        res.status(200).json({
+            state: true,
+            message: "Resultados obtenidos",
+            data: { male: maleRescuedPerMonth, female: femaleRescuedPerMonth }
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            state: false,
+            message: "Ha ocurrido un error al obtener la lista de animales"
+        });
+    }
+
+}
+
+
+exports.adoptedAnimals = async (req, res) => {
+    try {
+
+        let actualYear = new Date().getFullYear();
+
+        let dogsAdoptedPerMonth = await adoption.findAll({
+            attributes: [
+                [Sequelize.literal(`COUNT(*)`), 'adopted_animals'],
+                [Sequelize.fn('MONTH', Sequelize.col('fecha_entrega')), 'month'],
+
+            ],
+            include: "animal",
+            where: {
+                fecha_entrega: {
+
+                    [Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
+                    [Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+                },
+                "$animal.especie$": "perro",
+                "$animal.id_fundacion$": req.userSession.id_fundacion
+
+            },
+            group: [Sequelize.fn('MONTH', Sequelize.col('fecha_entrega')), 'month']
+        });
+
+        let catsAdoptedPerMonth = await adoption.findAll({
+            attributes: [
+                [Sequelize.literal(`COUNT(*)`), 'adopted_animals'],
+                [Sequelize.fn('MONTH', Sequelize.col('fecha_entrega')), 'month'],
+
+            ],
+            include: "animal",
+            where: {
+                fecha_entrega: {
+
+                    [Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
+                    [Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+                },
+                "$animal.especie$": "gato",
+                "$animal.id_fundacion$": req.userSession.id_fundacion
+
+            },
+            group: [Sequelize.fn('MONTH', Sequelize.col('fecha_entrega')), 'month']
+        });
+
+        res.status(200).json({
+            state: true,
+            message: "Resultados obtenidos",
+            data: {
+                dogs: dogsAdoptedPerMonth,
+                cats: catsAdoptedPerMonth
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            state: false,
+            message: "Ha ocurrido un error al obtener la lista de animales"
+        });
+    }
+
+}
+
+
+exports.adoptedAnimalsPerGender = async (req, res) => {
+    try {
+
+        let actualYear = new Date().getFullYear();
+
+        let maleAdoptedPerMonth = await adoption.findAll({
+            attributes: [
+                [Sequelize.literal(`COUNT(*)`), 'adopted_animals'],
+                [Sequelize.fn('MONTH', Sequelize.col('fecha_entrega')), 'month'],
+
+            ],
+            include: "animal",
+            where: {
+                fecha_entrega: {
+
+                    [Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
+                    [Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+                },
+                "$animal.sexo$": "macho",
+                "$animal.id_fundacion$": req.userSession.id_fundacion
+
+            },
+            group: [Sequelize.fn('MONTH', Sequelize.col('fecha_entrega')), 'month']
+        });
+
+        let femaleAdoptedPerMonth = await adoption.findAll({
+            attributes: [
+                [Sequelize.literal(`COUNT(*)`), 'adopted_animals'],
+                [Sequelize.fn('MONTH', Sequelize.col('fecha_entrega')), 'month'],
+
+            ],
+            include: "animal",
+            where: {
+                fecha_entrega: {
+
+                    [Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
+                    [Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+                },
+                "$animal.sexo$": "hembra",
+                "$animal.id_fundacion$": req.userSession.id_fundacion
+
+            },
+            group: [Sequelize.fn('MONTH', Sequelize.col('fecha_entrega')), 'month']
+        });
+
+        res.status(200).json({
+            state: true,
+            message: "Resultados obtenidos",
+            data: {
+                male: maleAdoptedPerMonth,
+                female: femaleAdoptedPerMonth
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            state: false,
+            message: "Ha ocurrido un error al obtener la lista de animales"
+        });
+    }
+
+}
+
 
 exports.adoptions = async (req, res) => {
 }
