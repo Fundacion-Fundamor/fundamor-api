@@ -19,4 +19,7 @@ router.put("/", verify, employeeValidationEditRules(), validate, employeesContro
 // delete employee
 router.delete("/:id", verify, employeesController.delete);
 
+
+//updateProfile employee
+router.put("/profile", verify, employeesController.updateProfile);
 module.exports = router;

@@ -177,6 +177,9 @@ exports.rescuedAnimals = async (req, res) => {
 
 }
 
+
+
+
 exports.rescuedAnimalsPerGender = async (req, res) => {
 
 
@@ -355,6 +358,136 @@ exports.adoptedAnimalsPerGender = async (req, res) => {
                 male: maleAdoptedPerMonth,
                 female: femaleAdoptedPerMonth
             }
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            state: false,
+            message: "Ha ocurrido un error al obtener la lista de animales"
+        });
+    }
+
+}
+
+
+
+exports.sterilizedAnimals = async (req, res) => {
+
+
+    try {
+
+        let totalCats = await animal.count({
+
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                estado: { [Op.ne]: "Adoptado" },
+                especie: "gato"
+            }
+        });
+
+        let totalDogs = await animal.count({
+
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                estado: { [Op.ne]: "Adoptado" },
+                especie: "perro"
+            }
+        });
+
+
+        let cats = await animal.count({
+
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                estado: { [Op.ne]: "Adoptado" },
+                especie: "gato",
+                esterilizado: true
+            }
+
+        });
+
+        let dogs = await animal.count({
+
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                estado: { [Op.ne]: "Adoptado" },
+                especie: "perro",
+                esterilizado: true
+            }
+
+        });
+
+
+        res.status(200).json({
+            state: true,
+            message: "Resultados obtenidos",
+            data: { dogs, cats, totalCats, totalDogs }
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            state: false,
+            message: "Ha ocurrido un error al obtener la lista de animales"
+        });
+    }
+
+}
+
+
+exports.dewormedAnimals = async (req, res) => {
+
+
+    try {
+
+        let totalCats = await animal.count({
+
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                estado: { [Op.ne]: "Adoptado" },
+                especie: "gato"
+            }
+        });
+
+        let totalDogs = await animal.count({
+
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                estado: { [Op.ne]: "Adoptado" },
+                especie: "perro"
+            }
+        });
+
+
+        let cats = await animal.count({
+
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                estado: { [Op.ne]: "Adoptado" },
+                desparasitado: true,
+                especie: "gato"
+            }
+
+        });
+
+        let dogs = await animal.count({
+
+            where: {
+                id_fundacion: req.userSession.id_fundacion,
+                estado: { [Op.ne]: "Adoptado" },
+                especie: "perro",
+                desparasitado: true,
+
+            }
+
+        });
+
+
+        res.status(200).json({
+            state: true,
+            message: "Resultados obtenidos",
+            data: { dogs, cats, totalCats, totalDogs }
         });
 
     } catch (error) {

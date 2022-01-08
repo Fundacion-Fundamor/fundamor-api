@@ -176,3 +176,48 @@ exports.list = async (req, res) => {
 		});
 	}
 };
+
+exports.updateProfile = async (req, res) => {
+
+	try {
+
+		const searchResult = await employee.findAll({
+			where: {
+				correo: req.body.correo,
+				id_empleado:
+				{
+					[Op.ne]: req.body.id_empleado
+				}
+			}
+		});
+
+		if (searchResult.length === 0) {
+
+			await employee.update(req.body, {
+				where: {
+					id_empleado: req.body.id_empleado
+				}
+			});
+
+			res.status(200).json({
+				state: true,
+				message: "Sus datos se han actualizado exitosamente",
+				data: searchResult
+			});
+
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "Ya existe un colaborador registrado con este correo"
+			});
+		}
+	} catch (error) {
+
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al realizar la actualización de datos"
+		});
+
+	}
+}
