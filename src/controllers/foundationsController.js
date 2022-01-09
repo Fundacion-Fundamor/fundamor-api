@@ -72,6 +72,37 @@ exports.delete = async (req, res) => {
 	}
 };
 
+
+exports.myFoundation = async (req, res) => {
+
+	try {
+		const searchResult = await foundation.findByPk(req.userSession.id_fundacion);
+
+		if (searchResult) {
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "La fundación no existe"
+
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener la fundación"
+		});
+	}
+
+};
+
 exports.get = async (req, res) => {
 
 	try {
@@ -105,36 +136,17 @@ exports.get = async (req, res) => {
 exports.update = async (req, res) => {
 	try {
 
-		const searchResult = await foundation.findAll({
+		await foundation.update(req.body, {
 			where: {
-				nombre: req.body.nombre,
-				id_fundacion:
-				{
-					[Op.ne]: req.body.id_fundacion
-				}
+				id_fundacion: req.userSession.id_fundacion
 			}
 		});
 
-		if (searchResult.length === 0) {
-			await foundation.update(req.body, {
-				where: {
-					id_fundacion: req.body.id_fundacion
-				}
-			});
+		res.status(200).json({
+			state: true,
+			message: "Los datos de la fundación se han actualizado exitosamente"
 
-
-			res.status(200).json({
-				state: true,
-				message: "Los datos de la fundación se han actualizado exitosamente"
-			
-			});
-
-		} else {
-			res.status(200).json({
-				state: false,
-				message: "Ya existe una fundación registrada con este nombre"
-			});
-		}
+		});
 
 	} catch (error) {
 

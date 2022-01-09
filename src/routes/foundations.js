@@ -7,14 +7,17 @@ const verify = require("../middleware/auth/verify");
 // foundation list
 router.get("/", verify, foundationsController.list);
 
-// get foundation
+// get foundation of user in session
+router.get("/myFoundation", verify, foundationsController.myFoundation);
+
+//
 router.get("/:id", verify, foundationsController.get);
 
 // create foundation
 router.post("/", verify, foundationValidationRules(), validate, foundationsController.create);
 
 // update foundation
-router.put("/", verify, foundationValidationRules(), validate, foundationsController.update);
+router.put("/", verify,foundationsController.update);
 
 // delete foundation
 router.delete("/:id", verify, foundationsController.delete);

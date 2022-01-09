@@ -32,7 +32,10 @@ module.exports = (sequelize, DataTypes) => {
 		correo: DataTypes.STRING(70),
 		cuenta_donaciones: DataTypes.STRING(45),
 		nombre: { type: DataTypes.STRING(70), allowNull: false },
-		telefono: DataTypes.STRING(20)
+		telefono: DataTypes.STRING(20),
+		direccion: DataTypes.STRING(100),
+		mision: DataTypes.STRING(255),
+		vision: DataTypes.STRING(255),
 	}, {
 		sequelize,
 		modelName: "foundation",
