@@ -34,6 +34,22 @@ const employeeValidationEditRules = () => {
 		check("nombre", "El nombre es obligatorio").not().isEmpty()
 	];
 };
+
+const profileUpdateRules = () => {
+	return [
+		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty(),
+		check("id_empleado", "La identificación del empleado es obligatoria").not().isEmpty(),
+		check("nombre", "El nombre es obligatorio").not().isEmpty()
+	];
+};
+
+const passwordUpdateRules = () => {
+	return [
+		check("actualPassword", "El campo contraseña actual es obligatorio").not().isEmpty(),
+		check("newPassword", "El campo nueva contraseña es obligatorio").not().isEmpty()
+	];
+};
+
 const adopterValidationRules = () => {
 	return [
 		check("nombre", "El nombre es obligatorio").not().isEmpty(),
@@ -144,5 +160,7 @@ module.exports = {
 	trackingValidationRules,
 	tokenValidationRules,
 	questionOptionValidationRules,
+	profileUpdateRules,
+	passwordUpdateRules,
 	validate
 };

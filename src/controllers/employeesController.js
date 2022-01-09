@@ -221,3 +221,57 @@ exports.updateProfile = async (req, res) => {
 
 	}
 }
+
+exports.updatePassword = async (req, res) => {
+
+
+	try {
+		const searchResult = await employee.findOne({
+			where: {
+				id_empleado: req.userSession.id
+			}
+		});
+
+		if (searchResult) {
+
+			const validPassword = await helpers.comparePassword(req.body.actualPassword, searchResult.contrasenia);
+
+			if (validPassword) {
+				let encpassword = await helpers.encryptPassword(req.body.newPassword);
+				await employee.update({ contrasenia: encpassword }, {
+					where: {
+						id_empleado: req.userSession.id
+					}
+				});
+
+				res.status(200).json({
+					state: true,
+					message: "Su contraseña se ha actualizado con éxito",
+
+				});
+			} else {
+				res.status(200).json({
+					state: false,
+					message: "La contraseña actual es incorrecta"
+
+				});
+			}
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "El usuario no existe",
+				data: searchResult
+			});
+		}
+
+	} catch (error) {
+
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al realizar la actualización de datos"
+		});
+
+	}
+
+}
