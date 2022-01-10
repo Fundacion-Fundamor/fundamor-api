@@ -64,7 +64,7 @@ exports.create = async (req, res) => {
 			if (adoptionData.estado === "finalizada") {
 				animalState = "Adoptado";
 			} else if (adoptionData.estado === "en proceso" || adoptionData.estado === "en espera") {
-				animalState = "En proceso de adopción";
+				animalState = "En proceso";
 			} else {
 				animalState = "Sin adoptar";
 
@@ -233,7 +233,7 @@ exports.update = async (req, res) => {
 			if (req.body.estado === "finalizada") {
 				animalState = "Adoptado";
 			} else if (req.body.estado === "en proceso" || req.body.estado === "en espera") {
-				animalState = "En proceso de adopción";
+				animalState = "En proceso";
 			} else {
 				animalState = "Sin adoptar";
 

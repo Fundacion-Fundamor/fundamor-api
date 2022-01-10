@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
 		esterilizado: { type: DataTypes.BOOLEAN, allowNull: false },
 		desparasitado: { type: DataTypes.BOOLEAN, allowNull: false },
 		tamanio: { type: DataTypes.STRING(45), allowNull: false },
-		estado: { type: DataTypes.STRING(30), allowNull: false }
+		estado: { type:DataTypes.ENUM("Adoptado", "Sin adopter", "En proceso"), allowNull: false }
 	}, {
 		sequelize,
 		modelName: "animal",
