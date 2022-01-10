@@ -38,13 +38,11 @@ exports.delete = async (req, res) => {
 		if (searchResult) {
 
 			for (let element of searchResult.animalImage) {
-				fs.access(`./src/public/${element.ruta}`, (error) => {
-					if (error) {
-						console.log("ERROR AL ELIMINAR IMAGENES", error);
-						return;
-					}
-					fs.unlink(`./src/public/${element.ruta}`);
-				});
+				try {
+					await fs.unlink(`./src/public/${element.ruta}`);
+				} catch (error) {
+					console.log(error);
+				}
 			}
 
 			const result = await searchResult.destroy();
@@ -139,7 +137,8 @@ exports.list = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				...req.query
 			},
-			include: "animalImage"
+			include: "animalImage",
+			order: [["id_animal", "DESC"]]
 		});
 
 		if (searchResult.length !== 0) {

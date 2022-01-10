@@ -220,7 +220,7 @@ exports.updateProfile = async (req, res) => {
 		});
 
 	}
-}
+};
 
 exports.updatePassword = async (req, res) => {
 
@@ -246,7 +246,7 @@ exports.updatePassword = async (req, res) => {
 
 				res.status(200).json({
 					state: true,
-					message: "Su contraseña se ha actualizado con éxito",
+					message: "Su contraseña se ha actualizado con éxito"
 
 				});
 			} else {
@@ -274,4 +274,4 @@ exports.updatePassword = async (req, res) => {
 
 	}
 
-}
+};

@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
 		sitio_rescate: { type: DataTypes.STRING(190) },
 		fecha_rescate: { type: DataTypes.DATE },
 		color: { type: DataTypes.STRING(45), allowNull: false },
-		vacunas: { type: DataTypes.STRING(100), allowNull: false },
+		vacunas: { type: DataTypes.STRING(100) },
 		esterilizado: { type: DataTypes.BOOLEAN, allowNull: false },
 		desparasitado: { type: DataTypes.BOOLEAN, allowNull: false },
 		tamanio: { type: DataTypes.STRING(45), allowNull: false },

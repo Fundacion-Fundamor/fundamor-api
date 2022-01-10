@@ -8,7 +8,7 @@
 
 const bcrypt = require("bcryptjs");
 const helpers = {};
-
+const fs = require("fs").promises;
 helpers.encryptPassword = async (password) => {
 	const salt = await bcrypt.genSalt(10);
 	const hash = await bcrypt.hash(password, salt);
@@ -66,6 +66,21 @@ helpers.generatePassword = () => {
 	}
 
 	return res;
+
+};
+
+
+helpers.checkIfFileExist = (ruta) => {
+
+	return fs.access(`./src/public/${ruta}`, fs.FS_OK, (error) => {
+		console.log("ERROR AL ACCEDER AL ARCHIVO " + ruta, error);
+		if (error) {
+			console.log("ERROR AL ACCEDER AL ARCHIVO " + ruta, error);
+			return false;
+		} else {
+			return true;
+		}
+	});
 
 };
 
