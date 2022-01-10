@@ -134,6 +134,10 @@ exports.list = async (req, res) => {
 			where: {
 				id_fundacion: req.userSession.id_fundacion
 			},
+			order: [
+				["id_pregunta", "ASC"],
+				["questionOptions", "id_opcion", "ASC"]
+			],
 			include: "questionOptions"
 
 		});

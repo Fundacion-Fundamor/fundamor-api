@@ -22,12 +22,12 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	}
 	employee.init({
-		id_empleado: { primaryKey: true, type: DataTypes.STRING(45), allowNull: false},
+		id_empleado: { primaryKey: true, type: DataTypes.STRING(45), allowNull: false },
 		id_fundacion: { type: DataTypes.INTEGER, allowNull: false },
 		correo: { type: DataTypes.STRING(70), allowNull: false },
 		contrasenia: { type: DataTypes.STRING(300), allowNull: false },
 		nombre: { type: DataTypes.STRING(70), allowNull: false },
-		rol: DataTypes.STRING(45)
+		rol: { type: DataTypes.STRING(45), allowNull: false }
 	}, {
 		sequelize,
 		modelName: "employee",
