@@ -185,7 +185,10 @@ exports.get = async (req, res) => {
 	try {
 		const searchResult = await adoption.findByPk(req.params["id"], {
 			include: [
-				"animal", { model: adopter }, { model: employee }, "tracking"
+				{
+					model: animal,
+					include: "animalImage"
+				}, { model: adopter }, { model: employee }, "tracking"
 			]
 		});
 
@@ -213,6 +216,13 @@ exports.get = async (req, res) => {
 
 exports.update = async (req, res) => {
 	try {
+
+
+		let result = await adoption.findByPk(req.body.id_adopcion);
+
+		if (result.id_empleado === null) {
+			req.body.id_empleado = req.userSession.id;
+		}
 
 		await adoption.update(req.body, {
 			where: {
