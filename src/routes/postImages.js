@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const postImagesController = require("../controllers/postImagesController");
 const uploadImage = require("../middleware/upload");
-const { postImageValidationRules, validate } = require("../middleware/validator");
 const verify = require("../middleware/auth/verify");
 
 
@@ -14,7 +13,7 @@ const verify = require("../middleware/auth/verify");
  *  postImages: Array
  * }
  */
-router.post("/uploadImages", verify, postImageValidationRules(), validate, uploadImage, postImagesController.upload);
+router.post("/uploadImages", verify, uploadImage, postImagesController.upload);
 
 
 /**

@@ -87,7 +87,9 @@ exports.list = async (req, res) => {
 		const searchResult = await post.findAll({
 			where: {
 				id_fundacion: req.userSession.id_fundacion
-			}
+			},
+			include:"postImage",
+			order: [["fecha_creacion", "DESC"]]
 		});
 
 		if (searchResult.length !== 0) {
