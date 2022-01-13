@@ -52,7 +52,7 @@ exports.update = async (req, res) => {
 exports.get = async (req, res) => {
 
 	try {
-		const searchResult = await post.findByPk(req.params["id"]);
+		const searchResult = await post.findByPk(req.params["id"], { include: "postImage"});
 
 		if (searchResult) {
 
