@@ -27,7 +27,7 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
 	try {
-
+		req.body.fecha_creacion = Date.now();
 		await post.update(req.body, {
 			where: {
 				id_publicacion: req.body.id_publicacion
