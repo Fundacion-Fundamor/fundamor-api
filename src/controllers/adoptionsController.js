@@ -188,7 +188,7 @@ exports.get = async (req, res) => {
 				{
 					model: animal,
 					include: "animalImage"
-				}, { model: adopter }, { model: employee }, "tracking"
+				}, { model: adopter }, { model: employee, attributes: { exclude: ["contrasenia", "correo"] } }, "tracking"
 			]
 		});
 

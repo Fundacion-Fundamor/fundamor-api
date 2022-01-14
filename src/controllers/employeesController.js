@@ -148,7 +148,10 @@ exports.list = async (req, res) => {
 	try {
 		const searchResult = await employee.findAll({
 			where: {
-				id_fundacion: req.userSession.id_fundacion
+				id_fundacion: req.userSession.id_fundacion,
+				id_empleado: {
+					[Op.ne]: req.userSession.id
+				}
 			},
 			attributes: { exclude: ["contrasenia"] }
 		});
