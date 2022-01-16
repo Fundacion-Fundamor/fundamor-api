@@ -219,7 +219,7 @@ label {
     user-select: none;
     background: var(--primary-color) none repeat scroll 0 0;
     border: medium none;
-    border-radius: 3px;
+    border-radius: 12px;
     color: #fff;
     cursor: pointer;
     display: inline-flex;
@@ -2598,6 +2598,7 @@ label {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .shop-pagination ul li + li {
     margin-left: 8px;
