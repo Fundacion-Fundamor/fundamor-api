@@ -22,7 +22,37 @@ exports.postDetail = (req, res) => {
 exports.animals = async (req, res) => {
 
 
-	res.render("pages/animals");
+	let animals = [
+
+		{
+			nombre: "pepe"
+		},
+		{
+			nombre: "pepe"
+		},
+		{
+			nombre: "pepe"
+		},
+		{
+			nombre: "pepe"
+		},
+		{
+			nombre: "pepe"
+		},
+		{
+			nombre: "pepe"
+		},
+		{
+			nombre: "pepe"
+		},
+		{
+			nombre: "pepe"
+		}, {
+			nombre: "pepe"
+		}
+	];
+
+	res.render("pages/animals", { animals: animals });
 };
 
 

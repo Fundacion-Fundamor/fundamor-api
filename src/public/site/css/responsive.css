@@ -292,7 +292,7 @@
     padding: 35px 30px 40px;
 }
 .sidebar-newsletter {
-    padding: 40px 30px 40px;
+    padding: 0px
 }
 .standard-blog-content > .title {
     font-size: 30px;
@@ -336,7 +336,7 @@
     max-width: 720px;
 }
 .menu-area {
-	padding: 25px 0;
+	padding: 15px 0;
 }
 .menu-nav {
 	justify-content: space-between;
@@ -462,7 +462,7 @@
     padding: 50px 45px;
 }
 .sidebar-newsletter {
-    padding: 45px 45px 50px;
+    padding: 0px;
 }
 .blog-sidebar {
     margin-top: 110px;
@@ -680,7 +680,7 @@
     padding: 40px 25px;
 }
 .sidebar-newsletter {
-    padding: 40px 30px 40px;
+    padding:0px;
 }
 .standard-blog-content > .title {
     font-size: 24px;
@@ -874,7 +874,7 @@
     padding: 40px 35px;
 }
 .sidebar-newsletter {
-    padding: 45px 45px 50px;
+    padding: 0px;
 }
 .standard-blog-content > .title {
     font-size: 28px;
