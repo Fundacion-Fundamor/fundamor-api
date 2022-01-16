@@ -67,3 +67,8 @@ exports.animalDetail = (req, res) => {
 
 	res.render("pages/animalDetail");
 };
+
+exports.about = (req, res) => {
+
+	res.render("pages/about");
+};
