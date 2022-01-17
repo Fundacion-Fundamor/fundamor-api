@@ -7,7 +7,6 @@ const landingController = require("../controllers/landingController");
 //render a index page
 router.get("/", landingController.main);
 
-
 //render a post page
 router.get("/post", landingController.post);
 
@@ -23,8 +22,12 @@ router.get("/animals/detail/:id_animal", landingController.animalDetail);
 //render a contact page
 router.get("/contact", landingController.contact);
 
-
 //render a about page
 router.get("/about", landingController.about);
+
+
+
+//get animal list paginate
+router.get("/api/v2/animals", landingController.animalsPagination);
 
 module.exports = router;

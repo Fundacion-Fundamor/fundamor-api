@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+app.use(express.static("./src/public"));
 app.use(express.static(path.join(__dirname, "/src/public/site")));
 app.use("/animals/detail", express.static(path.join(__dirname, "/src/public/site")));
 app.use("/post/detail", express.static(path.join(__dirname, "/src/public/site")));
@@ -29,7 +30,7 @@ const landingRoutes = require("./src/routes/landing");
 app.use(express.json({ extended: true }));
 app.use(morgan("dev"));
 app.use(cors());
-console.log(path.join(__dirname, "/src/views"));
+
 app.set("views", path.join(__dirname, "/src/views"));
 app.set("view engine", "ejs");
 

@@ -546,3 +546,35 @@ function wowAnimation() {
 
 
 })(jQuery);
+
+
+//calcula la edad del animal en meses
+const calcularEdad = fechaNac => {
+
+	if (!fechaNac || isNaN(new Date(fechaNac))) return;
+	const hoy = new Date();
+	const dateNac = new Date(fechaNac);
+	if (hoy - dateNac < 0) return;
+	let dias = hoy.getUTCDate() - dateNac.getUTCDate();
+	let meses = hoy.getUTCMonth() - dateNac.getUTCMonth();
+	let years = hoy.getUTCFullYear() - dateNac.getUTCFullYear();
+	if (dias < 0) {
+		meses--;
+		dias = 30 + dias;
+	}
+	if (meses < 0) {
+		years--;
+		meses = 12 + meses;
+	}
+
+	let enMeses = meses + (years * 12);
+
+
+
+	if (enMeses === 0 || enMeses == 1) {
+		return "1 Mes"
+	}
+
+	return enMeses + " Meses"
+
+}

@@ -53,77 +53,109 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="breeder-details-content">
+                            <% if(state){ %>
+                                <div class="breeder-details-img" id="animal-detail-carousel">
 
-                            <div class="breeder-details-img">
-                                <img src="img/images/breeder_details.jpg" alt="">
-                            </div>
-                            <h4 class="title">Descripción</h4>
-                            <p>The domestic dog is doiated dendant of the wolf. The dog t is derived from an ancient,
-                                extinct wolf, and the modern grey wolf is the dog's nesdarest living relative. The dog
-                                was
-                                the first species to be dometed, by hunter.</p>
-                            <div class="breeder-dog-info">
-                                <h5 class="title">Información del animal</h5>
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Genero:</h6>
-                                            <span>Macho</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Edad:</h6>
-                                            <span>1 año (aprox)</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Color:</h6>
-                                            <span>Café</span>
-                                        </div>
-                                    </div>
+                                    <img src="img/images/breeder_details.jpg" alt="">
+                                    <img src="img/images/breeder_details.jpg" alt="">
+                                    <img src="img/images/breeder_details.jpg" alt="">
 
-                                    <div class="col-md-3 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Tamaño:</h6>
-                                            <span>Mediano</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Esterilizado:</h6>
-                                            <span>Si</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Desparasitado:</h6>
-                                            <span>Si</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Fecha de rescate:</h6>
-                                            <span>09/12/2021</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Sitio de rescate:</h6>
-                                            <span>Barrio la pavona armenia quindio</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-4 col-6">
-                                        <div class="breeder-info-item">
-                                            <h6>Vacunas:</h6>
-                                            <span>Antirabica</span>
-                                        </div>
-                                    </div>
+                                    <img src="img/images/breeder_details.jpg" alt="">
+                                    <img src="img/images/breeder_details.jpg" alt="">
+                                    <img src="img/images/breeder_details.jpg" alt="">
+
                                 </div>
-                                <a href="contact.html" class="btn">Adoptar <img src="img/icon/w_pawprint.png"
-                                        alt=""></a>
-                            </div>
+                                <h4 class="title">
+                                    <%=animal.nombre %>
+                                </h4>
+                                <p>
+                                    <%=animal.caracteristicas??"No registra"%>
+                                </p>
+                                <div class="breeder-dog-info">
+                                    <h5 class="title">Información del animal</h5>
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Genero:</h6>
+                                                <span>
+                                                    <%=animal.sexo%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Edad:</h6>
+                                                <input id="age-input" hidden value="<%=animal.fecha_nacimiento%>" />
+                                                <span id="age">Meses (aprox)</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Color:</h6>
+                                                <span>
+                                                    <%=animal.color%>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Tamaño:</h6>
+                                                <span>
+                                                    <%=animal.tamanio%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Esterilizado:</h6>
+                                                <span>
+                                                    <%=animal.esterilizado?"Si":"No"%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Desparasitado:</h6>
+                                                <span>
+                                                    <%=animal.desparasitado?"Si":"No"%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Fecha de rescate:</h6>
+
+                                                <span>
+                                                    <%=animal.fecha_rescate??"No registra"%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Sitio de rescate:</h6>
+                                                <span>
+                                                    <%=animal.sitio_rescate??"No registra"%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-4 col-6">
+                                            <div class="breeder-info-item">
+                                                <h6>Vacunas:</h6>
+                                                <span>
+                                                    <%=animal.vacunas??"No registra"%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="contact.html" class="btn">Adoptar <img src="img/icon/w_pawprint.png"
+                                            alt=""></a>
+                                </div>
+                                <% } else{ %>
+                                    <p>
+                                        <%=msg%>
+                                    </p>
+                                    <% } %>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -241,6 +273,52 @@
     <!-- JS here -->
     <%- include('../partials/libraries'); %>
 
+        <script>
+
+
+
+            $(document).ready(function () {
+                var age = calcularEdad($("#age-input").val())
+                $("#age").html(age)
+
+                $('#animal-detail-carousel').slick({
+                dots: true,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                        // You can unslick at a given breakpoint now by adding:
+                        // settings: "unslick"
+                        // instead of a settings object
+                    ]
+                });
+            })
+
+        </script>
 
 </body>
 
