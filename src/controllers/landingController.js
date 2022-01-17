@@ -77,9 +77,19 @@ exports.animalDetail = async (req, res) => {
 
 	try {
 		const searchResult = await animal.findByPk(req.params["id_animal"], { include: "animalImage" });
+		const otherAnimals = await animal.findAll({
+			where: {
+				id_fundacion: 2
+			},
+			include: "animalImage",
+			distinct: true,
+			order: [["id_animal", "ASC"]],
+			limit: 10,
+			offset: 0
+		});
 
 		if (searchResult) {
-			res.render("pages/animalDetail", { animal: searchResult, state: true });
+			res.render("pages/animalDetail", { animal: searchResult, state: true, otherAnimals: otherAnimals });
 
 		} else {
 

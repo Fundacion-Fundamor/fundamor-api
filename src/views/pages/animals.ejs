@@ -213,17 +213,8 @@
             var loadingRequest = true;
             var order = "recent";
 
-         
-            function getAnimalImage(animalImages) {
 
-                if (animalImages.length === 0) {
-                    return ("http://localhost:4000/img/images/no_image.png")
-
-                } else {
-                    return ("http://localhost:4000/" + animalImages[0].ruta)
-                }
-            }
-
+    
 
             $(document).ready(function () {
 
@@ -286,7 +277,7 @@
                             <div class="col-lg-4 col-md-6">
                                         <div class="adoption-shop-item">
                                             <div class="adoption-shop-thumb">
-                                                <img src="${getAnimalImage(element.animalImage)}" alt="imagen del animal" onerror="this.src='img/images/no_image.png'">
+                                                <img src="${getAnimalImage(element.animalImage, element.especie)}" alt="imagen del animal" onerror="this.src='img/images/no_image.png'">
                                                 <a href="/animals/detail/${element.id_animal}" class="btn">Adoptar 
                                                     <i class="fas fa-paw fa-rotate-90" style="margin-left:8px;"></i></a>
                                             </div>
@@ -353,7 +344,7 @@
                         confirmButtonText: 'Ok'
                     })
                 }).always(function () {
-                    
+
                     loadingRequest = false;
                 });
             }

@@ -1400,6 +1400,7 @@ label {
 }
 .adoption-item {
     text-align: center;
+    min-width: 200px;
 }
 .adopt-thumb {
     position: relative;
@@ -1408,6 +1409,9 @@ label {
 .adopt-thumb img {
     display: inline-block;
     border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
 }
 .adopt-thumb .status {
     position: absolute;
@@ -1451,6 +1455,10 @@ label {
     font-size: 14px;
     line-height: 26px;
     margin-bottom: 17px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
 }
 .adopt-content .read-more {
     color: var(--primary-color);
@@ -2061,6 +2069,9 @@ label {
     border-color: #fff;
 }
 
+.breeder-gallery-active img{
+    border-radius: 12px;
+}
 /* 14. Brand-area */
 .brand-area {
     background: #181a21;

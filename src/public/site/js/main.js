@@ -578,3 +578,19 @@ const calcularEdad = fechaNac => {
 	return enMeses + " Meses"
 
 }
+
+
+function getAnimalImage(animalImages, especie) {
+
+	if (animalImages.length === 0) {
+		if (especie === "gato") {
+			return ("http://localhost:4000/img/images/no_image_cat.png")
+		} else {
+			return ("http://localhost:4000/img/images/no_image_dog.png")
+
+		}
+	} else {
+		return ("http://localhost:4000/" + animalImages[0].ruta)
+	}
+}
+
