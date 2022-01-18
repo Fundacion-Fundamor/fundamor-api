@@ -2390,14 +2390,17 @@ label {
 }
 .shop-brand-list ul li a {
     position: relative;
-    padding-left: 20px;
+    padding-left: 3px;
     font-size: 14px;
     color: #676666;
     line-height: 26px;
     display: inline-flex;
     font-weight: 500;
+    align-items: center;
 }
-.shop-brand-list ul li a::before {
+
+
+/* .shop-brand-list ul li a::before {
     content: "\f1ce";
     position: absolute;
     left: 0;
@@ -2410,7 +2413,7 @@ label {
     -ms-transition: all 0.3s ease-out 0s;
     -o-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
-}
+} */
 .shop-brand-list ul li a:hover {
     color: var(--primary-color);
 }
@@ -3299,6 +3302,19 @@ label {
     font-size: 14px;
 }
 .sidebar-search form [type=submit] {
+    position: absolute;
+    right: 0;
+    border: none;
+    padding: 0;
+    width: 56px;
+    height: 60px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.sidebar-search form [type=button] {
     position: absolute;
     right: 0;
     border: none;

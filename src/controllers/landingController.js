@@ -4,7 +4,7 @@ const question = require("../models").question;
 const adoption = require("../models").adoption;
 const adoptionQuestion = require("../models").adoptionQuestion;
 const adopter = require("../models").adopter;
-
+const { Op } = require("sequelize");
 
 exports.main = async (req, res) => {
 
@@ -34,19 +34,42 @@ exports.animalsPagination = async (req, res) => {
 	console.log(req.query);
 
 	try {
-		const searchResult = await animal.findAndCountAll({
-			where: {
-				id_fundacion: 2,
-				estado: "Sin adoptar"
-			},
-			include: "animalImage",
-			distinct: true,
-			order: [["id_animal", req.query.order === "recent" ? "DESC" : "ASC"]],
-			limit: req.query.max ? parseInt(req.query.max) : 0,
-			offset: req.query.min ? parseInt(req.query.min) : 0
-		});
+		let searchResult = null;
 
-		if (searchResult.length !== 0) {
+		if (req.query.min !== undefined && req.query.max !== undefined && req.query.order !== undefined &&
+			req.query.search !== undefined && req.query.specie !== undefined && req.query.size !== undefined) {
+
+
+			searchResult = await animal.findAndCountAll({
+				where: {
+					id_fundacion: 2,
+					estado: "Sin adoptar",
+					nombre: {
+						[Op.like]: `%${req.query.search}%`
+					},
+					especie: {
+						[Op.like]: `%${req.query.specie}%`
+					},
+					tamanio: {
+						[Op.like]: `%${req.query.size}%`
+					}
+				},
+				include: "animalImage",
+				distinct: true,
+				order: [["id_animal", req.query.order === "recent" ? "DESC" : "ASC"]],
+				limit: req.query.max ? parseInt(req.query.max) : 0,
+				offset: req.query.min ? parseInt(req.query.min) : 0
+			});
+		} else {
+			searchResult = await animal.findAndCountAll({
+				where: {
+					id_fundacion: 2,
+					estado: "Sin adoptar"
+				},
+				include: "animalImage"
+			});
+		}
+		if (searchResult && searchResult.length !== 0) {
 
 			res.status(200).json({
 				state: true,
@@ -84,7 +107,7 @@ exports.animalDetail = async (req, res) => {
 
 	try {
 		const searchResult = await animal.findByPk(req.params["id_animal"], {
-			
+
 			include: "animalImage"
 		});
 		const otherAnimals = await animal.findAll({
@@ -99,7 +122,7 @@ exports.animalDetail = async (req, res) => {
 			offset: 0
 		});
 
-		if (searchResult && searchResult.estado==="Sin adoptar") {
+		if (searchResult && searchResult.estado === "Sin adoptar") {
 			res.render("pages/animalDetail", { animal: searchResult, state: true, otherAnimals: otherAnimals });
 
 		} else {
@@ -120,12 +143,12 @@ exports.adopterForm = async (req, res) => {
 
 	try {
 		const animalDetail = await animal.findByPk(req.params["id_animal"], {
-			
+
 			include: "animalImage"
 		});
 
-	
-		if (animalDetail &&animalDetail.estado==="Sin adoptar") {
+
+		if (animalDetail && animalDetail.estado === "Sin adoptar") {
 			const questions = await question.findAll({
 				where: {
 					id_fundacion: 2

@@ -79,9 +79,10 @@
                         <aside class="shop-sidebar">
                             <div class="widget">
                                 <div class="sidebar-search">
-                                    <form action="#">
-                                        <input type="text" placeholder="Busca por nombre">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    <form class="submit-controlled">
+                                        <input type="text" id="search-field" placeholder="Busca por nombre">
+                                        <button type="button" onclick="handleSearch()"><i
+                                                class="fa fa-search"></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -89,8 +90,10 @@
                                 <h4 class="sidebar-title">Especie</h4>
                                 <div class="shop-cat-list">
                                     <ul>
-                                        <li><a href="shop.html">Perro<span>+</span></a></li>
-                                        <li><a href="shop.html">Gato<span>+</span></a></li>
+                                        <li><a href="#" onclick="handleSpecie(event,'perro')">Perro<i id="checkbox-dog"
+                                                    style="margin-left: 8px;" class="far fa-square"></i></a></li>
+                                        <li><a href="#" onclick="handleSpecie(event,'gato')">Gato<i id="checkbox-cat"
+                                                    style="margin-left: 8px;" class="far fa-square"></i></a></li>
 
                                     </ul>
                                 </div>
@@ -98,15 +101,44 @@
                             <div class="widget">
                                 <h4 class="sidebar-title">Tamaño</h4>
                                 <div class="shop-brand-list">
-                                    <ul>
-                                        <li><a href="shop.html">Grande</a></li>
+                                    <!-- <ul>
+                                        <li><a href="shop.html"> <i class="fas fa-circle-notch" style="margin-right: 8px;"></i>Grande</a></li>
                                         <li><a href="shop.html">Mediano</a></li>
                                         <li><a href="shop.html">Pequeño</a></li>
 
-                                    </ul>
+                                    </ul> -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tamanio"
+                                            id="flexRadioDefault0" value="" checked>
+                                        <label class="form-check-label" for="flexRadioDefault0">
+                                            Todos
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tamanio"
+                                            id="flexRadioDefault1" value="grande">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Grande
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tamanio"
+                                            id="flexRadioDefault2" value="mediano">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Mediano
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tamanio"
+                                            id="flexRadioDefault3" value="pequeño">
+                                        <label class="form-check-label" for="flexRadioDefault3">
+                                            Pequeño
+                                        </label>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="widget">
+                            <!-- <div class="widget">
                                 <h4 class="sidebar-title">Filtrar por edad (meses)</h4>
                                 <div class="price_filter">
                                     <div id="slider-range"></div>
@@ -116,7 +148,7 @@
                                         <input type="submit" class="btn" value="Filtrar">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </aside>
                     </div>
@@ -135,8 +167,11 @@
                                 </div>
 
                                 <div class="shop-short-by">
+
                                     <form action="#">
-                                        <label for="shortBy">Ordenar</label>
+                                        <label for="shortBy"><i id="sorting-icon"
+                                                style="margin-right: 8px; display: none;" class="fa fa-spinner fa-spin">
+                                            </i>Ordenar</label>
                                         <select id="orderBy" class="selected">
                                             <option value="old">Mas antiguos</option>
                                             <option value="recent" selected>Mas recientes</option>
@@ -212,9 +247,10 @@
             var totalData = null;
             var loadingRequest = true;
             var order = "recent";
+            var search = "";
+            var specieFilter = ""
+            var size = ""
 
-
-    
 
             $(document).ready(function () {
 
@@ -225,15 +261,73 @@
 
 
                 $('#orderBy').on('change', function () {
-
+                    $("#sorting-icon").css("display", "inline-block");
                     order = this.value;
                     currentPage = 1;
                     animalsLoadedNumber = 0;
-                    console.log(order);
+               
+                    loadData(true)
+                });
+
+
+                $("input[name=tamanio]").on("change", function () {
+                    var radiobtns = $(this);
+                    var tmp = "";
+                    radiobtns.each(function () {
+                        if ($(this).is(":checked")) {
+                            tmp = $(this).val();
+                        }
+                    });
+                    size = tmp;
+                    $("#sorting-icon").css("display", "inline-block");
+                    currentPage = 1;
+                    animalsLoadedNumber = 0;
                     loadData(true)
                 });
 
             });
+
+            function handleSearch() {
+                if (!loadingRequest) {
+                    $("#sorting-icon").css("display", "inline-block");
+                    search = $("#search-field").val();
+                    currentPage = 1;
+                    animalsLoadedNumber = 0;
+                    loadData(true)
+                }
+            }
+
+            function handleSpecie(e, specie) {
+                e.preventDefault();
+             
+                if (specie === "gato") {
+                    $("#checkbox-cat").toggleClass("fas fa-check-square");
+                    if ($("#checkbox-dog").hasClass("fa-check-square")) {
+                        $("#checkbox-dog").toggleClass("fas fa-check-square");
+                    }
+                    if (specieFilter === "gato") {
+                        specieFilter = ""
+                    } else {
+                        specieFilter = "gato"
+                    }
+                } else {
+                    $("#checkbox-dog").toggleClass("fas fa-check-square");
+                    if ($("#checkbox-cat").hasClass("fa-check-square")) {
+                        $("#checkbox-cat").toggleClass("fas fa-check-square");
+                    }
+
+                    if (specieFilter === "perro") {
+                        specieFilter = ""
+                    } else {
+                        specieFilter = "perro"
+                    }
+                }
+              
+                $("#sorting-icon").css("display", "inline-block");
+                currentPage = 1;
+                animalsLoadedNumber = 0;
+                loadData(true)
+            }
 
             function handleLoadData(event) {
                 event.preventDefault();
@@ -260,10 +354,10 @@
                 loadingRequest = true;
                 $.ajax({
                     method: "GET",
-                    url: `/api/v2/animals?min=${currentPage * animalsPerPage - animalsPerPage}&max=${animalsPerPage}&order=${order}`,
+                    url: `/api/v2/animals?min=${currentPage * animalsPerPage - animalsPerPage}&max=${animalsPerPage}&order=${order}&search=${search}&specie=${specieFilter}&size=${size}`,
 
                 }).done(function (res) {
-                    console.log(res)
+                    
 
                     if (res.state) {
                         var data = res.data.rows;
@@ -314,7 +408,7 @@
 
                         }
 
-                        console.log(animalsLoadedNumber, totalData)
+                      
                         if (totalData !== 0 && animalsLoadedNumber !== totalData) {
                             $('#load-more').html(`<a onClick='handleLoadData(event);' href="#" style="border-radius: 15px;" class="btn-outlined">Ver
                                     más <i id="load-more-icon" style="margin-left: 8px;"
@@ -344,11 +438,26 @@
                         confirmButtonText: 'Ok'
                     })
                 }).always(function () {
+                    $("#sorting-icon").css("display", "none");
 
                     loadingRequest = false;
                 });
             }
-
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('submit-controlled');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            handleSearch()
+                        }, false);
+                    });
+                }, false);
+            })();
         </script>
 </body>
 
