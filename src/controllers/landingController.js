@@ -255,6 +255,15 @@ exports.receiveAdopterForm = async (req, res) => {
 	}
 };
 
+
+exports.sendContactMessage = (req, res) => {
+
+	res.status(200).json({
+		state: true,
+		message: "El mensaje ha sido enviado con éxito, nos pondremos en contacto contigo lo antes posible"
+	});
+};
+
 exports.about = (req, res) => {
 
 	res.render("pages/about");

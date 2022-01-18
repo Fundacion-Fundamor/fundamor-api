@@ -72,7 +72,15 @@ const adopterFormValidationRules = () => {
 		check("identification", "La identificación es un campo obligatorio").not().isEmpty()
 	];
 };
+const contactFormValidationRules = () => {
+	return [
 
+		check("name", "El nombre es un campo obligatorio").not().isEmpty(),
+		check("phone", "El telefono celular es un campo obligatorio").not().isEmpty(),
+		check("email", "Correo electrónico inválido").isEmail().not().isEmpty(),
+		check("message", "El mensaje es un campo oblicatorio").not().isEmpty()
+	];
+};
 
 const adoptionValidationRules = () => {
 	return [
@@ -176,5 +184,6 @@ module.exports = {
 	profileUpdateRules,
 	passwordUpdateRules,
 	adopterFormValidationRules,
+	contactFormValidationRules,
 	validate
 };

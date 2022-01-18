@@ -98,9 +98,9 @@
 .custom-container {
     max-width: 960px;
 }
-.header-action > ul li.header-btn {
+/* .header-action > ul li.header-btn {
 	display: none;
-}
+} */
 .header-shop-cart .minicart {
 	right: 0;
 }
@@ -334,6 +334,9 @@
 }
 .adoption-area-two .custom-container {
     max-width: 720px;
+}
+.header-action > ul li.header-btn {
+	display: none;
 }
 .menu-area {
 	padding: 15px 0;

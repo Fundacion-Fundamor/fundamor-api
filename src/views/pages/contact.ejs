@@ -62,21 +62,39 @@
                                     o los servicios que ofrecemos, tambien nos puedes escribir si necesitas ayuda con
                                     algún peludo que la esté pasando mal, no lo olvides estamos para ayudar, nos
                                     podremos en contacto contigo lo antes posible.</p>
-                                <form action="#" class="contact-form">
+                                <form class="contact-form needs-validation" novalidate>
                                     <div class="form-grp">
                                         <label for="name">Nombre <span>*</span></label>
-                                        <input type="text" id="name" placeholder="">
+                                        <input type="text" id="name" name="name" placeholder="" required>
+                                        <div class="invalid-feedback">
+                                            Debe ingresar un nombre
+                                        </div>
                                     </div>
                                     <div class="form-grp">
-                                        <label for="email">Correo <span>*</span></label>
-                                        <input type="text" id="email" placeholder="">
+                                        <label for="email">Correo<span>*</span></label>
+                                        <input type="email" id="email" name="email" placeholder="" required>
+                                        <div class="invalid-feedback">
+                                            Debe ingresar un correo válido
+                                        </div>
+                                    </div>
+                                    <div class="form-grp">
+                                        <label for="phone">Teléfono <span>*</span></label>
+                                        <input type="tel" id="phone" name="phone" placeholder="" required>
+                                        <div class="invalid-feedback">
+                                            Debe ingresar un teléfono
+                                        </div>
                                     </div>
                                     <div class="form-grp">
                                         <label for="message">Mensaje <span>*</span></label>
-                                        <textarea name="message" id="message" placeholder=""></textarea>
+                                        <textarea name="message" id="message" placeholder="" required></textarea>
+                                        <div class="invalid-feedback">
+                                            Debe ingresar un mensaje
+                                        </div>
                                     </div>
-                                    <p>Poner captcha antismpan</p>
-                                    <button type="button" class="btn rounded-btn">Enviar</button>
+                                    <!-- <p>Poner captcha antismpan</p> -->
+                                    <button type="submit" class="btn rounded-btn">Enviar <i id="load-more-icon"
+                                            style="margin-left: 8px;display: none;"
+                                            class="fa fa-spinner fa-spin"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -111,9 +129,12 @@
                                 </div>
                                 <div class="contact-social">
                                     <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="https://web.facebook.com/fundamorcalarca/?_rdc=1&_rdr"
+                                                target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="https://www.instagram.com/fundamorcalarca/?hl=es"
+                                                target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="https://www.youtube.com/channel/UCNkfxop_V7eirZh_qmgdWfA"
+                                                target="_blank"><i class="fab fa-youtube"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -158,7 +179,79 @@
     <!-- JS here -->
     <%- include('../partials/libraries'); %>
 
+        <script>
 
+            let loading = false;
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            if (form.checkValidity() !== false) {
+
+                                let form = $(this).serialize();
+
+                                if (!loading) {
+                                    submitForm(form)
+                                }
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+
+
+            function submitForm(form) {
+                loading = true;
+                $('#load-more-icon').css("display", "block");
+
+                $.ajax({
+                    method: "POST",
+                    url: `/api/v2/contactmessage`,
+                    data: form,
+
+                }).done(function (res) {
+
+                    if (res.state) {
+                        Swal.fire({
+                            title: 'Éxito',
+                            text: res.message,
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            window.location.reload()
+                        })
+                    } else {
+
+                        Swal.fire({
+                            title: 'Error!',
+                            text: res.message,
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                        })
+                    }
+
+                }).fail(function () {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'No se ha podido enviar el mensaje, por favor intente mas tarde',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }).always(function () {
+                    loading = false;
+                    $('#load-more-icon').css("display", "none");
+
+                });
+            }
+
+        </script>
 </body>
 
 </html>
