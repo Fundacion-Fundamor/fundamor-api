@@ -2659,14 +2659,24 @@ label {
 .shop-pagination {
     margin-left: auto;
 }
+.shop-pagination .pages {
+    display: flex;
+    margin: 0 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+      align-items: center;
+}
+
 .shop-pagination ul {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+  
 }
 .shop-pagination ul li + li {
-    margin-left: 8px;
+    margin: 4px 4px;
+
 }
 .shop-pagination ul li a {
     display: flex;
@@ -3200,6 +3210,9 @@ label {
 }
 .standard-blog-thumb img {
     border-radius: 6px;
+    width: 100%;
+    object-fit: cover;
+        max-height: 724px;
 }
 .standard-blog-content .blog-post-meta {
     margin-bottom: 6px;
@@ -3229,6 +3242,10 @@ label {
 }
 .standard-blog-content p {
     margin-bottom: 27px;
+    display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 .standard-blog-item {
     padding-bottom: 40px;
