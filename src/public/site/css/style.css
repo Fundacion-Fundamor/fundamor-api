@@ -3334,6 +3334,8 @@ label {
 }
 .rc-post-thumb {
     margin-bottom: 15px;
+    justify-content: center;
+    display: flex;
 }
 .rc-post-thumb img {
     border-radius: 5px;
@@ -3343,6 +3345,10 @@ label {
     font-weight: 800;
     width: 80%;
     margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
 }
 .rc-post-content .title a:hover {
     color: var(--primary-color);
@@ -3351,6 +3357,8 @@ label {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 3px;
 }
 .rc-post-meta > ul > li {
     font-size: 14px;

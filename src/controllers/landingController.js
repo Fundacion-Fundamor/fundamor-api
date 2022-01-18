@@ -4,6 +4,7 @@ const question = require("../models").question;
 const adoption = require("../models").adoption;
 const adoptionQuestion = require("../models").adoptionQuestion;
 const adopter = require("../models").adopter;
+const post = require("../models").post;
 const { Op } = require("sequelize");
 
 exports.main = async (req, res) => {
@@ -13,8 +14,95 @@ exports.main = async (req, res) => {
 
 exports.post = async (req, res) => {
 
-	res.render("pages/post");
+	try {
+		const searchResult = await post.findAll({
+			where: {
+				id_fundacion: 2
+
+			},
+			include: "postImage",
+			order: [["id_publicacion", "DESC"]],
+			limit: 5
+		});
+
+		if (searchResult && searchResult.length !== 0) {
+
+			res.render("pages/post", { state: true, recentPost: searchResult});
+
+		} else {
+			res.render("pages/post", {
+				state: false
+			
+
+			});
+		}
+	} catch (error) {
+		res.render("pages/post", { state: false });
+	}
+
+
 };
+
+exports.postPagination = async (req, res) => {
+
+
+	console.log(req.query);
+
+	try {
+		let searchResult = null;
+
+		if (req.query.min !== undefined && req.query.max !== undefined && req.query.search !== undefined) {
+
+
+			searchResult = await post.findAndCountAll({
+				where: {
+					id_fundacion: 2,
+					titulo: {
+						[Op.like]: `%${req.query.search}%`
+					}
+
+				},
+				include: "postImage",
+				distinct: true,
+				order: [["id_publicacion", "DESC"]],
+				limit: req.query.max ? parseInt(req.query.max) : 0,
+				offset: req.query.min ? parseInt(req.query.min) : 0
+			});
+		} else {
+			searchResult = await post.findAndCountAll({
+				where: {
+					id_fundacion: 2
+
+				},
+				include: "postImage"
+			});
+		}
+		if (searchResult && searchResult.length !== 0) {
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "No existen registros en la base de datos"
+
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener la lista de publicaciones"
+		});
+	}
+
+
+};
+
 
 exports.postDetail = (req, res) => {
 

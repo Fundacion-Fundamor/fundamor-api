@@ -32,6 +32,9 @@ router.get("/about", landingController.about);
 //get animal list paginate
 router.get("/api/v2/animals", landingController.animalsPagination);
 
+//get post list paginate
+router.get("/api/v2/post", landingController.postPagination);
+
 //receive adopter form
 router.post("/api/v2/adopterForm", adopterFormValidationRules(), validate, landingController.receiveAdopterForm);
 

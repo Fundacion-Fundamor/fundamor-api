@@ -58,67 +58,20 @@
                             <div class="standard-blog-content">
                                 <div class="blog-post-meta">
                                     <ul>
-                                  
+
                                         <li><i class="far fa-user"></i>Admin</li>
                                         <li><i class="far fa-bell"></i> Mar 10, 2021</li>
                                     </ul>
                                 </div>
-                                <h2 class="title"><a href="/post/detail/-id_post-">Online pet everything your pet needs</a>
+                                <h2 class="title"><a href="/post/detail/-id_post-">Online pet everything your pet
+                                        needs</a>
                                 </h2>
                                 <p>The domestic dog is a domesticated descendant of the wolf. The dog derived from an
                                     ancient, extinct wolf, and the modern grey wolf is the dog's nearest living
                                     relative.
                                     The dog was the first species to be domesticated, by hunter–gatherers.</p>
-                                <a href="/post/detail/-id_post-" class="read-more">Leer más <img src="img/icon/pawprint.png"
-                                        alt=""></a>
-                            </div>
-                        </div>
-                        <div class="standard-blog-item">
-                            <div class="standard-blog-thumb">
-                                <a href="/post/detail/-id_post-"><img src="img/blog/blog_thumb02.jpg" alt=""></a>
-                            </div>
-                            <div class="standard-blog-content">
-                                <div class="blog-post-meta">
-                                    <ul>
-                                        <li class="tags"><i class="flaticon-bookmark-1"></i>
-                                            <a href="#">Siberian Husky , </a>
-                                            <a href="#">Breed</a>
-                                        </li>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-bell"></i> Mar 10, 2021</li>
-                                    </ul>
-                                </div>
-                                <h2 class="title"><a href="/post/detail/-id_post-">Pet needs special food like human
-                                        foods</a>
-                                </h2>
-                                <p>The domestic dog is a domesticated descendant of the wolf. The dog derived from an
-                                    ancient, extinct wolf, and the modern grey wolf is the dog's nearest living
-                                    relative.
-                                    The dog was the first species to be domesticated, by hunter–gatherers.</p>
-                                <a href="/post/detail/-id_post-" class="read-more">Read More <img src="img/icon/pawprint.png"
-                                        alt=""></a>
-                            </div>
-                        </div>
-                        <div class="standard-blog-item">
-                            <div class="standard-blog-thumb">
-                                <a href="/post/detail/-id_post-"><img src="img/blog/blog_thumb03.jpg" alt=""></a>
-                            </div>
-                            <div class="standard-blog-content">
-                                <div class="blog-post-meta">
-                                    <ul>
-                                      
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-bell"></i> Mar 10, 2021</li>
-                                    </ul>
-                                </div>
-                                <h2 class="title"><a href="/post/detail/-id_post-">Special grades for carry-home food</a>
-                                </h2>
-                                <p>The domestic dog is a domesticated descendant of the wolf. The dog derived from an
-                                    ancient, extinct wolf, and the modern grey wolf is the dog's nearest living
-                                    relative.
-                                    The dog was the first species to be domesticated, by hunter–gatherers.</p>
-                                <a href="/post/detail/-id_post-" class="read-more">Read More <img src="img/icon/pawprint.png"
-                                        alt=""></a>
+                                <a href="/post/detail/-id_post-" class="read-more">Leer más <img
+                                        src="img/icon/pawprint.png" alt=""></a>
                             </div>
                         </div>
 
@@ -143,46 +96,38 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="widget">
-                                <h4 class="sidebar-title">Publicaciones recientes</h4>
-                                <div class="rc-post-list">
-                                    <ul>
-                                        <li>
-                                            <div class="rc-post-thumb">
-                                                <a href="/post/detail/-id_post-"><img src="img/blog/rc_post_thumb01.jpg"
-                                                        alt=""></a>
-                                            </div>
-                                            <div class="rc-post-content">
-                                                <h5 class="title"><a href="/post/detail/-id_post-">Best Online Pet Everything
-                                                        Your Pet Needs</a></h5>
-                                                <div class="rc-post-meta">
-                                                    <ul>
-                                                        <li><i class="far fa-calendar-alt"></i> April 15, 2021</li>
-                                                        <li>By <a href="#">Admin</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="rc-post-thumb">
-                                                <a href="/post/detail/-id_post-"><img src="img/blog/rc_post_thumb02.jpg"
-                                                        alt=""></a>
-                                            </div>
-                                            <div class="rc-post-content">
-                                                <h5 class="title"><a href="/post/detail/-id_post-">Pet Needs Special Food
-                                                        like
-                                                        Human Foods</a></h5>
-                                                <div class="rc-post-meta">
-                                                    <ul>
-                                                        <li><i class="far fa-calendar-alt"></i> October 15, 2021</li>
-                                                        <li>By <a href="#">Admin</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                            <% if(state){ %>
+                                <div class="widget">
+                                    <h4 class="sidebar-title">Publicaciones recientes</h4>
+                                    <div class="rc-post-list">
+                                        <ul>
+                                            <% recentPost.forEach(function(post) { %>
+
+                                                <li>
+                                                    <div class="rc-post-thumb">
+                                                        <a href="/post/detail/<%= post.titulo%>">
+                                                            <img src="<%=post.postImage.length===0?"img/images/no_image.png":("http://localhost:4000/"+post.postImage[0]) %>" onerror="this.src='img/images/no_image.png'" alt=""></a>
+                                                    </div>
+                                                    <div class="rc-post-content">
+                                                        <h5 class="title"><a href="/post/detail/ <%= post.id_publicacion%>">
+                                                                <%= post.titulo%>
+                                                            </a></h5>
+                                                        <div class="rc-post-meta">
+                                                            <ul>
+                                                                <li><i class="far fa-calendar-alt"></i><%= new Date(post.fecha_creacion).toLocaleDateString()%>
+                                                                </li>
+                                                                <li><a href="#">Leer más</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <% }); %>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+
+                                <% } %>
+
                         </aside>
                     </div>
                 </div>
