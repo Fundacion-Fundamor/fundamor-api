@@ -3,12 +3,15 @@ const app = express();
 const path = require("path");
 app.use(express.static("./src/public"));
 app.use(express.static(path.join(__dirname, "/src/public/site")));
+app.use("/animals/form", express.static(path.join(__dirname, "/src/public/site")));
 app.use("/animals/detail", express.static(path.join(__dirname, "/src/public/site")));
+
 app.use("/post/detail", express.static(path.join(__dirname, "/src/public/site")));
 
 const morgan = require("morgan");
 const cors = require("cors");
-
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const employeesRoutes = require("./src/routes/employees");
 const authRoutes = require("./src/routes/auth");

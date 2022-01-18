@@ -61,6 +61,19 @@ const adopterValidationRules = () => {
 		// check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({ min: 6 }).not().isEmpty()
 	];
 };
+
+const adopterFormValidationRules = () => {
+	return [
+		check("idAnimal", "El id del animal es obligatorio").not().isEmpty(),
+		check("name", "El nombre es un campo obligatorio").not().isEmpty(),
+		check("movil", "El telefono celular es un campo obligatorio").not().isEmpty(),
+		check("ciudad", "La ciudad es un campo obligatorio").not().isEmpty(),
+		check("ocupacion", "La ocupación es un campo obligatorio").not().isEmpty(),
+		check("identification", "La identificación es un campo obligatorio").not().isEmpty()
+	];
+};
+
+
 const adoptionValidationRules = () => {
 	return [
 		check("adoptionData", "Debe especificar los datos de la adopcion").isObject(),
@@ -162,5 +175,6 @@ module.exports = {
 	questionOptionValidationRules,
 	profileUpdateRules,
 	passwordUpdateRules,
+	adopterFormValidationRules,
 	validate
 };
