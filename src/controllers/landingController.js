@@ -9,7 +9,8 @@ const { Op } = require("sequelize");
 
 exports.main = async (req, res) => {
 
-	res.render("pages/index");
+	var actualYear = new Date().getFullYear();
+	res.render("pages/index", { years: actualYear - 2011 });
 };
 
 exports.post = async (req, res) => {
@@ -27,12 +28,12 @@ exports.post = async (req, res) => {
 
 		if (searchResult && searchResult.length !== 0) {
 
-			res.render("pages/post", { state: true, recentPost: searchResult});
+			res.render("pages/post", { state: true, recentPost: searchResult });
 
 		} else {
 			res.render("pages/post", {
 				state: false
-			
+
 
 			});
 		}
@@ -104,7 +105,7 @@ exports.postPagination = async (req, res) => {
 };
 
 
-exports.postDetail =async (req, res) => {
+exports.postDetail = async (req, res) => {
 
 	try {
 		const searchResult = await post.findByPk(req.params["id_post"], {
@@ -135,7 +136,7 @@ exports.postDetail =async (req, res) => {
 		res.render("pages/postDetail", { state: false, msg: "Ha ocurrido un error al obtener la publicación, por favor intente mas tarde" });
 
 	}
-	
+
 };
 
 

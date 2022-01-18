@@ -1231,14 +1231,15 @@ label {
     display: flex;
     align-items: center;
 }
-.find-wrap .location input {
+.find-wrap .location p {
     border: none;
     background: transparent;
     width: 100%;
     padding: 0;
+    margin: 0 0px 0 8px;
     color: #fff;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 900;
 }
 .find-wrap .location i {
     font-size: 23px;
@@ -1300,6 +1301,13 @@ label {
     flex: 0 0 18%;
     padding: 64px 40px 64px 40px;
 	margin-left: auto;
+}
+.other-find  p{
+    font-weight: 900;
+    color: white;
+    margin: 0;
+    font-size: 16px;
+    padding: 0;
 }
 .other-find .dropdown > button {
     padding: 0;
@@ -3973,6 +3981,13 @@ label {
 .newsletter-form {
     width: 65.5%;
     flex: 0 0 65.5%;
+}
+.newsletter-form h1{
+
+    text-align: center;
+    font-weight: 800;
+    background: white;
+    border-radius: 12px;
 }
 .newsletter-content .title {
     color: #fff;
