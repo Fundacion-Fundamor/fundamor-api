@@ -2117,6 +2117,9 @@ label {
 
 .breeder-gallery-active img{
     border-radius: 12px;
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
 }
 /* 14. Brand-area */
 .brand-area {
@@ -3247,6 +3250,20 @@ label {
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
+.standard-blog-content p {
+    margin-bottom: 27px;
+    display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.standard-blog-content .expanded  {
+    margin-bottom: 27px;
+    display:flex;
+ 
+}
+
 .standard-blog-item {
     padding-bottom: 40px;
     position: relative;

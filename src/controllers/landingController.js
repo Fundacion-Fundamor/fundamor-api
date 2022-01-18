@@ -104,9 +104,38 @@ exports.postPagination = async (req, res) => {
 };
 
 
-exports.postDetail = (req, res) => {
+exports.postDetail =async (req, res) => {
 
-	res.render("pages/postDetail");
+	try {
+		const searchResult = await post.findByPk(req.params["id_post"], {
+
+			include: "postImage"
+		});
+		const recentPost = await post.findAll({
+			where: {
+				id_fundacion: 2
+
+			},
+			include: "postImage",
+			order: [["id_publicacion", "DESC"]],
+			limit: 5
+		});
+
+		if (searchResult) {
+			res.render("pages/postDetail", { post: searchResult, state: true, recentPost: recentPost });
+
+		} else {
+
+			res.render("pages/postDetail", { state: false, msg: "Esta publicación no está disponible." });
+
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.render("pages/postDetail", { state: false, msg: "Ha ocurrido un error al obtener la publicación, por favor intente mas tarde" });
+
+	}
+	
 };
 
 

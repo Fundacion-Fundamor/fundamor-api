@@ -441,6 +441,7 @@ $('.breeder-gallery-active').slick({
 	slidesToShow: 1,
 	slidesToScroll: 1,
 	vertical: true,
+	// centerMode:true,
 	responsive: [
 		{
 			breakpoint: 575,
