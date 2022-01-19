@@ -1,12 +1,17 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+// const helmet = require("helmet");
 app.use(express.static("./src/public"));
 app.use(express.static(path.join(__dirname, "/src/public/site")));
 app.use("/animals/form", express.static(path.join(__dirname, "/src/public/site")));
 app.use("/animals/detail", express.static(path.join(__dirname, "/src/public/site")));
 
 app.use("/post/detail", express.static(path.join(__dirname, "/src/public/site")));
+
+
+// app.use(helmet());
+// app.disable('x-powered-by');
 
 const morgan = require("morgan");
 const cors = require("cors");

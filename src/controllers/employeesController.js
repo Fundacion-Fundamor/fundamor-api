@@ -278,3 +278,37 @@ exports.updatePassword = async (req, res) => {
 	}
 
 };
+exports.resetPassword = async (req, res) => {
+
+	try {
+
+		const searchResult = await employee.findAll({
+			where: {
+				correo: req.body.correo
+
+			}
+		});
+
+		if (searchResult.length!==0) {
+			res.status(200).json({
+				state: true,
+				message: "Una nueva contraseña ha sido enviada al correo ingresado"
+
+			});
+		}else{
+			res.status(200).json({
+				state: false,
+				message: "El correo ingresado no existe en el sistema"
+
+			});
+		}
+
+	} catch (error) {
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al restablecer su contraseña, por favor intente mas tarde"
+		});
+	}
+
+
+};

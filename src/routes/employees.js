@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const employeesController = require("../controllers/employeesController");
-const { employeeValidationRules, employeeValidationEditRules, validate, profileUpdateRules, passwordUpdateRules } = require("../middleware/validator");
+const { employeeValidationRules, employeeValidationEditRules, validate, profileUpdateRules, passwordUpdateRules, forgotPassswordRules } = require("../middleware/validator");
 
 const verify = require("../middleware/auth/verify");
 //create employee
@@ -24,6 +24,10 @@ router.delete("/:id", verify, employeesController.delete);
 router.put("/profile", verify, profileUpdateRules(), validate, employeesController.updateProfile);
 
 //update employee password
-router.put("/password", verify,passwordUpdateRules(), validate, employeesController.updatePassword);
+router.put("/password", verify, passwordUpdateRules(), validate, employeesController.updatePassword);
+
+
+//reset employee password
+router.post("/resetPassword", forgotPassswordRules(), validate, employeesController.resetPassword);
 
 module.exports = router;

@@ -152,6 +152,11 @@ const tokenValidationRules = () => {
 	];
 };
 
+const forgotPassswordRules = () => {
+	return [
+		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty()
+	];
+};
 const validate = (req, res, next) => {
 	const errors = validationResult(req);
 	if (errors.isEmpty()) {
@@ -185,5 +190,6 @@ module.exports = {
 	passwordUpdateRules,
 	adopterFormValidationRules,
 	contactFormValidationRules,
+	forgotPassswordRules,
 	validate
 };
