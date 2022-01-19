@@ -87,7 +87,7 @@
         <!-- find-area-end -->
 
         <!-- breeder-area -->
-        <section class="breeder-area breeder-bg">
+        <!-- <section class="breeder-area breeder-bg">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-xl-4 col-lg-8">
@@ -178,7 +178,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- breeder-area-end -->
 
         <!-- adoption-area -->
@@ -198,83 +198,33 @@
                 </div>
             </div>
             <div class="container custom-container">
-                <div class="row adopt-active">
-                    <div class="col-xl-3">
-                        <div class="adoption-item">
-                            <div class="adopt-thumb">
-                                <a href="breeder-details.html"><img src="img/images/adop_img01.png" alt=""></a>
-                                <span class="status">Free</span>
+                    <div class="row adopt-active">
+                        <% otherAnimals.forEach(function(animal) { %>
+                            <div class="col-xl-3">
+                                <div class="adoption-item">
+                                    <div class="adopt-thumb">
+                                        <a href="/animals/detail/<%=animal.id_animal%>"><img src="http://localhost:4000/<%=animal.animalImage.length!==0?animal.animalImage[0].ruta:(animal.especie==="gato"?"img/images/no_cat_image.png":"img/images/no_dog_image.png")%>" alt="" onerror="this.src='img/images/no_image.png'"></a>
+                    
+                                    </div>
+                                    <div class="adopt-content">
+                                        <div class="adopt-date" style="text-transform: capitalize;"><i class="fas fa-cog"></i>
+                                            <%=animal.sexo%>
+                                        </div>
+                                        <h3 class="title" style="text-transform: capitalize;"><a
+                                                href="/animals/detail/<%=animal.id_animal%>">
+                                                <%=animal.nombre%>
+                                            </a></h3>
+                                        <p>
+                                            <%=animal.caracteristicas%>.
+                                        </p>
+                                        <a href="/animals/detail/<%=animal.id_animal%>" class="read-more">Leer más <img
+                                                src="img/icon/pawprint.png" alt=""></a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="adopt-content">
-                                <div class="adopt-date"><i class="far fa-calendar-alt"></i> Birth : 2021</div>
-                                <h3 class="title"><a href="breeder-details.html">Golden Retriever</a></h3>
-                                <p>The Golden Retriever is a medium-large gun dog that was bred.</p>
-                                <a href="breeder-details.html" class="read-more">Read More <img
-                                        src="img/icon/pawprint.png" alt=""></a>
-                            </div>
-                        </div>
+                        <% }); %>
+                    
                     </div>
-                    <div class="col-xl-3">
-                        <div class="adoption-item">
-                            <div class="adopt-thumb">
-                                <a href="breeder-details.html"><img src="img/images/adop_img02.png" alt=""></a>
-                                <span class="status">Free</span>
-                            </div>
-                            <div class="adopt-content">
-                                <div class="adopt-date"><i class="far fa-calendar-alt"></i> Birth : 2021</div>
-                                <h3 class="title"><a href="breeder-details.html">German Sharped</a></h3>
-                                <p>The German Shepherd is a breed of medium to large-sized.</p>
-                                <a href="breeder-details.html" class="read-more">Read More <img
-                                        src="img/icon/pawprint.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="adoption-item">
-                            <div class="adopt-thumb">
-                                <a href="breeder-details.html"><img src="img/images/adop_img03.png" alt=""></a>
-                                <span class="status">Free</span>
-                            </div>
-                            <div class="adopt-content">
-                                <div class="adopt-date"><i class="far fa-calendar-alt"></i> Birth : 2021</div>
-                                <h3 class="title"><a href="breeder-details.html">Siberian Husky</a></h3>
-                                <p>The Siberian Husky is a medium-sized working sled dog breed.</p>
-                                <a href="breeder-details.html" class="read-more">Read More <img
-                                        src="img/icon/pawprint.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="adoption-item">
-                            <div class="adopt-thumb">
-                                <a href="breeder-details.html"><img src="img/images/adop_img04.png" alt=""></a>
-                                <span class="status">Free</span>
-                            </div>
-                            <div class="adopt-content">
-                                <div class="adopt-date"><i class="far fa-calendar-alt"></i> Birth : 2021</div>
-                                <h3 class="title"><a href="breeder-details.html">French Bulldog</a></h3>
-                                <p>French Bulldog is a breed of domestic dog, bred to be companion.</p>
-                                <a href="breeder-details.html" class="read-more">Read More <img
-                                        src="img/icon/pawprint.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="adoption-item">
-                            <div class="adopt-thumb">
-                                <a href="breeder-details.html"><img src="img/images/adop_img05.png" alt=""></a>
-                                <span class="status">Free</span>
-                            </div>
-                            <div class="adopt-content">
-                                <div class="adopt-date"><i class="far fa-calendar-alt"></i> Birth : 2021</div>
-                                <h3 class="title"><a href="breeder-details.html">Siberian Husky</a></h3>
-                                <p>French Bulldog is a breed of domestic dog, bred to be companion.</p>
-                                <a href="breeder-details.html" class="read-more">Read More <img
-                                        src="img/icon/pawprint.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         <!-- adoption-area-end -->
@@ -310,24 +260,7 @@
                                     <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
                                         data-parent="#accordionExample">
                                         <div class="card-body">
-                                            La Fundación Protectora y de amor por los Animales - de Calarcá FUNDAMOR DE
-                                            CALARCÁ es una organización sin animo de lucro que trabaja por la
-                                            reclamación de
-                                            los
-                                            derechos y el bienestar de los animales,
-                                            por la ejecución de programas para su atención, protección y rehabilitación;
-                                            brindando educación a la comunidad para su
-                                            adopción y tenencia responsable buscando como objetivo no solamente el
-                                            establecimiento de principios de ética animal y
-                                            su bienestar sino también la recuperación del espacio publico saludable
-                                            mediante la reducción del impacto que su
-                                            abandono genera en el medio ambiente, la salud publica y el bienestar de la
-                                            comunidad.
-                                            <br>
-                                            La Fundación Protectora y de amor por los Animales - de Calarcá propende por
-                                            la erradicación de toda forma de maltrato
-                                            de cualquier especie animal, doméstica o silvestre, cualquiera que sea su
-                                            destinación, o su hábitat.
+                                        <%=foundation.mision%>
                                         </div>
                                     </div>
                                 </div>
@@ -344,16 +277,7 @@
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                         data-parent="#accordionExample">
                                         <div class="card-body">
-                                            La Fundación Protectora y de amor por los Animales - de Calarcá, será
-                                            reconocida a nivel local y global por ser una
-                                            organización sin ánimo de lucro comprometida con el bienestar animal y su
-                                            calidad de vida, la salud pública y la
-                                            concientización encaminada a la protección del medio ambiente y el entorno
-                                            del ciudadano.
-                                            <br>
-                                            Contribuirá al bienestar de la población mediante la implementación de
-                                            campañas de amor, respeto y responsabilidad por
-                                            los animales con el fin de que ni uno solo sea abandonado ni maltratado.
+                                        <%=foundation.vision%>
                                         </div>
                                     </div>
                                 </div>
@@ -425,114 +349,30 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
+                    <% recentPost.forEach(function(post) { %>
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-post-item mb-50">
                             <div class="blog-post-thumb">
-                                <a href="blog-details.html"><img src="img/blog/blog_post_thumb01.jpg" alt=""></a>
-                                <div class="blog-post-tag">
-                                    <a href="#"><i class="flaticon-bookmark-1"></i>Sharped</a>
-                                </div>
+                                <a href="/post/detail/<%=post.id_publicacion%>">
+                                    <img src="<%=post.postImage.length===0?" img/images/no_image.png":("http://localhost:4000/"+post.postImage[0].ruta)%>"onerror="this.src='img/images/no_image.png'" alt=""></a>
+                                </a>
+                           
                             </div>
                             <div class="blog-post-content">
                                 <div class="blog-post-meta">
                                     <ul>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-bell"></i> Mar 10, 2021</li>
+                                        <li><i class="far fa-user"></i>Admin</li>
+                                        <li><i class="far fa-bell"></i> <%= new Date(post.fecha_creacion).toLocaleDateString()%></li>
                                     </ul>
                                 </div>
-                                <h3 class="title"><a href="blog-details.html">Working For Dog Adoption</a></h3>
-                                <p>The best overall dog test is Embark Breed & Health Kit view at Chewy.</p>
-                                <a href="blog-details.html" class="read-more">Read More <img src="img/icon/pawprint.png"
+                                <h3 class="title"><a href="/post/detail/<%=post.id_publicacion%>"><%=post.titulo%></a></h3>
+                                <p><%=post.cuerpo%></p>
+                                <a href="/post/detail/<%=post.id_publicacion%>" class="read-more">Leer más<img src="img/icon/pawprint.png"
                                         alt=""></a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-post-item mb-50">
-                            <div class="blog-post-thumb">
-                                <a href="blog-details.html"><img src="img/blog/blog_post_thumb02.jpg" alt=""></a>
-                                <div class="blog-post-tag">
-                                    <a href="#"><i class="flaticon-bookmark-1"></i>Creative</a>
-                                </div>
-                            </div>
-                            <div class="blog-post-content">
-                                <div class="blog-post-meta">
-                                    <ul>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-bell"></i> Mar 12, 2021</li>
-                                    </ul>
-                                </div>
-                                <h3 class="title"><a href="blog-details.html">Dog Derived From an Ancient</a></h3>
-                                <p>The best overall dog test is Embark Breed & Health Kit view at Chewy.</p>
-                                <a href="blog-details.html" class="read-more">Read More <img src="img/icon/pawprint.png"
-                                        alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-post-item mb-50">
-                            <div class="blog-post-thumb">
-                                <a href="blog-details.html"><img src="img/blog/blog_post_thumb03.jpg" alt=""></a>
-                                <div class="blog-post-tag">
-                                    <a href="#"><i class="flaticon-bookmark-1"></i>Business</a>
-                                </div>
-                            </div>
-                            <div class="blog-post-content">
-                                <div class="blog-post-meta">
-                                    <ul>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-bell"></i> Mar 12, 2021</li>
-                                    </ul>
-                                </div>
-                                <h3 class="title"><a href="blog-details.html">Ten Dog Breeds are Noted</a></h3>
-                                <p>The best overall dog test is Embark Breed & Health Kit view at Chewy.</p>
-                                <a href="blog-details.html" class="read-more">Read More <img src="img/icon/pawprint.png"
-                                        alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-post-item mb-50">
-                            <div class="blog-post-thumb">
-                                <a href="blog-details.html"><img src="img/blog/blog_post_thumb03.jpg" alt=""></a>
-                                <div class="blog-post-tag">
-                                    <a href="#"><i class="flaticon-bookmark-1"></i>Business</a>
-                                </div>
-                            </div>
-                            <div class="blog-post-content">
-                                <div class="blog-post-meta">
-                                    <ul>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-bell"></i> Mar 12, 2021</li>
-                                    </ul>
-                                </div>
-                                <h3 class="title"><a href="blog-details.html">Ten Dog Breeds are Noted</a></h3>
-                                <p>The best overall dog test is Embark Breed & Health Kit view at Chewy.</p>
-                                <a href="blog-details.html" class="read-more">Read More <img src="img/icon/pawprint.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-post-item mb-50">
-                            <div class="blog-post-thumb">
-                                <a href="blog-details.html"><img src="img/blog/blog_post_thumb03.jpg" alt=""></a>
-                                <div class="blog-post-tag">
-                                    <a href="#"><i class="flaticon-bookmark-1"></i>Business</a>
-                                </div>
-                            </div>
-                            <div class="blog-post-content">
-                                <div class="blog-post-meta">
-                                    <ul>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-bell"></i> Mar 12, 2021</li>
-                                    </ul>
-                                </div>
-                                <h3 class="title"><a href="blog-details.html">Ten Dog Breeds are Noted</a></h3>
-                                <p>The best overall dog test is Embark Breed & Health Kit view at Chewy.</p>
-                                <a href="blog-details.html" class="read-more">Read More <img src="img/icon/pawprint.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
+                <%})%>
                 </div>
             </div>
         </section>
@@ -549,7 +389,7 @@
                                 <p><span>*</span>Cuenta de ahorros Bancolombia</p>
                             </div>
                             <div class="newsletter-form">
-                                    <h1>No 77884740096</h1>
+                                    <h1>No <%=foundation.cuenta_donaciones%></h1>
                              
                             </div>
                             <div class="newsletter-shape"><img src="img/images/newsletter_shape01.png" alt=""></div>

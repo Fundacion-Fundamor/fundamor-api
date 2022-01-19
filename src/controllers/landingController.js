@@ -5,12 +5,38 @@ const adoption = require("../models").adoption;
 const adoptionQuestion = require("../models").adoptionQuestion;
 const adopter = require("../models").adopter;
 const post = require("../models").post;
+const foundation = require("../models").foundation;
 const { Op } = require("sequelize");
 
 exports.main = async (req, res) => {
 
 	var actualYear = new Date().getFullYear();
-	res.render("pages/index", { years: actualYear - 2011 });
+
+	const otherAnimals = await animal.findAll({
+		where: {
+			id_fundacion: 2,
+			estado: "Sin adoptar"
+		},
+		include: "animalImage",
+		distinct: true,
+		order: [["id_animal", "ASC"]],
+		limit: 20,
+		offset: 0
+	});
+
+	const recentPost = await post.findAll({
+		where: {
+			id_fundacion: 2
+
+		},
+		include: "postImage",
+		order: [["id_publicacion", "DESC"]],
+		limit: 5
+	});
+
+
+	const foundationData = await foundation.findByPk(2);
+	res.render("pages/index", { years: actualYear - 2011, otherAnimals: otherAnimals, recentPost: recentPost, foundation: foundationData });
 };
 
 exports.post = async (req, res) => {

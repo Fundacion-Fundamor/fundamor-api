@@ -3126,6 +3126,9 @@ label {
 .blog-post-thumb img {
     transition: .4s linear;
     transform: scale(1);
+    width: 100%;
+    height: 275px;
+    object-fit: cover;
 }
 .blog-post-item:hover .blog-post-thumb img {
     transform: scale(1.1);
@@ -3187,6 +3190,19 @@ label {
 .blog-post-meta ul li a:hover,
 .blog-post-content .title a:hover {
 	color: var(--primary-color);
+}
+.blog-post-content h3 {
+	    display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.blog-post-content p {
+	    display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 .blog-post-meta {
     margin-bottom: 10px;
