@@ -241,9 +241,9 @@ exports.animalsPagination = async (req, res) => {
 
 
 exports.contact = async (req, res) => {
+	const foundationData = await foundation.findByPk(2);
 
-
-	res.render("pages/contact");
+	res.render("pages/contact", {foundation:foundationData});
 };
 
 
@@ -431,7 +431,8 @@ exports.sendContactMessage = (req, res) => {
 	});
 };
 
-exports.about = (req, res) => {
+exports.about = async (req, res) => {
+	const foundationData = await foundation.findByPk(2);
 
-	res.render("pages/about");
+	res.render("pages/about", { foundation: foundationData });
 };
