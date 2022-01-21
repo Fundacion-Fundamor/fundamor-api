@@ -21,7 +21,8 @@ exports.create = async (req, res) => {
 				const payload = {
 					employee: {
 						id: searchResult.id_empleado,
-						id_fundacion: searchResult.id_fundacion
+						id_fundacion: searchResult.id_fundacion,
+						rol:searchResult.rol
 					}
 
 				};
