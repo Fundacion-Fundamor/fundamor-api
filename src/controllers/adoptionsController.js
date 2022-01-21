@@ -142,36 +142,49 @@ exports.delete = async (req, res) => {
 
 		});
 
-		const searchResult = await adoption.findAll({
-			where: {
-				id_adoptante: result.id_adoptante,
-				[Op.not]: {
-					id_adopcion: req.params["id"]
-				}
-			}
-		});
-
-
-		let resultDelete = await result.destroy();
-		if (resultDelete) {
-			if (searchResult.length === 0) {
-				await adopter.destroy({
-					where: {
-						id_adoptante: result.id_adoptante
+		if (result) {
+			const searchResult = await adoption.findAll({
+				where: {
+					id_adoptante: result.id_adoptante,
+					[Op.not]: {
+						id_adopcion: req.params["id"]
 					}
+				}
+			});
+
+			await animal.update({ estado: "Sin adoptar" }, {
+				where: {
+					id_animal: result.id_animal
+				}
+			});
+
+
+			let resultDelete = await result.destroy();
+			if (resultDelete) {
+				if (searchResult.length === 0) {
+					await adopter.destroy({
+						where: {
+							id_adoptante: result.id_adoptante
+						}
+					});
+				}
+				res.status(200).json({
+					state: true,
+					message: "La adopción se ha eliminado exitosamente"
+				});
+			} else {
+				res.status(200).json({
+					state: false,
+					message: "Ha ocurrido un error al eliminar la adopción"
 				});
 			}
-			res.status(200).json({
-				state: true,
-				message: "La adopción se ha eliminado exitosamente"
-			});
+
 		} else {
 			res.status(200).json({
 				state: false,
-				message: "Ha ocurrido un error al eliminar la adopción"
+				message: "El proceso de adopción no existe"
 			});
 		}
-
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({
@@ -242,7 +255,7 @@ exports.update = async (req, res) => {
 			let animalState = "";
 			if (req.body.estado === "finalizada") {
 				animalState = "Adoptado";
-			} else if (req.body.estado === "en proceso" ) {
+			} else if (req.body.estado === "en proceso") {
 				animalState = "En proceso";
 			} else {
 				animalState = "Sin adoptar";
@@ -303,7 +316,7 @@ exports.list = async (req, res) => {
 			],
 			order: [["fecha_estudio", "DESC"]]
 
-			
+
 		});
 
 		if (searchResult.length !== 0) {

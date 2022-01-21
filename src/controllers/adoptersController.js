@@ -45,11 +45,34 @@ exports.create = async (req, res) => {
 
 exports.delete = async (req, res) => {
 	try {
+
+		const adoptions = await adoption.findAll({
+			where: {
+				id_adoptante: req.params["id"]
+			}
+		});
+
+		let idsAnimalUpdate = [];
+
+		if (adoptions.length !== 0) {
+
+			adoptions.forEach(element => {
+				idsAnimalUpdate.push(element.id_animal);
+			});
+		}
+
+		await animal.update({ estado: "Sin adoptar" }, {
+			where: {
+				id_animal: idsAnimalUpdate
+			}
+		});
+
 		await adoption.destroy({
 			where: {
 				id_adoptante: req.params["id"]
 			}
 		});
+
 		const result = await adopter.destroy({
 			where: {
 				id_adoptante: req.params["id"]
