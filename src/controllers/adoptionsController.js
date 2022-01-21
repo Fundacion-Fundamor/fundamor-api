@@ -300,7 +300,10 @@ exports.list = async (req, res) => {
 				{
 					model: adopter
 				}
-			]
+			],
+			order: [["fecha_estudio", "DESC"]]
+
+			
 		});
 
 		if (searchResult.length !== 0) {
