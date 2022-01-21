@@ -9,19 +9,14 @@ const { verify } = require("./verify");
 
 const onlyAdmin = (req, res, next) => {
 
-	try {
- 
-		if (req.userSession.rol === "administrador") {
-			next();
-		} else {
-			res.status(401).json({ message: "Acceso no autorizado" });
 
-		}
+	if (req.userSession.rol === "administrador") {
+		next();
+	} else {
+		res.status(401).json({ message: "Acceso no autorizado" });
 
-	} catch (error) {
-
-		res.status(401).json({ message: "Su sesión ha expirado, por favor inicie la sesión nuevamente" });
 	}
+
 };
 
 module.exports = {
