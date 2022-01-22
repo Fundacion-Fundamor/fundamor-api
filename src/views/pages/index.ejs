@@ -236,7 +236,20 @@
                     <div class="col-lg-6">
                         <div class="faq-img-wrap">
                             <img src="img/images/faq_tv.png" class="img-frame" alt="">
-                            <img src="img/images/preview-video.webp" class="main-img" alt="">
+                            <!-- <img src="img/images/preview-video.webp" class="main-img" alt=""> -->
+                            <%
+                            getVideoId = function getId(url) {
+                                var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                                var match = url.match(regExp);
+                                if (match && match[2].length == 11) {
+                                    return match[2];
+                                } else {
+                                    return 'videoIdNotFound';
+                                }
+                            }
+                            %>
+                            
+                            <img src="https://img.youtube.com/vi/<%=getVideoId(foundation.url_video)%>/hqdefault.jpg" class="main-img" alt="">
                             <a href="<%=foundation.url_video %>" class="popup-video"></a>
                         </div>
                     </div>
