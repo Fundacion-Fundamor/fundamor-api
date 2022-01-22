@@ -173,7 +173,7 @@ CREATE TABLE `fundacion` (
   `id_fundacion` int(11) NOT NULL,
   `correo` varchar(70) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
-  `cuenta_donaciones` varchar(45) DEFAULT NULL,
+  `cuenta_donaciones` varchar(300) DEFAULT NULL,
   `nombre` varchar(70) NOT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   `mision` text DEFAULT NULL,
