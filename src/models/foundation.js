@@ -36,6 +36,9 @@ module.exports = (sequelize, DataTypes) => {
 		direccion: DataTypes.STRING(100),
 		mision: DataTypes.STRING(255),
 		vision: DataTypes.STRING(255),
+		url_mapa: DataTypes.TEXT,
+		url_video: DataTypes.STRING(300)
+
 	}, {
 		sequelize,
 		modelName: "foundation",
