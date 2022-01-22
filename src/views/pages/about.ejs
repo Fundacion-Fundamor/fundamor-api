@@ -192,7 +192,9 @@
                                     <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
                                         data-parent="#accordionExample">
                                         <div class="card-body">
-                                    <%=foundation.mision%>
+                                    <% for (const line of foundation.mision.split("\n")) { %>
+                                        <%= line %><br/>
+                                    <% } %>
                                         </div>
                                     </div>
                                 </div>
@@ -209,8 +211,9 @@
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                         data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <%=foundation.vision%>
-
+                                            <% for (const line of foundation.vision.split("\n")) { %>
+                                                <%= line %><br/>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </div>
