@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-01-2022 a las 05:00:55
+-- Tiempo de generación: 22-01-2022 a las 01:22:25
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 7.3.33
 
@@ -38,6 +38,20 @@ CREATE TABLE `adopcion` (
   `id_empleado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `adopcion`
+--
+
+INSERT INTO `adopcion` (`id_adopcion`, `id_animal`, `fecha_estudio`, `fecha_entrega`, `estado`, `observaciones`, `id_adoptante`, `id_empleado`) VALUES
+(41, 54, '2022-01-12', '2022-01-14', 'finalizada', 'asd', '100490344942', '1001'),
+(42, 72, '2022-01-18', NULL, 'en espera', NULL, '123123', NULL),
+(43, 64, '2022-01-18', NULL, 'en espera', NULL, '21213213', NULL),
+(44, 64, '2022-01-18', NULL, 'en espera', NULL, '21213213', NULL),
+(45, 64, '2022-01-18', NULL, 'en espera', NULL, '231', NULL),
+(46, 70, '2022-01-18', NULL, 'en espera', NULL, '123123', NULL),
+(47, 53, '2022-01-20', '2022-01-11', 'finalizada', 'asdadsadad', '100490344942', '1001'),
+(48, 56, '2022-01-20', '2022-01-31', 'finalizada', 'sadsad', '383287243', '1001');
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +67,17 @@ CREATE TABLE `adoptante` (
   `ocupacion` varchar(90) NOT NULL,
   `correo` varchar(90) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `adoptante`
+--
+
+INSERT INTO `adoptante` (`id_adoptante`, `nombre`, `telefono_casa`, `telefono_celular`, `ciudad`, `ocupacion`, `correo`) VALUES
+('100490344942', 'Carlos', '132', 'as', 'avenida bolivar', 'cirujano', 'carlos@gmail.com'),
+('123123', 'asd', NULL, '213', 'sad', 'ad', NULL),
+('21213213', 'sad', NULL, '213123', 'asdasd', 'asdasd', NULL),
+('231', 'sad', NULL, '1321', 'sad', 'asd', NULL),
+('383287243', 'Maria', '123', '213', '123', 'nose', NULL);
 
 -- --------------------------------------------------------
 
@@ -97,9 +122,9 @@ INSERT INTO `animal` (`id_animal`, `id_fundacion`, `especie`, `nombre`, `fecha_n
 (50, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
 (51, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
 (52, 2, 'gato', 'sadsa', '2021-11-05', 'hembra', 'sadsad', 'asd', '2021-11-12', 'sadasd', 'asdsad', 1, 1, 'mediano', 'Sin adoptar'),
-(53, 2, 'gato', 'asdsad', '2021-11-11', 'macho', 'sadsad', 'sadas', '2021-11-03', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
-(54, 2, 'perro', 'dad', '2021-11-11', 'macho', 'sadasd', 'asdasd', '2021-11-13', 'sadd', 'sadasd', 1, 1, 'mediano', 'Sin adoptar'),
-(56, 2, 'gato', 'sadsad', '2021-11-06', 'macho', 'asdsad', 'sadasd', '2021-11-10', 'asdasd', 'sadsad', 1, 1, 'pequeño', 'Sin adoptar'),
+(53, 2, 'gato', 'asdsad', '2021-11-11', 'macho', 'sadsad', 'sadas', '2021-11-03', 'sadsad', 'sadsad', 1, 1, 'mediano', 'Adoptado'),
+(54, 2, 'perro', 'dad', '2021-11-11', 'macho', 'sadasd', 'asdasd', '2021-11-13', 'sadd', 'sadasd', 1, 1, 'mediano', 'Adoptado'),
+(56, 2, 'gato', 'sadsad', '2021-11-06', 'macho', 'asdsad', 'sadasd', '2021-11-10', 'asdasd', 'sadsad', 1, 1, 'pequeño', 'Adoptado'),
 (57, 2, 'gato', 'sadsad', '2021-11-06', 'macho', 'asdsad', 'sadasd', '2021-11-10', 'asdasd', 'sadsad', 1, 1, 'pequeño', 'Sin adoptar'),
 (58, 2, 'gato', 'asdsad', '2021-11-03', 'macho', 'sadsad', 'sadas', '2021-11-04', 'sadasd', 'sadsad', 1, 1, 'mediano', 'Sin adoptar'),
 (59, 2, 'gato', 'asd', '2021-11-12', 'macho', 'sadasd', 'sadsad', '2021-11-10', 'asdasd', 'sadasd', 1, 1, 'grande', 'Adoptado'),
@@ -108,8 +133,8 @@ INSERT INTO `animal` (`id_animal`, `id_fundacion`, `especie`, `nombre`, `fecha_n
 (68, 2, 'perro', 'Nerón', '2022-01-03', 'macho', 'Aminagble', 'Barrio guaduales, Calarcá Quindío', '2022-01-05', 'café con manchas', '', 0, 1, 'pequeño', 'En proceso'),
 (69, 2, 'gato', 'Manua', '2022-01-01', 'macho', '', '', NULL, 'Blanco', '', 0, 0, 'mediano', 'En proceso'),
 (70, 2, 'perro', 'Zeus', '2005-01-05', 'macho', '', '', NULL, 'Café', '', 0, 0, 'grande', 'Sin adoptar'),
-(72, 2, 'perro', 'Lluvia', '2022-01-06', 'macho', 'Beagle enrazado', 'Armenia Quindio', '2022-01-04', 'Negro', '', 1, 0, 'mediano', 'Adoptado'),
-(73, 2, 'perro', 'Lucas', '2022-01-03', 'macho', 'amistoso', 'aaa', '2022-01-08', 'Negro', '', 1, 1, 'pequeño', 'Adoptado');
+(72, 2, 'perro', 'Lluvia', '2022-01-06', 'macho', 'Beagle enrazado', 'Armenia Quindio', '2022-01-04', 'Negro', '', 1, 0, 'mediano', 'En proceso'),
+(75, 2, 'perro', 'juaco', '2022-01-12', 'macho', 'es un perro amigable', 'La fachada armeniasadadsa', '2022-01-13', 'cafe con manchas', 'asdasd sajd sakjd askjd kasj dkjsa dkj sakdj asd sa sa a asd ', 1, 0, 'mediano', 'Sin adoptar');
 
 -- --------------------------------------------------------
 
@@ -131,10 +156,12 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id_empleado`, `id_fundacion`, `correo`, `contrasenia`, `nombre`, `rol`) VALUES
-('1001', 2, 'luzmari0987@gmail.com', '$2a$10$zaS77dgdIKWxCW41heSAc.iUf2/KSEJQkj5hxK7glXqoBSui2VQ9C', 'Luz marina Ramirez gomez', 'colaborador'),
-('10011', 2, 'aureliomejiaa2000@malo.com', '$2a$10$rpCJXlt.h3RvKBjCf.8G/eu1RqvhALJjfqY8u/Lnq.odIXmi1NR3W', 'Aurelio mejia', 'administrador'),
-('1005905547', 2, 'hernan@fundamor.com', '$2a$10$l0tSZRWjBuj/miMbei/oEOtLTFo4/8hAjQ5DPQ/fFcM4bDJz1ERiS', 'Hernan camacho', 'administrador'),
-('123123', 2, 'beatriz_elena0292@gmail.comx', '$2a$10$zaS77dgdIKWxCW41heSAc.iUf2/KSEJQkj5hxK7glXqoBSui2VQ9C', 'Beatriz elena aristizabal', 'colaborador');
+('1001', 2, 'luzmari0987@gmail.com', '$2a$10$zaS77dgdIKWxCW41heSAc.iUf2/KSEJQkj5hxK7glXqoBSui2VQ9C', 'Luz marina Ramirez gomez', 'administrador'),
+('10011', 2, 'aureliomejiaa2000@malo.com', '', 'Aurelio mejia', 'administrador'),
+('1005905547', 2, 'hernan@fundamor.com', '$2a$10$4gTy45cEJRv/jFIXtQwhWuHumiafvXO3XcV4deYlKabXK8MA0j3y.', 'Hernan camacho', 'administrador'),
+('123123', 2, 'beatriz_elena0292@gmail.comx', '$2a$10$zaS77dgdIKWxCW41heSAc.iUf2/KSEJQkj5hxK7glXqoBSui2VQ9C', 'Beatriz elena aristizabal', 'colaborador'),
+('1293892183', 2, 'luis@fundamor.com', '$2a$10$rFOyBzv7WQUZsfNAShPgoObR3XdZppLajy7U5LiSspmE6C9Ce7PAa', 'luis', 'administrador'),
+('97435728312', 2, 'melqui@maloca.co', '$2a$10$Yph2BGtq4CqNhjO3nF.sOOVc7jZhKqC0w4/wSCPiS9oV9qpwDnBfi', 'Melquieadez', 'administrador');
 
 -- --------------------------------------------------------
 
@@ -149,16 +176,18 @@ CREATE TABLE `fundacion` (
   `cuenta_donaciones` varchar(45) DEFAULT NULL,
   `nombre` varchar(70) NOT NULL,
   `direccion` varchar(100) DEFAULT NULL,
-  `mision` varchar(255) DEFAULT NULL,
-  `vision` varchar(255) DEFAULT NULL
+  `mision` text DEFAULT NULL,
+  `vision` text DEFAULT NULL,
+  `url_mapa` text DEFAULT NULL,
+  `url_video` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `fundacion`
 --
 
-INSERT INTO `fundacion` (`id_fundacion`, `correo`, `telefono`, `cuenta_donaciones`, `nombre`, `direccion`, `mision`, `vision`) VALUES
-(2, 'fundamor@gmail.com', '1233', '102093833213', 'Fundacion fundamor', 'Av bolívar', NULL, NULL);
+INSERT INTO `fundacion` (`id_fundacion`, `correo`, `telefono`, `cuenta_donaciones`, `nombre`, `direccion`, `mision`, `vision`, `url_mapa`, `url_video`) VALUES
+(2, 'fundamor_calarca@hotmail.com adopciones_fundamor@hotmail.com', '+57 313 6309884', '102093833213', 'Fundacion fundamor', 'Calarcá, Quindío Colombia2', '        La Fundación Protectora y de amor por los Animales - de Calarcá FUNDAMOR DE\r\n                                            CALARCÁ es una organización sin animo de lucro que trabaja por la\r\n                                            reclamación de\r\n                                            los\r\n                                            derechos y el bienestar de los animales,\r\n                                            por la ejecución de programas para su atención, protección y rehabilitación;\r\n                                            brindando educación a la comunidad para su\r\n                                            adopción y tenencia responsable buscando como objetivo no solamente el\r\n                                            establecimiento de principios de ética animal y\r\n                                            su bienestar sino también la recuperación del espacio publico saludable\r\n                                            mediante la reducción del impacto que su\r\n                                            abandono genera en el medio ambiente, la salud publica y el bienestar de la\r\n                                            comunidad.\r\n                                            <br>\r\n                                            La Fundación Protectora y de amor por los Animales - de Calarcá propende por\r\n                                            la erradicación de toda forma de maltrato\r\n                                            de cualquier especie animal, doméstica o silvestre, cualquiera que sea su\r\n                                            destinación, o su hábitat.', 'La Fundación Protectora y de amor por los Animales - de Calarcá, será\r\n                                            reconocida a nivel local y global por ser una\r\n                                            organización sin ánimo de lucro comprometida con el bienestar animal y su\r\n                                            calidad de vida, la salud pública y la\r\n                                            concientización encaminada a la protección del medio ambiente y el entorno\r\n                                            del ciudadano.\r\n                                            <br>\r\n                                            Contribuirá al bienestar de la población mediante la implementación de\r\n                                            campañas de amor, respeto y responsabilidad por\r\n                                            los animales con el fin de que ni uno solo sea abandonado ni maltratado.', '<iframe                     src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d5412.3478395669035!2d-75.64425884348316!3d4.5295807562608585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sco!4v1642367833039!5m2!1ses!2sco\"                     width=\"1200\" height=\"600\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', 'https://www.youtube.com/watch?v=meTbxyZh9K8');
 
 -- --------------------------------------------------------
 
@@ -208,10 +237,12 @@ INSERT INTO `imagen_animal` (`id_imagen_animal`, `id_animal`, `ruta`) VALUES
 (69, 72, 'images/animalImages/102d207d-a5a4-496c-9704-84194932d418.jpg'),
 (70, 72, 'images/animalImages/7a108f06-f51a-46cd-b849-a5e12974f9e6.jpg'),
 (71, 72, 'images/animalImages/7adf6bd5-8c25-4f94-a127-f4386df278e7.png'),
-(72, 73, 'images/animalImages/4c0a4ca1-109e-4fba-982d-325f877c6f63.jpg'),
-(73, 73, 'images/animalImages/802894ae-d75c-4968-a6e5-6aa45e615652.jpg'),
-(74, 73, 'images/animalImages/130f9141-33b0-4388-be34-51631f6d0984.jpg'),
-(83, 28, 'images/animalImages/f928d991-b3cd-4b60-a220-03b82a638baa.jpg');
+(83, 28, 'images/animalImages/f928d991-b3cd-4b60-a220-03b82a638baa.jpg'),
+(84, 45, 'images/animalImages/921aeec9-9355-4279-b14d-309154c3890d.jpg'),
+(85, 45, 'images/animalImages/3e46cde3-a11a-4319-b4cf-388dc881ee26.jpg'),
+(91, 75, 'images/animalImages/031a6bcb-3252-4f8f-9069-3fef8c676b26.jpg'),
+(94, 75, 'images/animalImages/79817e0c-1cb4-4a91-8580-1211aa15e74a.jpg'),
+(95, 75, 'images/animalImages/8e3e7bb2-dcab-4686-a007-0a16c57f2aa9.jpeg');
 
 -- --------------------------------------------------------
 
@@ -224,6 +255,16 @@ CREATE TABLE `imagen_publicacion` (
   `id_imagen_publicacion` int(11) NOT NULL,
   `ruta` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `imagen_publicacion`
+--
+
+INSERT INTO `imagen_publicacion` (`id_publicacion`, `id_imagen_publicacion`, `ruta`) VALUES
+(3, 1, 'images/postImages/0072f105-8290-4d22-bbc3-fd4c1ab51fce.png'),
+(7, 2, 'images/postImages/91e5f151-b1a0-4857-870c-1ec828712a2d.png'),
+(7, 3, 'images/postImages/aa7267f2-64d5-4f61-885e-e4d06ea8b6a9.jpg'),
+(1, 5, 'images/postImages/a5fc8651-ec0a-4813-b6d3-2b48dbdef032.jpg');
 
 -- --------------------------------------------------------
 
@@ -245,7 +286,9 @@ INSERT INTO `opcion_pregunta` (`id_opcion`, `id_pregunta`, `descripcion`) VALUES
 (57, 55, 'si'),
 (60, 69, 'thanos'),
 (61, 69, 'thor'),
-(66, 55, 'no');
+(66, 55, 'no'),
+(67, 73, 'sadasd'),
+(68, 73, 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -265,11 +308,12 @@ CREATE TABLE `pregunta` (
 --
 
 INSERT INTO `pregunta` (`id_pregunta`, `id_fundacion`, `titulo`, `tipo_pregunta`) VALUES
-(32, 2, 'melos?', 'abierta'),
 (35, 2, 'Le interesa', 'abierta'),
 (55, 2, 'Esta de acuerdo con destinar un lugar para el perro', 'multiple'),
 (60, 2, 'cuando voy a vivir', 'abierta'),
-(69, 2, 'Quien soy', 'multiple');
+(69, 2, 'Quien soy', 'multiple'),
+(72, 2, 'sdasdsad', 'abierta'),
+(73, 2, 'sdsaddsa', 'multiple');
 
 -- --------------------------------------------------------
 
@@ -284,6 +328,44 @@ CREATE TABLE `pregunta_adopcion` (
   `respuesta` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `pregunta_adopcion`
+--
+
+INSERT INTO `pregunta_adopcion` (`id_pregunta_adopcion`, `id_adopcion`, `id_pregunta`, `respuesta`) VALUES
+(94, 41, 35, 'ninas'),
+(95, 41, 55, 'si'),
+(96, 41, 60, 'nunca'),
+(97, 41, 69, 'thanos'),
+(99, 42, 35, 'sad'),
+(100, 42, 60, 'asd'),
+(101, 42, 55, 'si'),
+(102, 42, 69, 'thanos'),
+(104, 43, 35, 'sad'),
+(105, 43, 60, 'asd'),
+(106, 43, 55, 'si'),
+(107, 43, 69, 'thanos'),
+(109, 44, 35, 'sad'),
+(110, 44, 60, 'asd'),
+(111, 44, 55, 'si'),
+(112, 44, 69, 'thanos'),
+(114, 45, 35, 'sadsad'),
+(115, 45, 60, 'asdad'),
+(116, 45, 55, 'si'),
+(117, 45, 69, 'thanos'),
+(119, 46, 35, 'asda'),
+(120, 46, 60, 'asd'),
+(121, 46, 55, 'si'),
+(122, 46, 69, 'thanos'),
+(124, 47, 35, 'asd'),
+(125, 47, 55, 'si'),
+(126, 47, 60, 'asdsad'),
+(127, 47, 69, 'thanos'),
+(129, 48, 35, 'sad'),
+(130, 48, 55, 'si'),
+(131, 48, 60, 'sad'),
+(132, 48, 69, 'thanos');
+
 -- --------------------------------------------------------
 
 --
@@ -295,7 +377,7 @@ CREATE TABLE `publicacion` (
   `id_fundacion` int(11) NOT NULL,
   `titulo` varchar(200) NOT NULL,
   `cuerpo` text NOT NULL,
-  `fecha_creacion` date NOT NULL
+  `fecha_creacion` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -303,7 +385,11 @@ CREATE TABLE `publicacion` (
 --
 
 INSERT INTO `publicacion` (`id_publicacion`, `id_fundacion`, `titulo`, `cuerpo`, `fecha_creacion`) VALUES
-(1, 2, 'hoy', 'mañana4', '2021-12-16');
+(1, 2, 'Se reduce el periodo para aplicar dosis de refuerzo en Colombia', 'Este martes, el presidente Iván Duque y el ministro de Salud, Fernando Ruiz, señalaron en rueda de prensa nuevos lineamientos que responden al nivel de contagio de la variante ómicron. Pese a que se ha demostrado el alto nivel de contagio de esta variante, no dejaron de señalar la evidencia de que gracias a la vacunación masiva, el reciente aumento de casos en el país no ha sido equivalente a un aumento de muertes ni de casos llevados a UCI.', '2022-01-14 02:23:33'),
+(2, 2, 'asd', 'el dia de ayer', '2022-01-12 00:00:00'),
+(3, 2, 'sad', 'asad', '2022-01-12 00:00:00'),
+(5, 2, 'asd', 'sadsads', '2022-01-12 03:35:38'),
+(7, 2, 'El COVID-19 pone al descubierto las barreras que enfrentan los mil millones de personas que tienen alguna discapacidad', 'Alrededor del 80% de las personas con discapacidad viven en países en desarrollo. Se calcula que el 46% son personas mayores de 60 años, advierte la ONU.\r\n\r\nUna de cada cinco mujeres tiene probabilidades de tener una discapacidad durante su vida, mientras que en el caso de los niños es de uno de cada diez.\r\n\r\nPara responder a las necesidades de estas personas, el Secretario instó a todos los países a que apliquen plenamente la Convención sobre los Derechos de las Personas con Discapacidad.\r\n\r\nLos gobiernos, agregó, deben trabajar para ofrecer mayor accesibilidad y eliminar “las barreras jurídicas, sociales, económicas”.\r\n\r\n\" Haciendo efectivos los derechos, la capacidad de actuar y el liderazgo de las personas con discapacidad podremos promover nuestro futuro común\", argumentó. \" Necesitamos que todas las personas estén incluidas en el proyecto de alcanzar los Objetivos de Desarrollo Sostenible\".\r\n\r\nGuterres concluyó diciendo que las personas con discapacidad y las organizaciones que las representan trabajan en todo el mundo para hacer realidad una demanda clave: \"Nada sobre nosotros sin nosotros\". ', '2022-01-13 02:24:49');
 
 -- --------------------------------------------------------
 
@@ -317,6 +403,14 @@ CREATE TABLE `seguimiento` (
   `fecha` date NOT NULL,
   `anotaciones` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `seguimiento`
+--
+
+INSERT INTO `seguimiento` (`id_adopcion`, `id_seguimiento`, `fecha`, `anotaciones`) VALUES
+(41, 12, '2022-01-12', 'jJj'),
+(48, 13, '2022-01-20', 'asdasd');
 
 --
 -- Índices para tablas volcadas
@@ -416,13 +510,13 @@ ALTER TABLE `seguimiento`
 -- AUTO_INCREMENT de la tabla `adopcion`
 --
 ALTER TABLE `adopcion`
-  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `fundacion`
@@ -434,43 +528,43 @@ ALTER TABLE `fundacion`
 -- AUTO_INCREMENT de la tabla `imagen_animal`
 --
 ALTER TABLE `imagen_animal`
-  MODIFY `id_imagen_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id_imagen_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen_publicacion`
 --
 ALTER TABLE `imagen_publicacion`
-  MODIFY `id_imagen_publicacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_imagen_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `opcion_pregunta`
 --
 ALTER TABLE `opcion_pregunta`
-  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta_adopcion`
 --
 ALTER TABLE `pregunta_adopcion`
-  MODIFY `id_pregunta_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id_pregunta_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `seguimiento`
 --
 ALTER TABLE `seguimiento`
-  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
