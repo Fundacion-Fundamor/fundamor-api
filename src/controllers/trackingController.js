@@ -1,18 +1,26 @@
 /* eslint-disable camelcase */
 const tracking = require("../models").tracking;
-
+const adoption = require("../models").adoption;
 exports.create = async (req, res) => {
 
 	try {
+		const searchResult = await adoption.findByPk(req.body.id_adopcion);
+		if (searchResult.estado === "finalizada") {
+			req.body.fecha = Date.now();
 
-		req.body.fecha = Date.now();
-
-		const result = await tracking.create(req.body);
-		res.status(201).json({
-			state: true,
-			message: "El seguimiento se ha registrado con éxito",
-			data: result.id_seguimiento // id assigned
-		});
+			const result = await tracking.create(req.body);
+			res.status(201).json({
+				state: true,
+				message: "El seguimiento se ha registrado con éxito",
+				data: result.id_seguimiento // id assigned
+			});
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "Solo se pueden registrar seguimientos a los procesos de adopción que hayan finalizado"
+	
+			});
+		}
 
 	} catch (error) {
 		console.error(error);
@@ -31,7 +39,7 @@ exports.delete = async (req, res) => {
 			where: {
 				id_seguimiento: req.params["id"]
 			}
-	
+
 		});
 
 		if (result === 1) {

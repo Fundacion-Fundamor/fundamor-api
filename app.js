@@ -1,7 +1,22 @@
 const express = require("express");
 const app = express();
+const path = require("path");
+// const helmet = require("helmet");
+app.use(express.static("./src/public"));
+app.use(express.static(path.join(__dirname, "/src/public/site")));
+app.use("/animals/form", express.static(path.join(__dirname, "/src/public/site")));
+app.use("/animals/detail", express.static(path.join(__dirname, "/src/public/site")));
+
+app.use("/post/detail", express.static(path.join(__dirname, "/src/public/site")));
+
+
+// app.use(helmet());
+// app.disable('x-powered-by');
+
 const morgan = require("morgan");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const employeesRoutes = require("./src/routes/employees");
 const authRoutes = require("./src/routes/auth");
@@ -17,11 +32,15 @@ const trackingRoutes = require("./src/routes/tracking");
 const animalImagesRoutes = require("./src/routes/animalImages");
 const postImagesRoutes = require("./src/routes/postImages");
 const analyticsRoutes = require("./src/routes/analytics");
+const landingRoutes = require("./src/routes/landing");
 
 //enable express.json (in the request the header should be application/json)
 app.use(express.json({ extended: true }));
 app.use(morgan("dev"));
 app.use(cors());
+
+app.set("views", path.join(__dirname, "/src/views"));
+app.set("view engine", "ejs");
 
 //Routes setting up handle requests
 app.use("/api/employees", employeesRoutes);
@@ -38,9 +57,10 @@ app.use("/api/adoptionQuestions", adoptionQuestionsRoutes);
 app.use("/api/animalImages", animalImagesRoutes);
 app.use("/api/postImages", postImagesRoutes);
 app.use("/api/analytics", analyticsRoutes);
+app.use("/", landingRoutes);
 
 
-app.use(express.static("./src/public"));
+
 //app.use sets up middleware
 app.use((req, res, next) => {
 	const error = new Error("Endpoint Not found");
@@ -65,6 +85,7 @@ app.use((req, res, next) => {
 		message: "It works!"
 	});
 });
+
 
 module.exports = app;
 

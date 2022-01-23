@@ -61,6 +61,27 @@ const adopterValidationRules = () => {
 		// check("contrasenia", "La contraseña es obligatoria y debe tener al menos 6 caracteres").isLength({ min: 6 }).not().isEmpty()
 	];
 };
+
+const adopterFormValidationRules = () => {
+	return [
+		check("idAnimal", "El id del animal es obligatorio").not().isEmpty(),
+		check("name", "El nombre es un campo obligatorio").not().isEmpty(),
+		check("movil", "El telefono celular es un campo obligatorio").not().isEmpty(),
+		check("ciudad", "La ciudad es un campo obligatorio").not().isEmpty(),
+		check("ocupacion", "La ocupación es un campo obligatorio").not().isEmpty(),
+		check("identification", "La identificación es un campo obligatorio").not().isEmpty()
+	];
+};
+const contactFormValidationRules = () => {
+	return [
+
+		check("name", "El nombre es un campo obligatorio").not().isEmpty(),
+		check("phone", "El telefono celular es un campo obligatorio").not().isEmpty(),
+		check("email", "Correo electrónico inválido").isEmail().not().isEmpty(),
+		check("message", "El mensaje es un campo oblicatorio").not().isEmpty()
+	];
+};
+
 const adoptionValidationRules = () => {
 	return [
 		check("adoptionData", "Debe especificar los datos de la adopcion").isObject(),
@@ -93,7 +114,14 @@ const animalValidationRules = () => {
 };
 const postValidationRules = () => {
 	return [
-		// check("titulo", "La publicación debe llevar un titulo").not().isEmpty()
+		check("titulo", "La publicación debe llevar un titulo").not().isEmpty(),
+		check("cuerpo", "La publicación no puede ir vacía").not().isEmpty()
+	];
+};
+const postUpdateValidationRules = () => {
+	return [
+		check("id_publicacion", "Debe especificar el id de la publicacion").not().isEmpty(),
+		check("titulo", "La publicación debe llevar un titulo").not().isEmpty(),
 		check("cuerpo", "La publicación no puede ir vacía").not().isEmpty()
 	];
 };
@@ -131,6 +159,11 @@ const tokenValidationRules = () => {
 	];
 };
 
+const forgotPassswordRules = () => {
+	return [
+		check("correo", "Correo electrónico inválido").isEmail().not().isEmpty()
+	];
+};
 const validate = (req, res, next) => {
 	const errors = validationResult(req);
 	if (errors.isEmpty()) {
@@ -153,6 +186,7 @@ module.exports = {
 	animalValidationRules,
 	adoptionQuestionValidationRules,
 	postValidationRules,
+	postUpdateValidationRules,
 	foundationValidationRules,
 	questionValidationRules,
 	animalImageValidationRules,
@@ -162,5 +196,8 @@ module.exports = {
 	questionOptionValidationRules,
 	profileUpdateRules,
 	passwordUpdateRules,
+	adopterFormValidationRules,
+	contactFormValidationRules,
+	forgotPassswordRules,
 	validate
 };

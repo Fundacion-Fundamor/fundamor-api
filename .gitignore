@@ -107,4 +107,4 @@ dist
 private
 .vscode/fundamor-api.code-workspace
 
-public/
+src/public/images/

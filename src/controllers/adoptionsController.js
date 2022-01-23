@@ -25,7 +25,17 @@ exports.create = async (req, res) => {
 		let id_adopter = "";
 
 		if (adopterData.selected) {
-			id_adopter = adopterData.id_adoptante;
+
+			const resultAdopterRegistered = await adopter.findByPk(adopterData.id_adoptante);
+			if (resultAdopterRegistered) {
+				id_adopter = adopterData.id_adoptante;
+			} else {
+				res.status(200).json({
+					state: false,
+					message: "Este adoptante no existe"
+				});
+
+			}
 		} else {
 			const searchResult = await adopter.findAll({
 				where: adopterData.correo ? {
@@ -48,72 +58,88 @@ exports.create = async (req, res) => {
 					state: false,
 					message: "Ya existe un adoptante registrado con esta identificación o correo"
 				});
+
 			}
 
 		}
-		adoptionData.id_empleado = req.userSession.id;
-		adoptionData.id_adoptante = id_adopter;
-		adoptionData.fecha_estudio = Date.now();
 
-		//crea la adopcion
-		const result = await adoption.create(adoptionData);
+		if (id_adopter !== "") {
 
-		if (result) {
+			adoptionData.id_empleado = req.userSession.id;
+			adoptionData.id_adoptante = id_adopter;
+			adoptionData.fecha_estudio = Date.now();
 
-			let animalState = "";
-			if (adoptionData.estado === "finalizada") {
-				animalState = "Adoptado";
-			} else if (adoptionData.estado === "en proceso" || adoptionData.estado === "en espera") {
-				animalState = "En proceso";
-			} else {
-				animalState = "Sin adoptar";
 
-			}
+			let resAnimal = await animal.findByPk(adoptionData.id_animal);
 
-			//actualiza el estado del animal
-			await animal.update({ estado: animalState }, {
-				where: {
-					id_animal: adoptionData.id_animal
-				}
-			});
-			if (questionsData.length !== 0) {
 
-				let questionsFormattedData = questionsData.filter((element) => {
+			if (resAnimal.estado === "Sin adoptar") {
+				//crea la adopcion
+				const result = await adoption.create(adoptionData);
 
-					element.id_adopcion = result.id_adopcion;
-					return element;
-				});
+				if (result) {
 
-				const resultQuestionAnswers = await adoptionQuestion.bulkCreate(questionsFormattedData);
-				if (resultQuestionAnswers) {
-					res.status(201).json({
-						state: true,
-						message: "La adopción se ha registrado con éxito",
-						data: result.id_adopcion // id assigned
+					let animalState = "";
+					if (adoptionData.estado === "finalizada") {
+						animalState = "Adoptado";
+					} else if (adoptionData.estado === "en proceso") {
+						animalState = "En proceso";
+					} else {
+						animalState = "Sin adoptar";
+
+					}
+
+					//actualiza el estado del animal
+					await animal.update({ estado: animalState }, {
+						where: {
+							id_animal: adoptionData.id_animal
+						}
 					});
+					if (questionsData.length !== 0) {
+
+						let questionsFormattedData = questionsData.filter((element) => {
+
+							element.id_adopcion = result.id_adopcion;
+							return element;
+						});
+
+						const resultQuestionAnswers = await adoptionQuestion.bulkCreate(questionsFormattedData);
+						if (resultQuestionAnswers) {
+							res.status(201).json({
+								state: true,
+								message: "La adopción se ha registrado con éxito",
+								data: result.id_adopcion // id assigned
+							});
+						} else {
+							res.status(201).json({
+								state: false,
+								message: "Ha ocurrido un error al registrar las respuestas del formulario"
+							});
+						}
+					} else {
+
+						res.status(201).json({
+							state: true,
+							message: "La adopción se ha registrado con éxito",
+							data: result.id_adopcion // id assigned
+						});
+					}
 				} else {
 					res.status(201).json({
 						state: false,
-						message: "Ha ocurrido un error al registrar las respuestas del formulario"
+						message: "Ha ocurrido un error al crear la adopción"
+
 					});
 				}
-			} else {
 
-				res.status(201).json({
-					state: true,
-					message: "La adopción se ha registrado con éxito",
-					data: result.id_adopcion // id assigned
+			} else {
+				res.status(200).json({
+					state: false,
+					message: "Este animal ya se encuentra vinculado a un proceso de adopción"
+
 				});
 			}
-		} else {
-			res.status(201).json({
-				state: false,
-				message: "Ha ocurrido un error al crear la adopción"
-
-			});
 		}
-
-
 
 	} catch (error) {
 		console.error(error);
@@ -142,36 +168,49 @@ exports.delete = async (req, res) => {
 
 		});
 
-		const searchResult = await adoption.findAll({
-			where: {
-				id_adoptante: result.id_adoptante,
-				[Op.not]: {
-					id_adopcion: req.params["id"]
-				}
-			}
-		});
-
-
-		let resultDelete = await result.destroy();
-		if (resultDelete) {
-			if (searchResult.length === 0) {
-				await adopter.destroy({
-					where: {
-						id_adoptante: result.id_adoptante
+		if (result) {
+			const searchResult = await adoption.findAll({
+				where: {
+					id_adoptante: result.id_adoptante,
+					[Op.not]: {
+						id_adopcion: req.params["id"]
 					}
+				}
+			});
+
+			await animal.update({ estado: "Sin adoptar" }, {
+				where: {
+					id_animal: result.id_animal
+				}
+			});
+
+
+			let resultDelete = await result.destroy();
+			if (resultDelete) {
+				if (searchResult.length === 0) {
+					await adopter.destroy({
+						where: {
+							id_adoptante: result.id_adoptante
+						}
+					});
+				}
+				res.status(200).json({
+					state: true,
+					message: "La adopción se ha eliminado exitosamente"
+				});
+			} else {
+				res.status(200).json({
+					state: false,
+					message: "Ha ocurrido un error al eliminar la adopción"
 				});
 			}
-			res.status(200).json({
-				state: true,
-				message: "La adopción se ha eliminado exitosamente"
-			});
+
 		} else {
 			res.status(200).json({
 				state: false,
-				message: "Ha ocurrido un error al eliminar la adopción"
+				message: "El proceso de adopción no existe"
 			});
 		}
-
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({
@@ -220,60 +259,69 @@ exports.update = async (req, res) => {
 
 		let result = await adoption.findByPk(req.body.id_adopcion);
 
-		if (result.id_empleado === null) {
-			req.body.id_empleado = req.userSession.id;
-		}
 
-		await adoption.update(req.body, {
-			where: {
-				id_adopcion: req.body.id_adopcion
-			}
-		});
-		const searchResult = await adoption.findByPk(req.body.id_adopcion, {
-			include: [
-				"animal"
-			]
-		});
+		if (result) {
 
 
-		if (searchResult) {
-
-
-			let animalState = "";
-			if (req.body.estado === "finalizada") {
-				animalState = "Adoptado";
-			} else if (req.body.estado === "en proceso" || req.body.estado === "en espera") {
-				animalState = "En proceso";
-			} else {
-				animalState = "Sin adoptar";
-
+			if (result.id_empleado === null) {
+				req.body.id_empleado = req.userSession.id;
 			}
 
-			const resAnimal = await animal.update({ estado: animalState }, {
+			await adoption.update(req.body, {
 				where: {
-					id_animal: searchResult.animal.id_animal
+					id_adopcion: req.body.id_adopcion
 				}
 			});
-			if (resAnimal) {
-				res.status(200).json({
-					state: true,
-					message: "Los datos de la adopción se han actualizado exitosamente"
+			const searchResult = await adoption.findByPk(req.body.id_adopcion, {
+				include: [
+					"animal"
+				]
+			});
+
+
+			if (searchResult) {
+
+
+				let animalState = "";
+				if (req.body.estado === "finalizada") {
+					animalState = "Adoptado";
+				} else if (req.body.estado === "en proceso") {
+					animalState = "En proceso";
+				} else {
+					animalState = "Sin adoptar";
+
+				}
+
+				const resAnimal = await animal.update({ estado: animalState }, {
+					where: {
+						id_animal: searchResult.animal.id_animal
+					}
 				});
+				if (resAnimal) {
+					res.status(200).json({
+						state: true,
+						message: "Los datos de la adopción se han actualizado exitosamente"
+					});
+				} else {
+					res.status(200).json({
+						state: false,
+						message: "Ha ocurrido un error al actualizar el estado del animal"
+					});
+				}
 			} else {
 				res.status(200).json({
 					state: false,
-					message: "Ha ocurrido un error al actualizar el estado del animal"
+					message: "El animal asociado a la adopción no existe"
 				});
+
 			}
+
 		} else {
 			res.status(200).json({
 				state: false,
-				message: "El animal asociado a la adopción no existe"
+				message: "El proceso de adopción no existe"
 			});
-
 		}
-
-
 
 	} catch (error) {
 
@@ -300,7 +348,10 @@ exports.list = async (req, res) => {
 				{
 					model: adopter
 				}
-			]
+			],
+			order: [["fecha_estudio", "DESC"]]
+
+
 		});
 
 		if (searchResult.length !== 0) {

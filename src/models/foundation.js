@@ -30,12 +30,15 @@ module.exports = (sequelize, DataTypes) => {
 	foundation.init({
 		id_fundacion: { primaryKey: true, type: DataTypes.INTEGER, allowNull: false, autoIncrement: true },
 		correo: DataTypes.STRING(70),
-		cuenta_donaciones: DataTypes.STRING(45),
+		cuenta_donaciones: DataTypes.STRING(600),
 		nombre: { type: DataTypes.STRING(70), allowNull: false },
 		telefono: DataTypes.STRING(20),
 		direccion: DataTypes.STRING(100),
 		mision: DataTypes.STRING(255),
 		vision: DataTypes.STRING(255),
+		url_mapa: DataTypes.TEXT,
+		url_video: DataTypes.STRING(300)
+
 	}, {
 		sequelize,
 		modelName: "foundation",

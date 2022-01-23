@@ -17,7 +17,7 @@ router.get("/:id", verify, foundationsController.get);
 router.post("/", verify, foundationValidationRules(), validate, foundationsController.create);
 
 // update foundation
-router.put("/", verify,foundationsController.update);
+router.put("/", verify, foundationsController.update);
 
 // delete foundation
 router.delete("/:id", verify, foundationsController.delete);

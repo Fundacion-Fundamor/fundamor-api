@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="img/preloader.gif" alt="">
+    </div>
+    <!-- Preloader-end -->
+
+    <!-- Scroll-top -->
+    <button class="scroll-top scroll-to-target" data-target="html">
+        <i class="fas fa-angle-up"></i>
+    </button>
+    <!-- Scroll-top-end-->
+
+    <!-- header-area -->
+    <header>
+        <%- include('../partials/header', { placement: "animals" }); %>
+    </header>
+
+
+    <!-- main-area -->
+    <main>
+
+        <!-- breadcrumb-area -->
+        <section class="breadcrumb-area breadcrumb-bg" data-background="img/bg/breadcrumb_bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-content">
+                            <h2 class="title">Lista de animales</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Lista de animales</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb-area-end -->
+
+        <!-- adoption-shop-area -->
+        <section class="adoption-shop-area">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-9">
+                        <div class="section-title text-center mb-65">
+                            <div class="section-icon"><img src="img/icon/pawprint.png" alt=""></div>
+                            <h5 class="sub-title">Conoce nuestros peludos</h5>
+                            <h2 class="title">Ellos están esperando ser adoptados</h2>
+                            <p>Todos los perros y gatos que son dados en adopción, tienen su esquema de vacunación al
+                                día, están desparasitados y algunos son esterilizados.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row justify-content-center">
+                </div>
+            </div>
+        </section>
+        <!-- adoption-shop-area-end -->
+
+        <!-- list area -->
+        <div class="shop-area  pb-110">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-8 order-2 order-lg-0">
+                        <aside class="shop-sidebar">
+                            <div class="widget">
+                                <div class="sidebar-search">
+                                    <form class="submit-controlled">
+                                        <input type="text" id="search-field" placeholder="Buscar por nombre">
+                                        <button type="button" onclick="handleSearch()"><i
+                                                class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <h4 class="sidebar-title">Especie</h4>
+                                <div class="shop-cat-list">
+                                    <ul>
+                                        <li><a href="#" onclick="handleSpecie(event,'perro')">Perro<i id="checkbox-dog"
+                                                    style="margin-left: 8px;" class="far fa-square"></i></a></li>
+                                        <li><a href="#" onclick="handleSpecie(event,'gato')">Gato<i id="checkbox-cat"
+                                                    style="margin-left: 8px;" class="far fa-square"></i></a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <h4 class="sidebar-title">Tamaño</h4>
+                                <div class="shop-brand-list">
+                                    <!-- <ul>
+                                        <li><a href="shop.html"> <i class="fas fa-circle-notch" style="margin-right: 8px;"></i>Grande</a></li>
+                                        <li><a href="shop.html">Mediano</a></li>
+                                        <li><a href="shop.html">Pequeño</a></li>
+
+                                    </ul> -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tamanio"
+                                            id="flexRadioDefault0" value="" checked>
+                                        <label class="form-check-label" for="flexRadioDefault0">
+                                            Todos
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tamanio"
+                                            id="flexRadioDefault1" value="grande">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Grande
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tamanio"
+                                            id="flexRadioDefault2" value="mediano">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Mediano
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tamanio"
+                                            id="flexRadioDefault3" value="pequeño">
+                                        <label class="form-check-label" for="flexRadioDefault3">
+                                            Pequeño
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- <div class="widget">
+                                <h4 class="sidebar-title">Filtrar por edad (meses)</h4>
+                                <div class="price_filter">
+                                    <div id="slider-range"></div>
+                                    <div class="price_slider_amount">
+                                        <span>Edad :</span>
+                                        <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                        <input type="submit" class="btn" value="Filtrar">
+                                    </div>
+                                </div>
+                            </div> -->
+
+                        </aside>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="shop-wrap">
+
+                            <div class="shop-page-meta mb-30">
+                                <div class="shop-grid-menu">
+                                    <ul>
+                                        <li class="active"><i class="fas fa-paw"></i></li>
+
+                                    </ul>
+                                </div>
+                                <div class="shop-showing-result" id="animal-page-counter">
+
+                                </div>
+
+                                <div class="shop-short-by">
+
+                                    <form action="#">
+                                        <label for="shortBy"><i id="sorting-icon"
+                                                style="margin-right: 8px; display: none;" class="fa fa-spinner fa-spin">
+                                            </i>Ordenar</label>
+                                        <select id="orderBy" class="selected">
+                                            <option value="old">Mas antiguos</option>
+                                            <option value="recent" selected>Mas recientes</option>
+
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" id="animal-list-content">
+
+
+                                <% animals.forEach(function(mascot) { %>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="adoption-shop-item">
+                                            <div class="adoption-shop-thumb">
+                                                <img src="img/product/adoption_shop_thumb01.jpg" alt="">
+                                                <a href="/animals/detail/-id_animal-" class="btn">Adoptar <img
+                                                        src="img/icon/w_pawprint.png" alt=""></a>
+                                            </div>
+                                            <div class="adoption-shop-content">
+                                                <h4 class="title"><a href="/animals/detail/-id_animal-">
+                                                        <%=mascot.nombre%>
+                                                    </a></h4>
+                                                <div class="adoption-meta">
+                                                    <ul>
+                                                        <li><i class="fas fa-cog"></i>Macho</li>
+                                                        <li><i class="far fa-square"></i> Grande</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="d-flex justify-content-center">
+                                                    <ul>
+
+                                                        <li style="font-size: 13px;font-weight: 500;"> <i
+                                                                class="far fa-calendar-alt"
+                                                                style="margin-right: 5px;"></i>24 Meses (aprox)</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }); %>
+
+                            </div>
+                            <div id="load-more" class="justify-content-center align-items-center d-flex">
+                                <!-- <a id="load-more-link" href="#" style="border-radius: 15px;" class="btn-outlined">Ver
+                                    más <i id="load-more-icon" style="margin-left: 8px;"
+                                        class="fas fa-chevron-down"></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end list-area -->
+
+    </main>
+    <!-- main-area-end -->
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+    <!-- JS here -->
+    <%- include('../partials/libraries'); %>
+
+        <script>
+
+
+
+            var animalsPerPage = 10;
+            var currentPage = 0;
+            var animalsLoadedNumber = 0;
+            var totalData = null;
+            var loadingRequest = true;
+            var order = "recent";
+            var search = "";
+            var specieFilter = ""
+            var size = ""
+
+
+            $(document).ready(function () {
+
+                currentPage += 1;
+                loadData(true);
+
+
+
+
+                $('#orderBy').on('change', function () {
+                    $("#sorting-icon").css("display", "inline-block");
+                    order = this.value;
+                    currentPage = 1;
+                    animalsLoadedNumber = 0;
+               
+                    loadData(true)
+                });
+
+
+                $("input[name=tamanio]").on("change", function () {
+                    var radiobtns = $(this);
+                    var tmp = "";
+                    radiobtns.each(function () {
+                        if ($(this).is(":checked")) {
+                            tmp = $(this).val();
+                        }
+                    });
+                    size = tmp;
+                    $("#sorting-icon").css("display", "inline-block");
+                    currentPage = 1;
+                    animalsLoadedNumber = 0;
+                    loadData(true)
+                });
+
+            });
+
+            function handleSearch() {
+                if (!loadingRequest) {
+                    $("#sorting-icon").css("display", "inline-block");
+                    search = $("#search-field").val();
+                    currentPage = 1;
+                    animalsLoadedNumber = 0;
+                    loadData(true)
+                }
+            }
+
+            function handleSpecie(e, specie) {
+                e.preventDefault();
+             
+                if (specie === "gato") {
+                    $("#checkbox-cat").toggleClass("fas fa-check-square");
+                    if ($("#checkbox-dog").hasClass("fa-check-square")) {
+                        $("#checkbox-dog").toggleClass("fas fa-check-square");
+                    }
+                    if (specieFilter === "gato") {
+                        specieFilter = ""
+                    } else {
+                        specieFilter = "gato"
+                    }
+                } else {
+                    $("#checkbox-dog").toggleClass("fas fa-check-square");
+                    if ($("#checkbox-cat").hasClass("fa-check-square")) {
+                        $("#checkbox-cat").toggleClass("fas fa-check-square");
+                    }
+
+                    if (specieFilter === "perro") {
+                        specieFilter = ""
+                    } else {
+                        specieFilter = "perro"
+                    }
+                }
+              
+                $("#sorting-icon").css("display", "inline-block");
+                currentPage = 1;
+                animalsLoadedNumber = 0;
+                loadData(true)
+            }
+
+            function handleLoadData(event) {
+                event.preventDefault();
+                if (totalData) {
+                    if (currentPage * animalsPerPage < totalData) {
+                        currentPage += 1;
+                        loadData();
+                    }
+                } else {
+                    currentPage += 1;
+                    loadData();
+                }
+
+            }
+
+
+            function toggleLoading() {
+                $("#load-more-icon").toggleClass("fa fa-spinner fa-spin");
+            }
+
+            function loadData(reset = false) {
+
+                toggleLoading()
+                loadingRequest = true;
+                $.ajax({
+                    method: "GET",
+                    url: `/api/v2/animals?min=${currentPage * animalsPerPage - animalsPerPage}&max=${animalsPerPage}&order=${order}&search=${search}&specie=${specieFilter}&size=${size}`,
+
+                }).done(function (res) {
+                    
+
+                    if (res.state) {
+                        var data = res.data.rows;
+                        totalData = res.data.count;
+                        animalsLoadedNumber += data.length;
+
+
+                        let nextPage = ``;
+                        data.forEach(element => {
+                            nextPage += `
+                            <div class="col-lg-4 col-md-6">
+                                        <div class="adoption-shop-item">
+                                            <div class="adoption-shop-thumb">
+                                                <img src="${getAnimalImage(element.animalImage, element.especie)}" alt="imagen del animal" onerror="this.src='img/images/no_image.png'">
+                                                <a href="/animals/detail/${element.id_animal}" class="btn">Adoptar 
+                                                    <i class="fas fa-paw fa-rotate-90" style="margin-left:8px;"></i></a>
+                                            </div>
+                                            <div class="adoption-shop-content">
+                                                <h4 class="title"><a href="/animals/detail/${element.id_animal}">
+                                                        ${element.nombre}
+                                                    </a></h4>
+                                                <div class="adoption-meta">
+                                                    <ul>
+                                                        <li><i class="fas fa-cog"></i> ${element.sexo}</li>
+                                                        <li><i class="far fa-square"></i>${element.tamanio}</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="d-flex justify-content-center">
+                                                    <ul>
+
+                                                        <li style="font-size: 13px;font-weight: 500;"> <i
+                                                                class="far fa-calendar-alt"
+                                                                style="margin-right: 5px;"></i>${calcularEdad(element.fecha_nacimiento)} (aprox)</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            `;
+                        });
+
+                        $('#animal-page-counter').html(`<p>Viendo ${animalsLoadedNumber} de ${totalData} animales</p>`);
+                        if (reset) {
+                            $('#animal-list-content').html(nextPage);
+
+                        } else {
+                            $('#animal-list-content').append(nextPage);
+
+                        }
+
+                      
+                        if (totalData !== 0 && animalsLoadedNumber !== totalData) {
+                            $('#load-more').html(`<a onClick='handleLoadData(event);' href="#" style="border-radius: 15px;" class="btn-outlined">Ver
+                                    más <i id="load-more-icon" style="margin-left: 8px;"
+                                        class="fas fa-chevron-down"></i></a>`);
+                        } else if (animalsLoadedNumber === totalData) {
+
+                            $('#load-more').html(`<p>Fin de la lista</p>`);
+                        }
+
+                    } else {
+                        currentPage -= 1;
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'No se ha podido obtener la lista de animales',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                        })
+                    }
+
+                }).fail(function () {
+                    currentPage -= 1;
+
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'No se ha podido obtener la lista de animales',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }).always(function () {
+                    $("#sorting-icon").css("display", "none");
+
+                    loadingRequest = false;
+                });
+            }
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('submit-controlled');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            handleSearch()
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
+</body>
+
+</html>

@@ -10,7 +10,7 @@ exports.create = async (req, res) => {
 	try {
 		req.body.id_fundacion = req.userSession.id_fundacion;
 		const result = await animal.create(req.body);
-		res.status(200).json({
+		res.status(201).json({
 			state: true,
 			message: "Se ha registrado el animal con éxito",
 			data: result.id_animal // id assigned
