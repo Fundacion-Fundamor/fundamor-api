@@ -7,8 +7,7 @@ let chaiHttp = require("chai-http");
 const expect = require("chai").expect;
 chai.use(chaiHttp);
 const url = "http://localhost:4000/api";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTcxMTYyLCJleHAiOjE2NDI5NzQ3NjJ9.u4itLg2Y9xvQZxI-fW3aTgb6hU_RoQlyfh1Baw4-QSw";
-
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTc2MDUxLCJleHAiOjE2NDI5Nzk2NTF9.uZgeBk00r_5A6-4E6xp2xN7ExffDKlkrRpBHZbn1wJ8";
 
 
 describe("Pruebas sobre autenticacion (CASOS IDEALES)", () => {

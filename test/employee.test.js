@@ -7,8 +7,15 @@ let chaiHttp = require("chai-http");
 const expect = require("chai").expect;
 chai.use(chaiHttp);
 const url = "http://localhost:4000/api";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTcxMTYyLCJleHAiOjE2NDI5NzQ3NjJ9.u4itLg2Y9xvQZxI-fW3aTgb6hU_RoQlyfh1Baw4-QSw";
-
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTc2MDUxLCJleHAiOjE2NDI5Nzk2NTF9.uZgeBk00r_5A6-4E6xp2xN7ExffDKlkrRpBHZbn1wJ8";
+let employee = {
+	"id_empleado": "10011",
+	"id_fundacion": 2,
+	"correo": "aureliomejiaa2000@malo.com",
+	"nombre": "Aurelio mejia",
+	"rol": "administrador"
+};
+let usedMail = "hernan@fundamor.com";
 
 
 describe("Pruebas sobre colaboradores (CASOS IDEALES)", () => {
@@ -102,7 +109,7 @@ describe("Pruebas sobre empleados (CASOS ERONEOS)", () => {
 			});
 	});
 
-	it("No debería insertar un empleado si ya existe su identificación o su correo", (done) => {
+	it("No debería insertar un empleado cuando ya exista su identificación o su correo", (done) => {
 		chai.request(url)
 			.post("/employees")
 			.set({ "x-auth-token": `${token}` })
@@ -121,26 +128,20 @@ describe("Pruebas sobre empleados (CASOS ERONEOS)", () => {
 			});
 	});
 
-	it("No debería actualizar una adoptante si existe alguien mas con ese correo", (done) => {
+	it("No debería actualizar un empleado cuando exista alguien mas con ese correo", (done) => {
+		employee.correo = usedMail;
 		chai.request(url)
 			.put("/employees")
 			.set({ "x-auth-token": `${token}` })
-			.send({
-				correo: "testerman@fundamor.com",
-				contrasenia: "12345678",
-				nombre: "Testerman ocoró",
-				rol: "administrador",
-				id_empleado: "10206095537"
-			})
+			.send( employee)
 			.end(function (err, res) {
-
 				expect(res).to.have.status(200);
 				expect(res.body).to.have.property("state").to.be.equal(false);
 				done();
 			});
 	});
 
-	it("No debería actualizar una adoptante si faltan datos obligatorios", (done) => {
+	it("No debería actualizar un empleado cuando falten datos obligatorios", (done) => {
 		chai.request(url)
 			.put("/employees")
 			.set({ "x-auth-token": `${token}` })

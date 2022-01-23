@@ -7,18 +7,17 @@ let chaiHttp = require("chai-http");
 const expect = require("chai").expect;
 chai.use(chaiHttp);
 const url = "http://localhost:4000/api";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTcxMTYyLCJleHAiOjE2NDI5NzQ3NjJ9.u4itLg2Y9xvQZxI-fW3aTgb6hU_RoQlyfh1Baw4-QSw";
-
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTc2MDUxLCJleHAiOjE2NDI5Nzk2NTF9.uZgeBk00r_5A6-4E6xp2xN7ExffDKlkrRpBHZbn1wJ8";
+let adopterId= "100490344942";
 
 
 describe("Pruebas sobre adoptantes (CASOS IDEALES)", () => {
 	it("Debería obtener los datos de un adoptante", (done) => {
 		chai.request(url)
-			.get("/adopters/2038464537")
+			.get("/adopters/"+ adopterId)
 			.set({ "x-auth-token": `${token}` })
 			.end(function (err, res) {
-
-				expect(res.body.data).to.have.property("id_adoptante").to.be.equal("2038464537");
+				expect(res.body.data).to.have.property("id_adoptante").to.be.equal(adopterId);
 				expect(res).to.have.status(200);
 				done();
 			});
