@@ -111,7 +111,7 @@ exports.get = async (req, res) => {
 				data: searchResult
 			});
 		} else {
-			res.status(404).json({
+			res.status(200).json({
 				state: false,
 				message: "El adoptante no existe"
 			});

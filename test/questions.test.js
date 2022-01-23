@@ -11,22 +11,22 @@ let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMD
 
 
 
-describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
-	it("Debería obtener los datos de una publicación", (done) => {
+describe("Pruebas sobre preguntas de adopción (CASOS IDEALES)", () => {
+	it("Debería obtener los datos de una pregunta", (done) => {
 		chai.request(url)
-			.get("/post/1")
+			.get("/questions/35")
 			.set({ "x-auth-token": `${token}` })
 			.end(function (err, res) {
 
-				expect(res.body.data).to.have.property("id_publicacion").to.be.equal(1);
+				expect(res.body.data).to.have.property("id_pregunta").to.be.equal(35);
 				expect(res).to.have.status(200);
 				done();
 			});
 	});
 
-	it("Debería obtener la lista de publicaciones", (done) => {
+	it("Debería obtener la lista de preguntas", (done) => {
 		chai.request(url)
-			.get("/post")
+			.get("/questions")
 			.set({ "x-auth-token": `${token}` })
 			.end(function (err, res) {
 
@@ -36,13 +36,13 @@ describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
 			});
 	});
 
-	it("Debería insertar una nueva publicación", (done) => {
+	it("Debería insertar una nueva pregunta", (done) => {
 		chai.request(url)
-			.post("/post")
+			.post("/questions")
 			.set({ "x-auth-token": `${token}` })
 			.send({
 				titulo: "Publicación test",
-				cuerpo: "Aqui va el cuerpo de la publicación"
+				tipo_pregunta: "abierta"
 			})
 			.end(function (err, res) {
 				expect(res).to.have.status(201);
@@ -52,14 +52,14 @@ describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
 			});
 	});
 
-	it("Debería actualizar los datos de una publicación", (done) => {
+	it("Debería actualizar los datos de una pregunta", (done) => {
 		chai.request(url)
-			.put("/post")
+			.put("/questions")
 			.set({ "x-auth-token": `${token}` })
 			.send({
-				id_publicacion:2,
+				id_pregunta: 72,
 				titulo: "Test de actualizacion",
-				cuerpo:"cuerpo actualziado"
+				tipo_pregunta: "abierta"
 
 			}).end(function (err, res) {
 				expect(res).to.have.status(200);
@@ -69,9 +69,9 @@ describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
 			});
 	});
 
-	// it("Debería eliminar una publicación", (done) => {
+	// it("Debería eliminar una pregunta y sus opciones de respuesta si las tiene", (done) => {
 	// 	chai.request(url)
-	// 		.delete("/post/11")
+	// 		.delete("/questions/73")
 	// 		.set({ "x-auth-token": `${token}` })
 	// 		.end(function (err, res) {
 
@@ -84,10 +84,10 @@ describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
 });
 
 
-describe("Pruebas sobre publicación (CASOS ERONEOS)", () => {
-	it("No debería obtener los datos de una publicación inexistente", (done) => {
+describe("Pruebas sobre preguntas de adopción (CASOS ERONEOS)", () => {
+	it("No debería obtener los datos de una pregunta inexistente", (done) => {
 		chai.request(url)
-			.get("/post/899798")
+			.get("/questions/899798")
 			.set({ "x-auth-token": `${token}` })
 			.end(function (err, res) {
 
@@ -99,19 +99,31 @@ describe("Pruebas sobre publicación (CASOS ERONEOS)", () => {
 
 
 
-	it("No debería insertar una publicación si faltan datos obligatorios", (done) => {
+	it("No debería insertar una pregunta si faltan datos obligatorios", (done) => {
 		chai.request(url)
-			.post("/post")
+			.post("/questions")
 			.set({ "x-auth-token": `${token}` })
 			.send({
 				titulo: "2021-08-10"
 			})
 			.end(function (err, res) {
-			
+
 				expect(res).to.have.status(422);
 				done();
 			});
 	});
 
-	
+	it("No debería actualizar una pregunta si faltan datos obligatorios", (done) => {
+		chai.request(url)
+			.put("/questions")
+			.set({ "x-auth-token": `${token}` })
+			.send({
+				titulo: "2021-08-10"
+			})
+			.end(function (err, res) {
+
+				expect(res).to.have.status(422);
+				done();
+			});
+	});
 });

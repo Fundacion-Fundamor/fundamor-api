@@ -7,7 +7,7 @@ let chaiHttp = require("chai-http");
 const expect = require("chai").expect;
 chai.use(chaiHttp);
 const url = "http://localhost:4000/api";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTYzMDkyLCJleHAiOjE2NDI5NjY2OTJ9.qx1_2c0NpxZO9B8gW5nZKdVwm0Nk6DCG5jpDr-CdMWY";
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTY2NzQ2LCJleHAiOjE2NDI5NzAzNDZ9.9VFyOIjbpxbgv0YncMZ-GACBd2z4dO0VnKkExbRbpvc";
 
 let adoptionId = 41;
 let adopterId = "100490344942";//id asociado 
@@ -301,7 +301,7 @@ describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
 			.post("/tracking")
 			.set({ "x-auth-token": `${token}` })
 			.send({
-				id_adopcion: 45,
+				id_adopcion: 44,
 				anotaciones: "anotacion de prueba"
 			})
 			.end(function (err, res) {

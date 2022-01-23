@@ -11,22 +11,22 @@ let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMD
 
 
 
-describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
-	it("Debería obtener los datos de una publicación", (done) => {
+describe("Pruebas sobre adoptantes (CASOS IDEALES)", () => {
+	it("Debería obtener los datos de un adoptante", (done) => {
 		chai.request(url)
-			.get("/post/1")
+			.get("/adopters/2038464537")
 			.set({ "x-auth-token": `${token}` })
 			.end(function (err, res) {
 
-				expect(res.body.data).to.have.property("id_publicacion").to.be.equal(1);
+				expect(res.body.data).to.have.property("id_adoptante").to.be.equal("2038464537");
 				expect(res).to.have.status(200);
 				done();
 			});
 	});
 
-	it("Debería obtener la lista de publicaciones", (done) => {
+	it("Debería obtener la lista de adoptantes", (done) => {
 		chai.request(url)
-			.get("/post")
+			.get("/adopters")
 			.set({ "x-auth-token": `${token}` })
 			.end(function (err, res) {
 
@@ -36,30 +36,19 @@ describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
 			});
 	});
 
-	it("Debería insertar una nueva publicación", (done) => {
+
+	it("Debería actualizar los datos de un adoptante", (done) => {
 		chai.request(url)
-			.post("/post")
+			.put("/adopters")
 			.set({ "x-auth-token": `${token}` })
 			.send({
-				titulo: "Publicación test",
-				cuerpo: "Aqui va el cuerpo de la publicación"
-			})
-			.end(function (err, res) {
-				expect(res).to.have.status(201);
-				expect(res.body).to.have.property("state").to.be.equal(true);
-
-				done();
-			});
-	});
-
-	it("Debería actualizar los datos de una publicación", (done) => {
-		chai.request(url)
-			.put("/post")
-			.set({ "x-auth-token": `${token}` })
-			.send({
-				id_publicacion:2,
-				titulo: "Test de actualizacion",
-				cuerpo:"cuerpo actualziado"
+				correo: "adopterTest@fundamor.com",
+				nombre: "Euclides Jaramillo",
+				telefono_casa: null,
+				telefono_celular: "3128904567",
+				ocupacion: "Carnicero",
+				ciudad: "Av ZZZ #45 calarcá",
+				id_adoptante: "2038464537"
 
 			}).end(function (err, res) {
 				expect(res).to.have.status(200);
@@ -69,9 +58,9 @@ describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
 			});
 	});
 
-	// it("Debería eliminar una publicación", (done) => {
+	// it("Debería eliminar un adoptante y sus procesos de adopción si los tiene", (done) => {
 	// 	chai.request(url)
-	// 		.delete("/post/11")
+	// 		.delete("/adopters/231")
 	// 		.set({ "x-auth-token": `${token}` })
 	// 		.end(function (err, res) {
 
@@ -84,13 +73,12 @@ describe("Pruebas sobre publicación (CASOS IDEALES)", () => {
 });
 
 
-describe("Pruebas sobre publicación (CASOS ERONEOS)", () => {
-	it("No debería obtener los datos de una publicación inexistente", (done) => {
+describe("Pruebas sobre adoptantes (CASOS ERONEOS)", () => {
+	it("No debería obtener los datos de un adoptante inexistente", (done) => {
 		chai.request(url)
-			.get("/post/899798")
+			.get("/adopters/899798")
 			.set({ "x-auth-token": `${token}` })
 			.end(function (err, res) {
-
 				expect(res.body).to.have.property("state").to.be.equal(false);
 				expect(res).to.have.status(200);
 				done();
@@ -98,20 +86,17 @@ describe("Pruebas sobre publicación (CASOS ERONEOS)", () => {
 	});
 
 
-
-	it("No debería insertar una publicación si faltan datos obligatorios", (done) => {
+	it("No debería actualizar una  adoptante si faltan datos obligatorios", (done) => {
 		chai.request(url)
-			.post("/post")
+			.put("/questions")
 			.set({ "x-auth-token": `${token}` })
 			.send({
-				titulo: "2021-08-10"
+				nombre: "Juan"
 			})
 			.end(function (err, res) {
-			
+
 				expect(res).to.have.status(422);
 				done();
 			});
 	});
-
-	
 });
