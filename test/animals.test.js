@@ -7,7 +7,7 @@ let chaiHttp = require("chai-http");
 const expect = require("chai").expect;
 chai.use(chaiHttp);
 const url = "http://localhost:4000/api";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTA5NDg5LCJleHAiOjE2NDI5MTMwODl9.94hK_S-QgkDg17qgeYLnMcB1NsfxLe6YM2ICTq2GMBQ";
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTY2NzQ2LCJleHAiOjE2NDI5NzAzNDZ9.9VFyOIjbpxbgv0YncMZ-GACBd2z4dO0VnKkExbRbpvc";
 
 
 
@@ -92,7 +92,7 @@ describe("Pruebas sobre animal (CASOS IDEALES)", () => {
 			});
 	});
 
-	// it("Se elimina un animal", (done) => {
+	// it("Debería eliminar un animal", (done) => {
 	// 	chai.request(url)
 	// 		.delete("/adoptions/52")
 	// 		.set({ "x-auth-token": `${token}` })
