@@ -67,37 +67,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <% if(state){ %>
-                                <div class="widget">
-                                    <h4 class="sidebar-title">Publicaciones recientes</h4>
-                                    <div class="rc-post-list">
-                                        <ul>
-                                            <% recentPost.forEach(function(post) { %>
-
-                                                <li>
-                                                    <div class="rc-post-thumb">
-                                                        <a href="/post/detail/<%= post.id_publicacion%>">
-                                                            <img src="<%=post.postImage.length===0?"img/images/no_image.png":("http://localhost:4000/"+post.postImage[0].ruta) %>" onerror="this.src='img/images/no_image.png'" alt=""></a>
-                                                    </div>
-                                                    <div class="rc-post-content">
-                                                        <h5 class="title"><a href="/post/detail/<%= post.id_publicacion%>">
-                                                                <%= post.titulo%>
-                                                            </a></h5>
-                                                        <div class="rc-post-meta">
-                                                            <ul>
-                                                                <li><i class="far fa-calendar-alt"></i><%= new Date(post.fecha_creacion).toLocaleDateString()%>
-                                                                </li>
-                                                                <li><a href="/post/detail/<%=post.id_publicacion%>">Leer más</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <% }); %>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <% } %>
+                            
 
                         </aside>
                     </div>
@@ -213,15 +183,16 @@
                 
                     let htmlPage = ``;
                     data.forEach(post => {
-                        htmlPage += `
-                                <div class="standard-blog-item">
-                            <div class="standard-blog-thumb">
+                        var image = post.postImage.length===0
+                            var html = image?`<div></div>`:`<div class="standard-blog-thumb">
                                 <a href="/post/detail/${post.id_publicacion}">
-                                    <img src="${post.postImage.length===0?" img/images/no_image.png":("http://localhost:4000/"+post.postImage[0].ruta) }"
-                                                            onerror="this.src='img/images/no_image.png'" alt=""></a>
+                                    <img src="${("http://localhost:4000/"+post.postImage[0].ruta) }" onerror="this.src='img/images/no_image.png'" alt="">
                                 </a>
-                            </div>
-                            <div class="standard-blog-content">
+                            </div>`;
+                            htmlPage += `
+                                <div class="standard-blog-item">
+                                ${html}
+                                <div class="standard-blog-content">
                                 <div class="blog-post-meta">
                                     <ul>
                                         <li><i class="far fa-calendar"></i>${new Date(post.fecha_creacion).toLocaleDateString()}</li>

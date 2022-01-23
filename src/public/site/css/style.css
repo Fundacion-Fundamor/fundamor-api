@@ -3144,6 +3144,13 @@ label {
   height: 275px;
   object-fit: cover;
 }
+.blog-post-item {
+  padding: 50px;
+  background-color: #f4f2eb;
+  border-radius: 10px;
+  /* -webkit-box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.56);
+  box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.56); */
+}
 .blog-post-item:hover .blog-post-thumb img {
   transform: scale(1.1);
 }
@@ -3248,13 +3255,14 @@ label {
 }
 .standard-blog-thumb {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
 }
 .standard-blog-thumb img {
   border-radius: 6px;
-  width: 100%;
-  object-fit: cover;
-  max-height: 724px;
+  max-height: 500px;
 }
+
 .standard-blog-content .blog-post-meta {
   margin-bottom: 6px;
 }
@@ -3421,6 +3429,7 @@ label {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 .rc-post-content .title a:hover {
   color: var(--primary-color);
 }

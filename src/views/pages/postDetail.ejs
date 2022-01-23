@@ -66,7 +66,7 @@
 
                                         <div class="breeder-gallery-item">
                                             <img src="http://localhost:4000/<%=image.ruta%>" alt=""
-                                                onerror="this.src='img/images/no_image.png'">
+                                            onerror="this.onerror=null; this.src='img/images/no_image.png'">
                                         </div>
 
                                         <% }); %>
@@ -75,7 +75,7 @@
                          
                                 <% if(post.postImage.length===0){ %>
                                     <div class="standard-blog-thumb">
-                                        <img src="img/images/no_image.png%>" alt="">
+                                        <img src="null" alt="">
                                     </div>
                                     <% }; %>
                             <div class="standard-blog-content blog-details-content" style="margin-top: 15px;">
@@ -127,10 +127,14 @@
                                         <%recentPost.forEach(function(post) { %>
                         
                                             <li>
-                                                <div class="rc-post-thumb">
+                                                <!-- <div class="rc-post-thumb">
+                                                    <% if(post.postImage[0]){ %>
                                                     <a href="/post/detail/<%=post.id_publicacion%>">
-                                                        <img src="<%=post.postImage.length===0?"img/images/no_image.png":("http://localhost:4000/"+post.postImage[0].ruta) %>"onerror="this.src='img/images/no_image.png'" alt=""></a>
-                                                </div>
+                                                            <img src="http://localhost:4000/<%=post.postImage[0].ruta%>" alt=""
+                                                            onerror="this.onerror=null; this.src='img/images/no_image.png'">
+                                                            <% } %>
+                                                </div> -->
+                                                
                                                 <div class="rc-post-content">
                                                     <h5 class="title"><a href="/post/detail/<%= post.id_publicacion%>">
                                                             <%= post.titulo%>
