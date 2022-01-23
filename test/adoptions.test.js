@@ -7,15 +7,12 @@ let chaiHttp = require("chai-http");
 const expect = require("chai").expect;
 chai.use(chaiHttp);
 const url = "http://localhost:4000/api";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTA1MzQ4LCJleHAiOjE2NDI5MDg5NDh9.kruen-4ZiRajblM88RfXWiTeDwJ7z54HNGi6aq3zvoU";
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMDEiLCJpZF9mdW5kYWNpb24iOjIsInJvbCI6ImFkbWluaXN0cmFkb3IifSwiaWF0IjoxNjQyOTA5NDg5LCJleHAiOjE2NDI5MTMwODl9.94hK_S-QgkDg17qgeYLnMcB1NsfxLe6YM2ICTq2GMBQ";
 
 let adoptionId = 41;
 let adopterId = "100490344942";//id asociado 
 let animalId = 36;
 
-//en caso de que no esté autenticado
-//en caso de que el adoptante no exista y se le quiera asociar una adopcion
-//eliminar una adopcion que no existe
 
 describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 	it("Se obtienen los datos de una adopción", (done) => {
