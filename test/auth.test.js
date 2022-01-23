@@ -91,7 +91,6 @@ describe("Pruebas sobre autenticacion (CASOS ERRONEOS)", () => {
 			})
 			.end(function (err, res) {
 
-				console.log(res.body)
 				expect(res.body).to.have.property("state").to.be.equal(false);
 				expect(res).to.have.status(200);
 				done();
