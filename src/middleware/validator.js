@@ -114,7 +114,14 @@ const animalValidationRules = () => {
 };
 const postValidationRules = () => {
 	return [
-		// check("titulo", "La publicación debe llevar un titulo").not().isEmpty()
+		check("titulo", "La publicación debe llevar un titulo").not().isEmpty(),
+		check("cuerpo", "La publicación no puede ir vacía").not().isEmpty()
+	];
+};
+const postUpdateValidationRules = () => {
+	return [
+		check("id_publicacion", "Debe especificar el id de la publicacion").not().isEmpty(),
+		check("titulo", "La publicación debe llevar un titulo").not().isEmpty(),
 		check("cuerpo", "La publicación no puede ir vacía").not().isEmpty()
 	];
 };
@@ -179,6 +186,7 @@ module.exports = {
 	animalValidationRules,
 	adoptionQuestionValidationRules,
 	postValidationRules,
+	postUpdateValidationRules,
 	foundationValidationRules,
 	questionValidationRules,
 	animalImageValidationRules,

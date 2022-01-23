@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const postController = require("../controllers/postController");
 const verify = require("../middleware/auth/verify");
-const {postValidationRules, validate } = require("../middleware/validator");
+const {postValidationRules, postUpdateValidationRules, validate } = require("../middleware/validator");
 
 
 /**create post
@@ -29,7 +29,7 @@ router.get("/:id", verify, postController.get);
  * 	cuerpo:String
  * }
  */
-router.put("/", verify, postController.update);
+router.put("/", verify, postUpdateValidationRules(), validate, postController.update);
 
 // delete post
 router.delete("/:id", verify, postController.delete);
