@@ -15,7 +15,7 @@ let animalId = 36;
 
 
 describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
-	it("Se obtienen los datos de una adopción", (done) => {
+	it("Debería obtener los datos de una adopción", (done) => {
 		chai.request(url)
 			.get(`/adoptions/${adoptionId}`)
 			.set({ "x-auth-token": `${token}` })
@@ -28,7 +28,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 
 	});
 
-	it("Se obtiene la lista de adopcipnes", (done) => {
+	it("Debería obtener la lista de adopciones", (done) => {
 		chai.request(url)
 			.get("/adoptions")
 			.set({ "x-auth-token": `${token}` })
@@ -41,7 +41,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 
 	});
 
-	it("Se obtienen las preguntas asociadas a una adopción", (done) => {
+	it("Debería obtener las preguntas asociadas a una adopción", (done) => {
 		chai.request(url)
 			.get(`/adoptionQuestions/${adoptionId}`)
 			.set({ "x-auth-token": `${token}` })
@@ -55,7 +55,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 
 	});
 
-	// it("Se crea una nueva adopción, asociando adoptante", (done) => {
+	// it("Debería crear una nueva adopción (asociando adoptante)", (done) => {
 	// 	chai.request(url)
 	// 		.post("/adoptions")
 	// 		.set({ "x-auth-token": `${token}` })
@@ -77,7 +77,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 
 	// });
 
-	// it("Se crea una nueva adopción, creando adoptante", (done) => {
+	// it("Debería crear una nueva adopción (creando adoptante)", (done) => {
 	// 	chai.request(url)
 	// 		.post("/adoptions")
 	// 		.set({ "x-auth-token": `${token}` })
@@ -107,7 +107,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 
 	// });
 
-	it("Se actualizan los datos de una adopción", (done) => {
+	it("Debería actualizar los datos de una adopción", (done) => {
 		chai.request(url)
 			.put("/adoptions")
 			.set({ "x-auth-token": `${token}` })
@@ -126,7 +126,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 
 	});
 
-	// it("Se elimina un proceso de adopción", (done) => {
+	// it("Debería eliminar un proceso de adopción", (done) => {
 	// 	chai.request(url)
 	// 		.delete("/adoptions/57")
 	// 		.set({ "x-auth-token": `${token}` })
@@ -140,7 +140,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 
 	// });
 
-	it("Se registra un seguimiento", (done) => {
+	it("Debería crear un seguimiento", (done) => {
 		chai.request(url)
 			.post("/tracking")
 			.set({ "x-auth-token": `${token}` })
@@ -156,7 +156,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 
 	});
 
-	it("Se obtiene la lista de seguimientos de una adopción", (done) => {
+	it("Debería obtener la lista de seguimientos de una adopción", (done) => {
 		chai.request(url)
 			.get("/tracking")
 			.set({ "x-auth-token": `${token}` })
@@ -173,7 +173,7 @@ describe("Pruebas sobre adopción (CASOS IDEALES)", () => {
 });
 
 describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
-	it("No se obtienen los datos de una adopción inexistente", (done) => {
+	it("No debería obtener los datos de una adopción inexistente", (done) => {
 		chai.request(url)
 			.get(`/adoptions/${999}`)
 			.set({ "x-auth-token": `${token}` })
@@ -188,7 +188,7 @@ describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
 
 
 
-	it("No se obtienen las preguntas asociadas a una adopción inexistente", (done) => {
+	it("No debería obtener las preguntas asociadas a una adopción inexistente", (done) => {
 		chai.request(url)
 			.get("/adoptionQuestions/21981238")
 			.set({ "x-auth-token": `${token}` })
@@ -202,7 +202,7 @@ describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
 
 	});
 
-	it("No se crea una nueva adopción si el adoptante seleccionado no existe", (done) => {
+	it("No debería crear una nueva adopción cuando el adoptante seleccionado no exista", (done) => {
 		chai.request(url)
 			.post("/adoptions")
 			.set({ "x-auth-token": `${token}` })
@@ -223,7 +223,7 @@ describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
 			});
 
 	});
-	it("No se crea una nueva adopción, creando adoptante ya registrado", (done) => {
+	it("No debería crear una nueva adopción, creando adoptante ya registrado", (done) => {
 		chai.request(url)
 			.post("/adoptions")
 			.set({ "x-auth-token": `${token}` })
@@ -254,7 +254,7 @@ describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
 	});
 
 
-	it("No se crea una nueva adopción si el animal ya se encuentra en un proceso sin concluir", (done) => {
+	it("No debería crear una nueva adopción cuando el animal ya se encuentra en un proceso sin concluir", (done) => {
 		chai.request(url)
 			.post("/adoptions")
 			.set({ "x-auth-token": `${token}` })
@@ -277,7 +277,7 @@ describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
 
 	});
 
-	it("No se actualizan los datos de una adopción inexistente", (done) => {
+	it("No debería actualizar los datos de una adopción inexistente", (done) => {
 		chai.request(url)
 			.put("/adoptions")
 			.set({ "x-auth-token": `${token}` })
@@ -296,7 +296,7 @@ describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
 	});
 
 
-	it("No se registra un seguimiento si el proceso de adopción no está finalizado", (done) => {
+	it("No debería registrar un seguimiento si el proceso de adopción no está finalizado", (done) => {
 		chai.request(url)
 			.post("/tracking")
 			.set({ "x-auth-token": `${token}` })
@@ -311,7 +311,7 @@ describe("Pruebas sobre adopción (CASOS ERRONEOS)", () => {
 			});
 	});
 
-	it("No se obtiene la lista de seguimientos de una adopción inexistente", (done) => {
+	it("No debería obtener la lista de seguimientos de una adopción inexistente", (done) => {
 		chai.request(url)
 			.get("/tracking")
 			.set({ "x-auth-token": `${token}` })

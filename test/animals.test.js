@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
-// /* eslint-disable quotes */
+/* eslint-disable quotes */
 
 let chai = require("chai");
 let chaiHttp = require("chai-http");
@@ -12,7 +12,7 @@ let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZSI6eyJpZCI6IjEwMD
 
 
 describe("Pruebas sobre animal (CASOS IDEALES)", () => {
-	it("Se obtienen los datos de un animal", (done) => {
+	it("Debería obtener los datos de un animal", (done) => {
 		chai.request(url)
 			.get("/animals/27")
 			.set({ "x-auth-token": `${token}` })
@@ -22,10 +22,9 @@ describe("Pruebas sobre animal (CASOS IDEALES)", () => {
 				expect(res).to.have.status(200);
 				done();
 			});
-
 	});
 
-	it("Se obtiene la lista de animales", (done) => {
+	it("Debería obtener la lista de animales", (done) => {
 		chai.request(url)
 			.get("/animals")
 			.set({ "x-auth-token": `${token}` })
@@ -35,10 +34,9 @@ describe("Pruebas sobre animal (CASOS IDEALES)", () => {
 				expect(res.body).to.have.property("state").to.be.equal(true);
 				done();
 			});
-
 	});
 
-	it("Se inserta un nuevo animal", (done) => {
+	it("Debería insertar un nuevo animal", (done) => {
 		chai.request(url)
 			.post("/animals")
 			.set({ "x-auth-token": `${token}` })
@@ -63,10 +61,9 @@ describe("Pruebas sobre animal (CASOS IDEALES)", () => {
 
 				done();
 			});
-
 	});
 
-	it("Se actualizan los datos de un animal", (done) => {
+	it("Debería actualizar los datos de un animal", (done) => {
 		chai.request(url)
 			.put("/animals")
 			.set({ "x-auth-token": `${token}` })
@@ -93,7 +90,6 @@ describe("Pruebas sobre animal (CASOS IDEALES)", () => {
 
 				done();
 			});
-
 	});
 
 	// it("Se elimina un animal", (done) => {
@@ -107,13 +103,12 @@ describe("Pruebas sobre animal (CASOS IDEALES)", () => {
 
 	// 			done();
 	// 		});
-
 	// });
 });
 
 
 describe("Pruebas sobre animal (CASOS ERONEOS)", () => {
-	it("No se obtienen los datos de un animal inexistente", (done) => {
+	it("No debería obtener los datos de un animal inexistente", (done) => {
 		chai.request(url)
 			.get("/animals/899798")
 			.set({ "x-auth-token": `${token}` })
@@ -123,12 +118,11 @@ describe("Pruebas sobre animal (CASOS ERONEOS)", () => {
 				expect(res).to.have.status(200);
 				done();
 			});
-
 	});
 
 
 
-	it("No se inserta un animal si faltan datos obligatorios del mismo ", (done) => {
+	it("No debería insertar un animal si faltan datos obligatorios del mismo ", (done) => {
 		chai.request(url)
 			.post("/animals")
 			.set({ "x-auth-token": `${token}` })
@@ -150,10 +144,9 @@ describe("Pruebas sobre animal (CASOS ERONEOS)", () => {
 				expect(res).to.have.status(422);
 				done();
 			});
-
 	});
 
-	it("No se actualizan los datos de un animal si alguno de los campos no corresponden con el tipo de dato", (done) => {
+	it("No debería actualizar los datos de un animal si alguno de los campos no corresponden con el tipo de dato", (done) => {
 		chai.request(url)
 			.put("/animals")
 			.set({ "x-auth-token": `${token}` })
@@ -178,7 +171,5 @@ describe("Pruebas sobre animal (CASOS ERONEOS)", () => {
 
 				done();
 			});
-
 	});
-
 });
