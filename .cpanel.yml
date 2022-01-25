@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/nsanssqv/fundamorserver2/
+    - /bin/cp -R src $DEPLOYPATH
+    - 
