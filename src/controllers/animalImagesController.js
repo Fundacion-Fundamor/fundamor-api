@@ -25,7 +25,7 @@ exports.upload = async (req, res) => {
 
 		});
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al registrar las imágenes del animal"
@@ -75,7 +75,7 @@ exports.delete = async (req, res) => {
 			});
 		}
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener las imágenes"

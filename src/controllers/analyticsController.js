@@ -6,7 +6,6 @@ const adoption = require("../models").adoption;
 const { Op } = require("sequelize");
 var Sequelize = require("sequelize");
 exports.countAnimals = async (req, res) => {
-	console.log(req.query);
 
 	try {
 
@@ -102,7 +101,7 @@ exports.countAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -169,7 +168,7 @@ exports.rescuedAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -232,7 +231,7 @@ exports.rescuedAnimalsPerGender = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -297,7 +296,7 @@ exports.adoptedAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -362,7 +361,7 @@ exports.adoptedAnimalsPerGender = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -427,7 +426,7 @@ exports.sterilizedAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -492,7 +491,7 @@ exports.dewormedAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -501,6 +500,3 @@ exports.dewormedAnimals = async (req, res) => {
 
 };
 
-
-exports.adoptions = async (req, res) => {
-};

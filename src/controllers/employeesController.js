@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al registrar el colaborador"
@@ -62,7 +62,7 @@ exports.delete = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al eliminar el colaborador"
@@ -88,7 +88,7 @@ exports.get = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener el colaborador"
@@ -135,7 +135,7 @@ exports.update = async (req, res) => {
 
 	} catch (error) {
 
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al actualizar los datos del colaborador"
@@ -172,7 +172,7 @@ exports.list = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de colaboradores"
@@ -216,7 +216,7 @@ exports.updateProfile = async (req, res) => {
 		}
 	} catch (error) {
 
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al realizar la actualización de datos"
@@ -269,7 +269,7 @@ exports.updatePassword = async (req, res) => {
 
 	} catch (error) {
 
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al realizar la actualización de datos"

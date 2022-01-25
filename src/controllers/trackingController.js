@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al registrar el seguimiento"
@@ -55,7 +55,7 @@ exports.delete = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al eliminar el seguimiento"
@@ -81,7 +81,7 @@ exports.get = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener el seguimiento"
@@ -106,7 +106,7 @@ exports.update = async (req, res) => {
 
 	} catch (error) {
 
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al actualizar los datos del seguimiento"
@@ -139,7 +139,7 @@ exports.list = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de seguimientos de esta adopcion"

@@ -16,7 +16,7 @@ exports.create = async (req, res) => {
 			data: result.id_animal // id assigned
 		});
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al guardar el animal"
@@ -41,7 +41,7 @@ exports.delete = async (req, res) => {
 				try {
 					await fs.unlink(`./src/public/${element.ruta}`);
 				} catch (error) {
-					console.log(error);
+					// console.log(error);
 				}
 			}
 
@@ -66,7 +66,7 @@ exports.delete = async (req, res) => {
 			});
 		}
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener el animal"
@@ -95,7 +95,7 @@ exports.get = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener el animal"
@@ -119,7 +119,7 @@ exports.update = async (req, res) => {
 
 	} catch (error) {
 
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al actualizar los datos del animal"
@@ -130,7 +130,7 @@ exports.update = async (req, res) => {
 
 exports.list = async (req, res) => {
 
-	console.log(req.query);
+
 	try {
 		const searchResult = await animal.findAll({
 			where: {
@@ -157,7 +157,7 @@ exports.list = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"

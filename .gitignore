@@ -108,3 +108,4 @@ private
 .vscode/fundamor-api.code-workspace
 
 src/public/images/
+src/config/

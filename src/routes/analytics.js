@@ -12,8 +12,7 @@ router.get("/adoptedAnimalsPerGender", verify, analyticsController.adoptedAnimal
 
 router.get("/sterilized", verify, analyticsController.sterilizedAnimals);
 router.get("/dewormed", verify, analyticsController.dewormedAnimals);
-// get analytics
-router.get("/:id", verify, analyticsController.adoptions);
+
 
 
 
