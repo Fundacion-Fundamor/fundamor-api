@@ -108,7 +108,6 @@ exports.list = async (req, res) => {
 		}
 
 	} catch (error) {
-		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de publicaciones"
