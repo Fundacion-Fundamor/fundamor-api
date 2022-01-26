@@ -76,7 +76,7 @@
                                             <%=animal.nombre %>
                                         </h4>
                                         <p>
-                                            <%=animal.caracteristicas??"No registra"%>
+                                            <%=animal.caracteristicas!==null?animal.caracteristicas:"No registra"%>
                                         </p>
                                         <div class="breeder-dog-info">
                                             <h5 class="title">Información del animal</h5>
@@ -135,7 +135,7 @@
                                                         <h6>Fecha de rescate:</h6>
 
                                                         <span>
-                                                            <%=animal.fecha_rescate??"No registra"%>
+                                                            <%=animal.fecha_rescate!==null?animal.fecha_rescate:"No registra"%>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -143,7 +143,7 @@
                                                     <div class="breeder-info-item">
                                                         <h6>Sitio de rescate:</h6>
                                                         <span>
-                                                            <%=animal.sitio_rescate??"No registra"%>
+                                                            <%=animal.sitio_rescate!==null?animal.sitio_rescate:"No registra"%>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -151,7 +151,7 @@
                                                     <div class="breeder-info-item">
                                                         <h6>Vacunas:</h6>
                                                         <span>
-                                                            <%=animal.vacunas??"No registra"%>
+                                                            <%=animal.vacunas!==null?animal.vacunas:"No registra"%>
                                                         </span>
                                                     </div>
                                                 </div>
