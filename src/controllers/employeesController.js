@@ -2,6 +2,8 @@
 const employee = require("../models").employee;
 const { Op } = require("sequelize");
 const helpers = require("../helpers/helpers");
+const nodemailer = require("nodemailer");
+
 exports.create = async (req, res) => {
 
 	try {
@@ -280,33 +282,61 @@ exports.updatePassword = async (req, res) => {
 };
 exports.resetPassword = async (req, res) => {
 
+
 	try {
 
-		const searchResult = await employee.findAll({
+		const searchResult = await employee.findOne({
 			where: {
 				correo: req.body.correo
-
 			}
 		});
 
-		if (searchResult.length!==0) {
+		if (searchResult) {
+
+			let newPassword = helpers.generatePassword();
+			let encryptedNewPassword = await helpers.encryptPassword(newPassword);
+
+			searchResult.contrasenia = encryptedNewPassword; // update password in the instance
+			await searchResult.save(); //update password in db
+
+			// create reusable transporter object using the default SMTP transport
+			let transporter = nodemailer.createTransport({
+				host: process.env.EMAIL_HOST,
+				port: 465,
+				secure: true, // true for 465, false for other ports
+				auth: {
+					user: process.env.EMAIL_USER_NAME,
+					pass: process.env.EMAIL_USER_PASSWORD
+				}
+			});
+
+			// send mail with defined transport object
+			let info = await transporter.sendMail({
+				from:`"Plataforma de adopción" <${process.env.EMAIL_SENDER_MAIL}>`, // sender address
+				to: req.body.correo, // list of receivers
+				subject: "Plataforma de adopción", // Subject line
+				text: "Recuperacion de contraseña", // plain text body
+				html: `<b>La nueva contraseña es ${newPassword}</b>` // html body
+			});
+
 			res.status(200).json({
 				state: true,
-				message: "Una nueva contraseña ha sido enviada al correo ingresado"
-
+				message: "Sí el correo ingresado existe recibirá un mensaje con su nueva contraseña"
 			});
-		}else{
+
+		} else {
 			res.status(200).json({
 				state: false,
-				message: "El correo ingresado no existe en el sistema"
-
+				message: "El usuario no existe",
+				data: searchResult
 			});
 		}
 
 	} catch (error) {
+
 		res.status(400).json({
 			state: false,
-			message: "Ha ocurrido un error al restablecer su contraseña, por favor intente mas tarde"
+			message: "Ha ocurrido un error al generar el token"
 		});
 	}
 
