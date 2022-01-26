@@ -6,7 +6,6 @@ const adoption = require("../models").adoption;
 const { Op } = require("sequelize");
 var Sequelize = require("sequelize");
 exports.countAnimals = async (req, res) => {
-	console.log(req.query);
 
 	try {
 
@@ -102,7 +101,7 @@ exports.countAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -128,8 +127,8 @@ exports.rescuedAnimals = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				fecha_rescate: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
-					[Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
+					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
 				},
 				especie: "perro"
 
@@ -149,8 +148,8 @@ exports.rescuedAnimals = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				fecha_rescate: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
-					[Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
+					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
 				},
 				especie: "gato"
 
@@ -169,7 +168,7 @@ exports.rescuedAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -197,8 +196,8 @@ exports.rescuedAnimalsPerGender = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				fecha_rescate: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
-					[Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
+					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
 				},
 				sexo: "macho"
 
@@ -215,8 +214,8 @@ exports.rescuedAnimalsPerGender = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				fecha_rescate: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
-					[Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
+					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
 				},
 				sexo: "hembra"
 
@@ -232,7 +231,7 @@ exports.rescuedAnimalsPerGender = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -257,8 +256,8 @@ exports.adoptedAnimals = async (req, res) => {
 			where: {
 				fecha_entrega: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
-					[Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
+					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
 				},
 				"$animal.especie$": "perro",
 				"$animal.id_fundacion$": req.userSession.id_fundacion
@@ -277,8 +276,8 @@ exports.adoptedAnimals = async (req, res) => {
 			where: {
 				fecha_entrega: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
-					[Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
+					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
 				},
 				"$animal.especie$": "gato",
 				"$animal.id_fundacion$": req.userSession.id_fundacion
@@ -297,7 +296,7 @@ exports.adoptedAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -322,8 +321,8 @@ exports.adoptedAnimalsPerGender = async (req, res) => {
 			where: {
 				fecha_entrega: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
-					[Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
+					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
 				},
 				"$animal.sexo$": "macho",
 				"$animal.id_fundacion$": req.userSession.id_fundacion
@@ -342,8 +341,8 @@ exports.adoptedAnimalsPerGender = async (req, res) => {
 			where: {
 				fecha_entrega: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ?? actualYear),
-					[Op.gt]: new Date("01-01-" + req.query.year ?? actualYear)
+					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
+					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
 				},
 				"$animal.sexo$": "hembra",
 				"$animal.id_fundacion$": req.userSession.id_fundacion
@@ -362,7 +361,7 @@ exports.adoptedAnimalsPerGender = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -427,7 +426,7 @@ exports.sterilizedAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -492,7 +491,7 @@ exports.dewormedAnimals = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -501,6 +500,3 @@ exports.dewormedAnimals = async (req, res) => {
 
 };
 
-
-exports.adoptions = async (req, res) => {
-};

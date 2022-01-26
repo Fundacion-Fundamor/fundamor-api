@@ -73,8 +73,6 @@ exports.post = async (req, res) => {
 exports.postPagination = async (req, res) => {
 
 
-	console.log(req.query);
-
 	try {
 		let searchResult = null;
 
@@ -120,7 +118,7 @@ exports.postPagination = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de publicaciones"
@@ -158,7 +156,7 @@ exports.postDetail = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.render("pages/postDetail", { state: false, msg: "Ha ocurrido un error al obtener la publicación, por favor intente mas tarde" });
 
 	}
@@ -174,8 +172,6 @@ exports.animals = async (req, res) => {
 
 exports.animalsPagination = async (req, res) => {
 
-
-	console.log(req.query);
 
 	try {
 		let searchResult = null;
@@ -229,7 +225,7 @@ exports.animalsPagination = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
@@ -276,7 +272,7 @@ exports.animalDetail = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.render("pages/animalDetail", { state: false, msg: "Ha ocurrido un error al obtener el animal, por favor intente mas tarde" });
 
 	}
@@ -312,7 +308,7 @@ exports.adopterForm = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.render("pages/adopterForm", { state: false, msg: "Ha ocurrido un error al obtener el animal, por favor intente mas tarde" });
 
 	}
@@ -321,7 +317,6 @@ exports.adopterForm = async (req, res) => {
 
 exports.receiveAdopterForm = async (req, res) => {
 
-	console.log(req.body);
 
 	try {
 		const {
@@ -414,7 +409,7 @@ exports.receiveAdopterForm = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al registrar la adopción"

@@ -24,7 +24,7 @@ exports.create = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al registrar la pregunta"
@@ -49,7 +49,7 @@ exports.delete = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al eliminar la pregunta"
@@ -73,7 +73,7 @@ exports.deleteMultiple = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al eliminar las preguntas"
@@ -94,7 +94,7 @@ exports.get = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la pregunta"
@@ -119,7 +119,7 @@ exports.update = async (req, res) => {
 
 	} catch (error) {
 
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al actualizar los datos de la pregunta"
@@ -149,7 +149,7 @@ exports.list = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de preguntas"

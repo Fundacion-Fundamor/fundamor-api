@@ -59,7 +59,7 @@
 
 
                                         <div class="breeder-gallery-item">
-                                            <img src="http://localhost:4000/<%=image.ruta%>" alt=""
+                                            <img src="https://nsandboxsoft.xyz/<%=image.ruta%>" alt=""
                                                 onerror="this.src='img/images/no_image.png'">
                                         </div>
 
@@ -68,7 +68,7 @@
                                 </div>
                                 <% if(animal.animalImage.length===0){ %>
                                     <div class="breeder-gallery-item">
-                                        <img src="http://localhost:4000/img/images/<%=animal.especie==="gato"?"no_image_cat.png":"no_image_dog.png"%>" alt=""
+                                        <img src="https://nsandboxsoft.xyz/img/images/<%=animal.especie==="gato"?"no_image_cat.png":"no_image_dog.png"%>" alt=""
                                         onerror="this.src='img/images/no_image.png'">
                                     </div>
                                     <% }; %>
@@ -76,7 +76,7 @@
                                             <%=animal.nombre %>
                                         </h4>
                                         <p>
-                                            <%=animal.caracteristicas??"No registra"%>
+                                            <%=animal.caracteristicas!==null?animal.caracteristicas:"No registra"%>
                                         </p>
                                         <div class="breeder-dog-info">
                                             <h5 class="title">Información del animal</h5>
@@ -135,7 +135,7 @@
                                                         <h6>Fecha de rescate:</h6>
 
                                                         <span>
-                                                            <%=animal.fecha_rescate??"No registra"%>
+                                                            <%=animal.fecha_rescate!==null?animal.fecha_rescate:"No registra"%>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -143,7 +143,7 @@
                                                     <div class="breeder-info-item">
                                                         <h6>Sitio de rescate:</h6>
                                                         <span>
-                                                            <%=animal.sitio_rescate??"No registra"%>
+                                                            <%=animal.sitio_rescate!==null?animal.sitio_rescate:"No registra"%>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -151,7 +151,7 @@
                                                     <div class="breeder-info-item">
                                                         <h6>Vacunas:</h6>
                                                         <span>
-                                                            <%=animal.vacunas??"No registra"%>
+                                                            <%=animal.vacunas!==null?animal.vacunas:"No registra"%>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -211,7 +211,7 @@
                         <div class="col-xl-3">
                             <div class="adoption-item">
                                 <div class="adopt-thumb">
-                                    <a href="/animals/detail/<%=animal.id_animal%>"><img src="http://localhost:4000/<%=animal.animalImage.length!==0?animal.animalImage[0].ruta:(animal.especie==="gato"?"img/images/no_cat_image.png":"img/images/no_dog_image.png")%>" alt="" onerror="this.src='img/images/no_image.png'"></a>
+                                    <a href="/animals/detail/<%=animal.id_animal%>"><img src="https://nsandboxsoft.xyz/<%=animal.animalImage.length!==0?animal.animalImage[0].ruta:(animal.especie==="gato"?"img/images/no_cat_image.png":"img/images/no_dog_image.png")%>" alt="" onerror="this.src='img/images/no_image.png'"></a>
                     
                                 </div>
                                 <div class="adopt-content">

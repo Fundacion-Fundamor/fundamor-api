@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al asociar las preguntas"
@@ -45,7 +45,7 @@ exports.delete = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+	
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al desasociar la pregunta"
@@ -77,7 +77,7 @@ exports.deleteMultiple = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+	
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al desasociar la pregunta"
@@ -113,7 +113,7 @@ exports.list = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+	
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de preguntas"

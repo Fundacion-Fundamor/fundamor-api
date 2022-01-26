@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
 	question.init({
 		id_pregunta: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
 		id_fundacion: { allowNull: false, type: DataTypes.INTEGER },
-		titulo: { type: DataTypes.STRING(100), allowNull: false },
+		titulo: { type: DataTypes.STRING(600), allowNull: false },
 		tipo_pregunta: { type: DataTypes.ENUM("arbierta", "multiple"), allowNull: false }
 	}, {
 		sequelize,

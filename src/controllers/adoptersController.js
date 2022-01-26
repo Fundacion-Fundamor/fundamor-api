@@ -34,7 +34,7 @@ exports.create = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al registrar el adoptante"
@@ -92,7 +92,7 @@ exports.delete = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al eliminar el adoptante"
@@ -118,7 +118,7 @@ exports.get = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+	
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener el adoptante"
@@ -162,7 +162,6 @@ exports.update = async (req, res) => {
 
 	} catch (error) {
 
-		console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al actualizar los datos del adoptante"
@@ -204,7 +203,7 @@ exports.list = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de adoptantes"

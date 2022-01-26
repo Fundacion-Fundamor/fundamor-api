@@ -16,7 +16,7 @@ exports.create = async (req, res) => {
 		});
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al crear la publicación"
@@ -41,7 +41,7 @@ exports.update = async (req, res) => {
 
 	} catch (error) {
 
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al actualizar los datos de la publicación"
@@ -71,7 +71,7 @@ exports.get = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la publicación"
@@ -108,7 +108,6 @@ exports.list = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de publicaciones"
@@ -154,7 +153,7 @@ exports.delete = async (req, res) => {
 			});
 		}
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la publicación"

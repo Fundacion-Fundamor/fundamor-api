@@ -203,7 +203,7 @@
                             <div class="col-xl-3">
                                 <div class="adoption-item">
                                     <div class="adopt-thumb">
-                                        <a href="/animals/detail/<%=animal.id_animal%>"><img src="http://localhost:4000/<%=animal.animalImage.length!==0?animal.animalImage[0].ruta:(animal.especie==="gato"?"img/images/no_cat_image.png":"img/images/no_dog_image.png")%>" alt="" onerror="this.src='img/images/no_image.png'"></a>
+                                        <a href="/animals/detail/<%=animal.id_animal%>"><img src="https://nsandboxsoft.xyz/<%=animal.animalImage.length!==0?animal.animalImage[0].ruta:(animal.especie==="gato"?"img/images/no_cat_image.png":"img/images/no_dog_image.png")%>" alt="" onerror="this.src='img/images/no_image.png'"></a>
                     
                                     </div>
                                     <div class="adopt-content">
@@ -373,7 +373,7 @@
                             <div class="blog-post-thumb">
                             <% if(post.postImage[0]){ %>
                                 <a href="/post/detail/<%=post.id_publicacion%>">
-                                <img src="http://localhost:4000/<%=post.postImage[0].ruta%>" alt=""
+                                <img src="https://nsandboxsoft.xyz/<%=post.postImage[0].ruta%>" alt=""
                                 onerror="this.onerror=null; this.src='img/images/no_image.png'">
                             <% } %>
                             </div>

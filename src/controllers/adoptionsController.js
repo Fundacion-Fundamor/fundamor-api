@@ -142,7 +142,7 @@ exports.create = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al registrar la adopción"
@@ -212,7 +212,7 @@ exports.delete = async (req, res) => {
 			});
 		}
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al eliminar la adopción"
@@ -245,7 +245,7 @@ exports.get = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la adopción"
@@ -325,7 +325,7 @@ exports.update = async (req, res) => {
 
 	} catch (error) {
 
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al actualizar los datos de la adopción"
@@ -370,7 +370,7 @@ exports.list = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de la adopciones"

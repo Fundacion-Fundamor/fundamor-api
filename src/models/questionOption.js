@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 	questionOption.init({
 		id_opcion: { primaryKey: true, allowNull: false, type: DataTypes.INTEGER, autoIncrement: true },
 		id_pregunta: { allowNull: false, type: DataTypes.INTEGER },
-		descripcion: { type: DataTypes.STRING(70)}
+		descripcion: { type: DataTypes.STRING(255)}
 	}, {
 		sequelize,
 		modelName: "questionOption",
