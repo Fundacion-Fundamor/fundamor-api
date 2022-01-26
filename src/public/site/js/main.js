@@ -585,13 +585,13 @@ function getAnimalImage(animalImages, especie) {
 
 	if (animalImages.length === 0) {
 		if (especie === "gato") {
-			return ("http://localhost:4000/img/images/no_image_cat.png");
+			return ("https://nsandboxsoft.xyz/img/images/no_image_cat.png");
 		} else {
-			return ("http://localhost:4000/img/images/no_image_dog.png");
+			return ("https://nsandboxsoft.xyz/img/images/no_image_dog.png");
 
 		}
 	} else {
-		return ("http://localhost:4000/" + animalImages[0].ruta);
+		return ("https://nsandboxsoft.xyz/" + animalImages[0].ruta);
 	}
 }
 

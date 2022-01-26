@@ -59,7 +59,7 @@
 
 
                                         <div class="breeder-gallery-item">
-                                            <img src="http://localhost:4000/<%=image.ruta%>" alt=""
+                                            <img src="https://nsandboxsoft.xyz/<%=image.ruta%>" alt=""
                                                 onerror="this.src='img/images/no_image.png'">
                                         </div>
 
@@ -68,7 +68,7 @@
                                 </div>
                                 <% if(animal.animalImage.length===0){ %>
                                     <div class="breeder-gallery-item">
-                                        <img src="http://localhost:4000/img/images/<%=animal.especie==="gato"?"no_image_cat.png":"no_image_dog.png"%>" alt=""
+                                        <img src="https://nsandboxsoft.xyz/img/images/<%=animal.especie==="gato"?"no_image_cat.png":"no_image_dog.png"%>" alt=""
                                         onerror="this.src='img/images/no_image.png'">
                                     </div>
                                     <% }; %>
@@ -211,7 +211,7 @@
                         <div class="col-xl-3">
                             <div class="adoption-item">
                                 <div class="adopt-thumb">
-                                    <a href="/animals/detail/<%=animal.id_animal%>"><img src="http://localhost:4000/<%=animal.animalImage.length!==0?animal.animalImage[0].ruta:(animal.especie==="gato"?"img/images/no_cat_image.png":"img/images/no_dog_image.png")%>" alt="" onerror="this.src='img/images/no_image.png'"></a>
+                                    <a href="/animals/detail/<%=animal.id_animal%>"><img src="https://nsandboxsoft.xyz/<%=animal.animalImage.length!==0?animal.animalImage[0].ruta:(animal.especie==="gato"?"img/images/no_cat_image.png":"img/images/no_dog_image.png")%>" alt="" onerror="this.src='img/images/no_image.png'"></a>
                     
                                 </div>
                                 <div class="adopt-content">
