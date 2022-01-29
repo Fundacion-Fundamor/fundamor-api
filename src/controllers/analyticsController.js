@@ -113,7 +113,6 @@ exports.countAnimals = async (req, res) => {
 
 exports.rescuedAnimals = async (req, res) => {
 
-
 	try {
 
 		let actualYear = new Date().getFullYear();
@@ -127,8 +126,8 @@ exports.rescuedAnimals = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				fecha_rescate: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
-					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
+					[Op.lt]: new Date("12-31-" + (req.query.year === undefined ? actualYear : req.query.year)),
+					[Op.gt]: new Date("01-01-" + (req.query.year === undefined ? actualYear : req.query.year))
 				},
 				especie: "perro"
 
@@ -148,8 +147,8 @@ exports.rescuedAnimals = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				fecha_rescate: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
-					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
+					[Op.lt]: new Date("12-31-" + (req.query.year === undefined ? actualYear : req.query.year)),
+					[Op.gt]: new Date("01-01-" + (req.query.year === undefined ? actualYear : req.query.year))
 				},
 				especie: "gato"
 
@@ -182,6 +181,7 @@ exports.rescuedAnimals = async (req, res) => {
 
 exports.rescuedAnimalsPerGender = async (req, res) => {
 
+	console.log("QUERRRY", req.query)
 
 	try {
 
@@ -196,8 +196,8 @@ exports.rescuedAnimalsPerGender = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				fecha_rescate: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
-					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
+					[Op.lt]: new Date("12-31-" + (req.query.year === undefined ? actualYear : req.query.year)),
+					[Op.gt]: new Date("01-01-" + (req.query.year === undefined ? actualYear : req.query.year))
 				},
 				sexo: "macho"
 
@@ -214,8 +214,8 @@ exports.rescuedAnimalsPerGender = async (req, res) => {
 				id_fundacion: req.userSession.id_fundacion,
 				fecha_rescate: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
-					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
+					[Op.lt]: new Date("12-31-" + (req.query.year === undefined ? actualYear : req.query.year)),
+					[Op.gt]: new Date("01-01-" + (req.query.year === undefined ? actualYear : req.query.year))
 				},
 				sexo: "hembra"
 
@@ -256,8 +256,8 @@ exports.adoptedAnimals = async (req, res) => {
 			where: {
 				fecha_entrega: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
-					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
+					[Op.lt]: new Date("12-31-" + (req.query.year === undefined ? actualYear : req.query.year)),
+					[Op.gt]: new Date("01-01-" + (req.query.year === undefined ? actualYear : req.query.year))
 				},
 				"$animal.especie$": "perro",
 				"$animal.id_fundacion$": req.userSession.id_fundacion
@@ -276,8 +276,8 @@ exports.adoptedAnimals = async (req, res) => {
 			where: {
 				fecha_entrega: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
-					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
+					[Op.lt]: new Date("12-31-" + (req.query.year === undefined ? actualYear : req.query.year)),
+					[Op.gt]: new Date("01-01-" + (req.query.year === undefined ? actualYear : req.query.year))
 				},
 				"$animal.especie$": "gato",
 				"$animal.id_fundacion$": req.userSession.id_fundacion
@@ -321,8 +321,8 @@ exports.adoptedAnimalsPerGender = async (req, res) => {
 			where: {
 				fecha_entrega: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
-					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
+					[Op.lt]: new Date("12-31-" + (req.query.year === undefined ? actualYear : req.query.year)),
+					[Op.gt]: new Date("01-01-" + (req.query.year === undefined ? actualYear : req.query.year))
 				},
 				"$animal.sexo$": "macho",
 				"$animal.id_fundacion$": req.userSession.id_fundacion
@@ -341,8 +341,8 @@ exports.adoptedAnimalsPerGender = async (req, res) => {
 			where: {
 				fecha_entrega: {
 
-					[Op.lt]: new Date("12-31-" + req.query.year ===undefined?actualYear:req.query.year ),
-					[Op.gt]: new Date("01-01-" + req.query.year ===undefined?actualYear:req.query.year )
+					[Op.lt]: new Date("12-31-" + (req.query.year === undefined ? actualYear : req.query.year)),
+					[Op.gt]: new Date("01-01-" + (req.query.year === undefined ? actualYear : req.query.year))
 				},
 				"$animal.sexo$": "hembra",
 				"$animal.id_fundacion$": req.userSession.id_fundacion
