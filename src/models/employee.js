@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
 		correo: { type: DataTypes.STRING(70), allowNull: false },
 		contrasenia: { type: DataTypes.STRING(300), allowNull: false },
 		nombre: { type: DataTypes.STRING(70), allowNull: false },
-		rol: { type: DataTypes.STRING(45), allowNull: false }
+		rol: { type: DataTypes.ENUM("administrador", "colaborador"), allowNull: false }
 	}, {
 		sequelize,
 		modelName: "employee",
