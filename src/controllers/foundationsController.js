@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const { Op } = require("sequelize");
 const foundation = require("../models").foundation;
-
+const animal = require("../models").animal;
 exports.create = async (req, res) => {
 
 
@@ -187,4 +187,40 @@ exports.list = async (req, res) => {
 		});
 	}
 
+};
+
+exports.publicAnimalList = async (req, res) => {
+
+
+	try {
+		const searchResult = await animal.findAll({
+			where: {
+				id_fundacion: req.params.id
+			},
+			include: "animalImage",
+			order: [["id_animal", "DESC"]]
+		});
+
+		if (searchResult.length !== 0) {
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "No existen registros en la base de datos"
+
+			});
+		}
+
+	} catch (error) {
+		// console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener la lista de animales"
+		});
+	}
 };

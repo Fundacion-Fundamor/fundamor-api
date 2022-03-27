@@ -13,6 +13,9 @@ router.get("/myFoundation", verify, foundationsController.myFoundation);
 //
 router.get("/:id", verify, foundationsController.get);
 
+//
+router.get("/:id/animals", foundationsController.publicAnimalList);
+
 // create foundation
 router.post("/", verify, foundationValidationRules(), validate, foundationsController.create);
 
