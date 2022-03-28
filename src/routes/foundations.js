@@ -13,8 +13,11 @@ router.get("/myFoundation", verify, foundationsController.myFoundation);
 //
 router.get("/:id", verify, foundationsController.get);
 
-//
-router.get("/:id/animals", foundationsController.publicAnimalList);
+//get animal list paginate, param is a foundation id
+router.get("/:id/animals", foundationsController.animalsPagination);
+
+//get animal list paginate, param is a foundation id
+router.get("/:id/animal/:id_animal", foundationsController.getAnimal);
 
 // create foundation
 router.post("/", verify, foundationValidationRules(), validate, foundationsController.create);

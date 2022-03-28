@@ -189,19 +189,46 @@ exports.list = async (req, res) => {
 
 };
 
-exports.publicAnimalList = async (req, res) => {
+exports.animalsPagination = async (req, res) => {
 
 
 	try {
-		const searchResult = await animal.findAll({
-			where: {
-				id_fundacion: req.params.id
-			},
-			include: "animalImage",
-			order: [["id_animal", "DESC"]]
-		});
+		let searchResult = null;
 
-		if (searchResult.length !== 0) {
+		if (req.query.min !== undefined && req.query.max !== undefined && req.query.order !== undefined &&
+			req.query.search !== undefined && req.query.specie !== undefined && req.query.size !== undefined) {
+
+
+			searchResult = await animal.findAndCountAll({
+				where: {
+					id_fundacion: 2,
+					estado: "Sin adoptar",
+					nombre: {
+						[Op.like]: `%${req.query.search}%`
+					},
+					especie: {
+						[Op.like]: `%${req.query.specie}%`
+					},
+					tamanio: {
+						[Op.like]: `%${req.query.size}%`
+					}
+				},
+				include: "animalImage",
+				distinct: true,
+				order: [["id_animal", req.query.order === "recent" ? "DESC" : "ASC"]],
+				limit: req.query.max ? parseInt(req.query.max) : 0,
+				offset: req.query.min ? parseInt(req.query.min) : 0
+			});
+		} else {
+			searchResult = await animal.findAndCountAll({
+				where: {
+					id_fundacion: req.params.id,
+					estado: "Sin adoptar"
+				},
+				include: "animalImage"
+			});
+		}
+		if (searchResult && searchResult.length !== 0) {
 
 			res.status(200).json({
 				state: true,
@@ -221,6 +248,37 @@ exports.publicAnimalList = async (req, res) => {
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al obtener la lista de animales"
+		});
+	}
+
+
+};
+
+exports.getAnimal = async (req, res) => {
+	try {
+		const searchResult = await animal.findByPk(req.params["id_animal"], { include: "animalImage" });
+
+		if (searchResult) {
+
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "El animal no existe"
+
+			});
+		}
+
+	} catch (error) {
+		// console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener el animal"
 		});
 	}
 };
