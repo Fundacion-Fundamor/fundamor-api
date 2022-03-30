@@ -2,6 +2,8 @@
 const { Op } = require("sequelize");
 const foundation = require("../models").foundation;
 const animal = require("../models").animal;
+const question = require("../models").question;
+const post = require("../models").post;
 exports.create = async (req, res) => {
 
 
@@ -254,6 +256,65 @@ exports.animalsPagination = async (req, res) => {
 
 };
 
+
+
+exports.postPagination = async (req, res) => {
+
+
+	try {
+		let searchResult = null;
+
+		if (req.query.min !== undefined && req.query.max !== undefined && req.query.search !== undefined) {
+
+
+			searchResult = await post.findAndCountAll({
+				where: {
+					id_fundacion: 2,
+					titulo: {
+						[Op.like]: `%${req.query.search}%`
+					}
+
+				},
+				include: "postImage",
+				distinct: true,
+				order: [["id_publicacion", "DESC"]],
+				limit: req.query.max ? parseInt(req.query.max) : 0,
+				offset: req.query.min ? parseInt(req.query.min) : 0
+			});
+		} else {
+			searchResult = await post.findAndCountAll({
+				where: {
+					id_fundacion: 2
+
+				},
+				include: "postImage"
+			});
+		}
+		if (searchResult && searchResult.length !== 0) {
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "No existen registros en la base de datos"
+
+			});
+		}
+
+	} catch (error) {
+		// console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener la lista de publicaciones"
+		});
+	}
+
+
+};
 exports.getAnimal = async (req, res) => {
 	try {
 		const searchResult = await animal.findByPk(req.params["id_animal"], { include: "animalImage" });
@@ -281,4 +342,113 @@ exports.getAnimal = async (req, res) => {
 			message: "Ha ocurrido un error al obtener el animal"
 		});
 	}
+};
+
+
+exports.adopterForm = async (req, res) => {
+
+	try {
+		const animalDetail = await animal.findByPk(req.params["id_animal"], {
+
+			include: "animalImage"
+		});
+
+
+		if (animalDetail && animalDetail.estado === "Sin adoptar") {
+			const questions = await question.findAll({
+				where: {
+					id_fundacion: req.params.id
+				},
+				order: [
+					["id_pregunta", "ASC"],
+					["questionOptions", "id_opcion", "ASC"]
+				],
+				include: "questionOptions"
+
+			});
+
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: {
+					animal: animalDetail,
+					questions: questions
+				}
+			});
+		} else {
+
+			res.status(200).json({
+				state: false,
+				message: "En este momento este animal no se encuentra disponible para ser adoptado"
+
+			});
+
+		}
+
+	} catch (error) {
+		// console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error"
+		});
+
+	}
+};
+
+
+exports.getPost = async (req, res) => {
+
+	try {
+		const searchResult = await post.findByPk(req.params["id_post"], {
+
+			include: "postImage"
+		});
+		const recentPost = await post.findAll({
+			where: {
+				id_fundacion: req.params.id
+
+			},
+			include: "postImage",
+			order: [["id_publicacion", "DESC"]],
+			limit: 5
+		});
+
+		if (searchResult) {
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: {
+					post: searchResult,
+					recentPost: recentPost
+				}
+			});
+
+		} else {
+
+			res.status(200).json({
+				state: false,
+				message: "En este momento la publicación no se encuentra disponible"
+
+			});
+
+		}
+
+	} catch (error) {
+		// console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error"
+		});
+
+	}
+
+};
+exports.sendContactMessage = (req, res) => {
+
+	res.status(200).json({
+		state: true,
+		message: "El mensaje ha sido enviado con éxito, nos pondremos en contacto contigo lo antes posible"
+	});
 };
