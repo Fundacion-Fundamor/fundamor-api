@@ -4,6 +4,10 @@ const foundation = require("../models").foundation;
 const animal = require("../models").animal;
 const question = require("../models").question;
 const post = require("../models").post;
+const adoptionQuestion = require("../models").adoptionQuestion;
+const adopter = require("../models").adopter;
+const adoption = require("../models").adoption;
+
 exports.create = async (req, res) => {
 
 
@@ -78,7 +82,7 @@ exports.delete = async (req, res) => {
 exports.myFoundation = async (req, res) => {
 
 	try {
-		const searchResult = await foundation.findByPk(req.userSession.id_fundacion);
+		const searchResult = await foundation.findByPk(2);
 
 		if (searchResult) {
 
@@ -319,7 +323,7 @@ exports.getAnimal = async (req, res) => {
 	try {
 		const searchResult = await animal.findByPk(req.params["id_animal"], { include: "animalImage" });
 
-		if (searchResult) {
+		if (searchResult && searchResult.estado === "Sin adoptar") {
 
 
 			res.status(200).json({
@@ -330,7 +334,7 @@ exports.getAnimal = async (req, res) => {
 		} else {
 			res.status(200).json({
 				state: false,
-				message: "El animal no existe"
+				message: "En este momento este animal no se encuentra disponible para ser adoptado"
 
 			});
 		}
@@ -349,7 +353,6 @@ exports.adopterForm = async (req, res) => {
 
 	try {
 		const animalDetail = await animal.findByPk(req.params["id_animal"], {
-
 			include: "animalImage"
 		});
 
@@ -451,4 +454,116 @@ exports.sendContactMessage = (req, res) => {
 		state: true,
 		message: "El mensaje ha sido enviado con éxito, nos pondremos en contacto contigo lo antes posible"
 	});
+};
+
+
+exports.receiveAdopterForm = async (req, res) => {
+
+
+	try {
+		const {
+			idAnimal = null,
+			nombre = null,
+			identificacion = null,
+			email = null,
+			ocupacion = null,
+			ciudad = null,
+			fijo = null,
+			movil = null,
+			preguntas = null
+		} = req.body;
+
+
+		let id_adopter = "";
+
+
+		const searchResult = await adopter.findByPk(identificacion);
+		if (searchResult) {
+			id_adopter = searchResult.id_adoptante;
+
+		} else {
+			//crea el adoptante
+			const result = await adopter.create({
+				id_adoptante: identificacion,
+				nombre: nombre,
+				telefono_casa: fijo === "" ? null : fijo,
+				telefono_celular: movil === "" ? null : movil,
+				ciudad: ciudad === "" ? null : ciudad,
+				ocupacion: ocupacion === "" ? null : ocupacion,
+				correo: email === "" ? null : email
+
+			});
+			id_adopter = result.id_adoptante;
+		}
+
+
+		let adoptionData = {
+			id_adoptante: id_adopter,
+			fecha_estudio: Date.now(),
+			id_animal: idAnimal,
+			estado: "en espera"
+		};
+
+		//crea la adopcion
+		const result = await adoption.create(adoptionData);
+
+		if (result) {
+
+			if (preguntas.length !== 0) {
+
+				let questionsFormattedData = [];
+
+				preguntas.forEach(element => {
+				
+					questionsFormattedData.push({
+						id_adopcion: result.id_adopcion,
+						id_pregunta: element.questionId,
+						respuesta: element.answer
+					});
+
+				});
+
+				const resultQuestionAnswers = await adoptionQuestion.bulkCreate(questionsFormattedData);
+
+				await animal.update({ estado: "En proceso" }, {
+					where: {
+						id_animal: idAnimal
+					}
+				});
+
+
+				if (resultQuestionAnswers) {
+					res.status(201).json({
+						state: true,
+						message: "Su solicitud ha sido enviada, pronto nos contactaremos con usted para darle una respuesta",
+						data: result.id_adopcion // id assigned
+					});
+				} else {
+					res.status(201).json({
+						state: false,
+						message: "Ha ocurrido un error al registrar las respuestas del formulario"
+					});
+				}
+			} else {
+
+				res.status(201).json({
+					state: true,
+					message: "Su solicitud ha sido enviada, pronto nos contactaremos con usted para darle una respuesta",
+					data: result.id_adopcion // id assigned
+				});
+			}
+		} else {
+			res.status(201).json({
+				state: false,
+				message: "No se ha podido realizar la solicitud, por favor intente mas tarde"
+			});
+		}
+
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al registrar la la solicitud de adopción"
+		});
+	}
 };

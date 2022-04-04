@@ -2,8 +2,45 @@
 /* eslint-disable camelcase */
 
 const animal = require("../models").animal;
-
 const fs = require("fs").promises;
+
+/**Permite obtener la información de un animal a traves del
+ * id del mismo
+ *
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.get = async (req, res) => {
+	try {
+		const searchResult = await animal.findByPk(req.params["id"], { include: "animalImage" });
+
+		if (searchResult) {
+
+			res.status(200).json({
+				state: true,
+				message: "Resultados obtenidos",
+				data: searchResult
+			});
+
+		} else {
+
+			res.status(200).json({
+				state: false,
+				message: "El animal no existe"
+
+			});
+		}
+
+	} catch (error) {
+	
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al obtener el animal"
+		});
+	}
+};
+
+
 
 exports.create = async (req, res) => {
 
@@ -74,34 +111,7 @@ exports.delete = async (req, res) => {
 	}
 };
 
-exports.get = async (req, res) => {
-	try {
-		const searchResult = await animal.findByPk(req.params["id"], { include: "animalImage" });
 
-		if (searchResult) {
-
-
-			res.status(200).json({
-				state: true,
-				message: "Resultados obtenidos",
-				data: searchResult
-			});
-		} else {
-			res.status(200).json({
-				state: false,
-				message: "El animal no existe"
-
-			});
-		}
-
-	} catch (error) {
-		// console.error(error);
-		res.status(400).json({
-			state: false,
-			message: "Ha ocurrido un error al obtener el animal"
-		});
-	}
-};
 
 exports.update = async (req, res) => {
 	try {

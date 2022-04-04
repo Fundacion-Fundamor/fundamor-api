@@ -32,7 +32,7 @@ const trackingRoutes = require("./src/routes/tracking");
 const animalImagesRoutes = require("./src/routes/animalImages");
 const postImagesRoutes = require("./src/routes/postImages");
 const analyticsRoutes = require("./src/routes/analytics");
-const landingRoutes = require("./src/routes/landing");
+
 
 //enable express.json (in the request the header should be application/json)
 app.use(express.json({ extended: true }));
@@ -57,13 +57,10 @@ app.use("/api/adoptionQuestions", adoptionQuestionsRoutes);
 app.use("/api/animalImages", animalImagesRoutes);
 app.use("/api/postImages", postImagesRoutes);
 app.use("/api/analytics", analyticsRoutes);
-app.use("/", landingRoutes);
-
-
 
 //app.use sets up middleware
 app.use((req, res, next) => {
-	const error = new Error("Endpoint Not found");
+	const error = new Error("Not found");
 	error.status = 404;
 	next(error);
 });

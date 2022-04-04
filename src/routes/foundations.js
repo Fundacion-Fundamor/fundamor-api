@@ -8,7 +8,7 @@ const verify = require("../middleware/auth/verify");
 router.get("/", verify, foundationsController.list);
 
 // get foundation of user in session
-router.get("/myFoundation", verify, foundationsController.myFoundation);
+router.get("/myFoundation", foundationsController.myFoundation);
 
 //
 router.get("/:id", verify, foundationsController.get);
@@ -38,7 +38,10 @@ router.put("/", verify, foundationsController.update);
 // delete foundation
 router.delete("/:id", verify, foundationsController.delete);
 
-//receive contact data for message
+//receive contact data 
 router.post("/contactmessage/:foudation_id", contactFormValidationRules(), validate, foundationsController.sendContactMessage);
+
+//receive adoption form data 
+router.post("/:foudation_id/adoptionForm", adopterFormValidationRules(), validate, foundationsController.receiveAdopterForm);
 
 module.exports = router;
