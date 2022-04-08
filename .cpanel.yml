@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/nsanssqv/fundamorserver2/
+    - export DEPLOYPATH=/home/fundppoe/fundamorserver/
     - /bin/cp -R src $DEPLOYPATH
     - /bin/cp -R index.js $DEPLOYPATH
     - /bin/cp -R app.js $DEPLOYPATH
