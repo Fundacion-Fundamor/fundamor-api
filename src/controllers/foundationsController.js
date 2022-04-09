@@ -7,7 +7,6 @@ const post = require("../models").post;
 const adoptionQuestion = require("../models").adoptionQuestion;
 const adopter = require("../models").adopter;
 const adoption = require("../models").adoption;
-const fetch = require("node-fetch");
 
 exports.create = async (req, res) => {
 
@@ -449,45 +448,12 @@ exports.getPost = async (req, res) => {
 	}
 
 };
-exports.sendContactMessage = async (req, res) => {
+exports.sendContactMessage = (req, res) => {
 
-
-	const { reca } = req.body;
-
-
-
-	if (reca) {
-
-		try {
-			fetch("https://www.google.com/recaptcha/api/siteverify", {
-				method: "POST",
-				headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				body: `secret=${process.env.RECA}&response=${reca}`
-			})
-				.then(response => response.json())
-				.then(data => {
-
-
-					res.status(200).json({
-						state: true,
-						message: "El mensaje ha sido enviado con éxito, nos pondremos en contacto contigo lo antes posible" + data.success
-					});
-				});
-
-
-		} catch (error) {
-			res.status(400).json({
-				state: false,
-				message: "Ha realizado demasiadas peticiones al servidor, por favor espere un momento e intente nuevamente"
-			});
-		}
-	} else {
-		res.status(400).json({
-			state: false,
-			message: "Ha realizado demasiadas peticiones al servidor, por favor espere un momento e intente nuevamente"
-		});
-	}
-
+	res.status(200).json({
+		state: true,
+		message: "El mensaje ha sido enviado con éxito, nos pondremos en contacto contigo lo antes posible"
+	});
 };
 
 
@@ -548,7 +514,7 @@ exports.receiveAdopterForm = async (req, res) => {
 				let questionsFormattedData = [];
 
 				preguntas.forEach(element => {
-
+				
 					questionsFormattedData.push({
 						id_adopcion: result.id_adopcion,
 						id_pregunta: element.questionId,
