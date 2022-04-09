@@ -3,6 +3,8 @@ const employee = require("../models").employee;
 const { Op } = require("sequelize");
 const helpers = require("../helpers/helpers");
 const nodemailer = require("nodemailer");
+const emailAdoption = require("../templates/emailAdoption");
+const emailPasswordRecovery = require("../templates/emailPasswordRecovery");
 
 exports.create = async (req, res) => {
 
@@ -316,7 +318,7 @@ exports.resetPassword = async (req, res) => {
 				to: req.body.correo, // list of receivers
 				subject: "Plataforma de adopción", // Subject line
 				text: "Recuperacion de contraseña", // plain text body
-				html: `<b>La nueva contraseña es ${newPassword}</b>` // html body
+				html: emailPasswordRecovery(newPassword) // html body
 			});
 
 			res.status(200).json({
@@ -342,3 +344,6 @@ exports.resetPassword = async (req, res) => {
 
 
 };
+
+
+
