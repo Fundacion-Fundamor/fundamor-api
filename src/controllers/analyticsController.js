@@ -116,7 +116,7 @@ exports.rescuedAnimals = async (req, res) => {
 	try {
 
 		let actualYear = new Date().getFullYear();
-		//toca hacer 2 consultas una para perros y otra para gatos
+		
 		let dogsRescuedPerMonth = await animal.findAll({
 			attributes: [
 				[Sequelize.literal(`COUNT(*)`), 'rescued_animals'],

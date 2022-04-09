@@ -5,8 +5,8 @@ const animal = require("../models").animal;
 const employee = require("../models").employee;
 const adoptionQuestion = require("../models").adoptionQuestion;
 const adopter = require("../models").adopter;
-
 const { Op } = require("sequelize");
+
 /**Primero se inserta el adoptante, luego la adopcion y finalmente las preguntas
  * adopterData:{},
  * adoptionData:{},
@@ -105,6 +105,7 @@ exports.create = async (req, res) => {
 
 						const resultQuestionAnswers = await adoptionQuestion.bulkCreate(questionsFormattedData);
 						if (resultQuestionAnswers) {
+
 							res.status(201).json({
 								state: true,
 								message: "La adopción se ha registrado con éxito",

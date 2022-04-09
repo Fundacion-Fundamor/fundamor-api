@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 const { Op } = require("sequelize");
+
 const foundation = require("../models").foundation;
 const animal = require("../models").animal;
 const question = require("../models").question;
@@ -7,6 +8,11 @@ const post = require("../models").post;
 const adoptionQuestion = require("../models").adoptionQuestion;
 const adopter = require("../models").adopter;
 const adoption = require("../models").adoption;
+const employee = require("../models").employee;
+const nodemailer = require("nodemailer");
+
+const emailContact = require("../templates/emailContact");
+const emailAdoption = require("../templates/emailAdoption");
 
 exports.create = async (req, res) => {
 
@@ -82,7 +88,7 @@ exports.delete = async (req, res) => {
 exports.myFoundation = async (req, res) => {
 
 	try {
-		const searchResult = await foundation.findByPk(2);
+		const searchResult = await foundation.findByPk(process.env.FUNDAMOR_ID);
 
 		if (searchResult) {
 
@@ -197,7 +203,6 @@ exports.list = async (req, res) => {
 
 exports.animalsPagination = async (req, res) => {
 
-
 	try {
 		let searchResult = null;
 
@@ -207,7 +212,7 @@ exports.animalsPagination = async (req, res) => {
 
 			searchResult = await animal.findAndCountAll({
 				where: {
-					id_fundacion: 2,
+					id_fundacion: process.env.FUNDAMOR_ID,
 					estado: "Sin adoptar",
 					nombre: {
 						[Op.like]: `%${req.query.search}%`
@@ -228,7 +233,7 @@ exports.animalsPagination = async (req, res) => {
 		} else {
 			searchResult = await animal.findAndCountAll({
 				where: {
-					id_fundacion: req.params.id,
+					id_fundacion: process.env.FUNDAMOR_ID,
 					estado: "Sin adoptar"
 				},
 				include: "animalImage"
@@ -273,7 +278,7 @@ exports.postPagination = async (req, res) => {
 
 			searchResult = await post.findAndCountAll({
 				where: {
-					id_fundacion: 2,
+					id_fundacion: process.env.FUNDAMOR_ID,
 					titulo: {
 						[Op.like]: `%${req.query.search}%`
 					}
@@ -288,7 +293,7 @@ exports.postPagination = async (req, res) => {
 		} else {
 			searchResult = await post.findAndCountAll({
 				where: {
-					id_fundacion: 2
+					id_fundacion: process.env.FUNDAMOR_ID
 
 				},
 				include: "postImage"
@@ -360,7 +365,7 @@ exports.adopterForm = async (req, res) => {
 		if (animalDetail && animalDetail.estado === "Sin adoptar") {
 			const questions = await question.findAll({
 				where: {
-					id_fundacion: req.params.id
+					id_fundacion: process.env.FUNDAMOR_ID
 				},
 				order: [
 					["id_pregunta", "ASC"],
@@ -409,7 +414,7 @@ exports.getPost = async (req, res) => {
 		});
 		const recentPost = await post.findAll({
 			where: {
-				id_fundacion: req.params.id
+				id_fundacion: process.env.FUNDAMOR_ID
 
 			},
 			include: "postImage",
@@ -448,12 +453,63 @@ exports.getPost = async (req, res) => {
 	}
 
 };
-exports.sendContactMessage = (req, res) => {
+exports.sendContactMessage = async (req, res) => {
 
-	res.status(200).json({
-		state: true,
-		message: "El mensaje ha sido enviado con éxito, nos pondremos en contacto contigo lo antes posible"
-	});
+	try {
+
+		const searchResult = await employee.findAll({
+			where: {
+				id_fundacion: process.env.FUNDAMOR_ID
+			}
+		});
+
+
+		if (searchResult) {
+
+			let emails = [];
+			searchResult.forEach(element => {
+				emails.push(element.correo);
+			});
+			// create reusable transporter object using the default SMTP transport
+			let transporter = nodemailer.createTransport({
+				host: process.env.EMAIL_HOST,
+				port: 465,
+				secure: true, // true for 465, false for other ports
+				auth: {
+					user: process.env.EMAIL_USER_NAME,
+					pass: process.env.EMAIL_USER_PASSWORD
+				}
+			});
+
+			// send mail with defined transport object
+			await transporter.sendMail({
+				from: `"Plataforma de adopción" <${process.env.EMAIL_SENDER_MAIL}>`, // sender address
+				to: emails, // list of receivers
+				subject: "Contactando a fundamor", // Subject line
+				text: "Contactando a fundamor", // plain text body
+				html: emailContact(req.body) // html body
+			});
+
+			res.status(200).json({
+				state: true,
+				message: "El mensaje ha sido enviado con éxito, nos pondremos en contacto contigo lo antes posible"
+			});
+
+		} else {
+			res.status(200).json({
+				state: false,
+				message: "En este momento no podemos procesar el mensaje, por favor intente mas tarde",
+				data: searchResult
+			});
+		}
+
+	} catch (error) {
+
+		res.status(400).json({
+			state: false,
+			message: "Ha ocurrido un error al enviar el mensaje"
+		});
+	}
 };
 
 
@@ -509,12 +565,52 @@ exports.receiveAdopterForm = async (req, res) => {
 
 		if (result) {
 
+			await animal.update({ estado: "En proceso" }, {
+				where: {
+					id_animal: idAnimal
+				}
+			});
+
+			let animalResult = await animal.findByPk(idAnimal);
+
+			const employees = await employee.findAll({
+				where: {
+					id_fundacion: process.env.FUNDAMOR_ID
+				}
+			});
+
+			if (employees && animalResult) {
+				let emails = [];
+				employees.forEach(element => {
+					emails.push(element.correo);
+				});
+
+				let transporter = nodemailer.createTransport({
+					host: process.env.EMAIL_HOST,
+					port: 465,
+					secure: true, // true for 465, false for other ports
+					auth: {
+						user: process.env.EMAIL_USER_NAME,
+						pass: process.env.EMAIL_USER_PASSWORD
+					}
+				});
+
+				// send mail with defined transport object
+				await transporter.sendMail({
+					from: `"Plataforma de adopción" <${process.env.EMAIL_SENDER_MAIL}>`, // sender address
+					to: emails, // list of receivers
+					subject: "Nueva solicitud de adopción", // Subject line
+					text: "Nueva solicitud de adopción", // plain text body
+					html: emailAdoption(animalResult.nombre) // html body
+				});
+
+			}
 			if (preguntas.length !== 0) {
 
 				let questionsFormattedData = [];
 
 				preguntas.forEach(element => {
-				
+
 					questionsFormattedData.push({
 						id_adopcion: result.id_adopcion,
 						id_pregunta: element.questionId,
@@ -524,13 +620,6 @@ exports.receiveAdopterForm = async (req, res) => {
 				});
 
 				const resultQuestionAnswers = await adoptionQuestion.bulkCreate(questionsFormattedData);
-
-				await animal.update({ estado: "En proceso" }, {
-					where: {
-						id_animal: idAnimal
-					}
-				});
-
 
 				if (resultQuestionAnswers) {
 					res.status(201).json({
@@ -560,7 +649,7 @@ exports.receiveAdopterForm = async (req, res) => {
 		}
 
 	} catch (error) {
-		console.error(error);
+		// console.error(error);
 		res.status(400).json({
 			state: false,
 			message: "Ha ocurrido un error al registrar la la solicitud de adopción"

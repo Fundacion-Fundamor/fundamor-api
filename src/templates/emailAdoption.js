@@ -1,4 +1,7 @@
-const emailAdoption = `
+
+module.exports = function (animalName) {
+
+	return `
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -120,7 +123,7 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
   <tr>
     <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
       <a href="https://unlayer.com" target="_blank">
-      <img align="center" border="0" src="https://api.fundamorcalarca.org/site/images/logo.png" alt="Logo" title="Logo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 36%;max-width: 208.8px;" width="208.8" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="https://api.fundamorcalarca.org/site/images/logo.png" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 36%;max-width: 208.8px;" width="208.8" class="v-src-width v-src-max-width"/>
       </a>
     </td>
   </tr>
@@ -193,7 +196,8 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:20px 80px;font-family:arial,helvetica,sans-serif;" align="left">
         
   <h4 class="v-text-align v-line-height" style="margin: 0px; color: #c33118; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: 'Raleway',sans-serif; font-size: 16px;">
-    <strong>Recuerde que puede validar cada una de las solicitudes que son registradas a trav&eacute;s de la plataforma de adopci&oacute;n</strong>
+    <strong>El animal involucrado es <b style="text-transform: uppercase;">${animalName}</b></strong>
+  <p style="margin-top: 9px;">Recuerde que puede validar cada una de las solicitudes que son registradas a trav&eacute;s de la plataforma de adopci&oacute;n </p>
   </h4>
 
       </td>
@@ -342,4 +346,4 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
 
 `;
 
-module.exports = emailAdoption;
+};

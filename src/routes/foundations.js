@@ -6,29 +6,27 @@ const verify = require("../middleware/auth/verify");
 
 
 // foundation list
-router.get("/", verify, foundationsController.list);
+// router.get("/", verify, foundationsController.list);
 
 // get foundation of user in session
 router.get("/myFoundation", foundationsController.myFoundation);
 
-//
-router.get("/:id", verify, foundationsController.get);
 
-//get animal list paginate, param id is a foundation id
-router.get("/:id/animals", foundationsController.animalsPagination);
+//get animal list paginate
+router.get("/animals", foundationsController.animalsPagination);
 
-//get post list paginate, param id is a foundation id
-router.get("/:id/post", foundationsController.postPagination);
+//get post list paginate
+router.get("/post", foundationsController.postPagination);
 
-//get post detail, param id is a foundation id
-router.get("/:id/post/:id_post", foundationsController.getPost);
+//get post detail,
+router.get("/post/:id_post", foundationsController.getPost);
 
 
-//get animal detail, param id is a foundation id
-router.get("/:id/animal/:id_animal", foundationsController.getAnimal);
+//get animal detail, 
+router.get("/animal/:id_animal", foundationsController.getAnimal);
 
 //get adopter form , param id is a foundation id
-router.get("/:id/adopt/:id_animal", foundationsController.adopterForm);
+router.get("/adopt/:id_animal", foundationsController.adopterForm);
 
 // create foundation
 router.post("/", verify, foundationValidationRules(), validate, foundationsController.create);
@@ -37,12 +35,16 @@ router.post("/", verify, foundationValidationRules(), validate, foundationsContr
 router.put("/", verify, foundationsController.update);
 
 // delete foundation
-router.delete("/:id", verify, foundationsController.delete);
+// router.delete("/:id", verify, foundationsController.delete);
 
 //receive contact data 
-router.post("/contactmessage/:foudation_id", contactFormValidationRules(), validate, foundationsController.sendContactMessage);
+router.post("/contactmessage", contactFormValidationRules(), validate, foundationsController.sendContactMessage);
 
 //receive adoption form data 
-router.post("/:foudation_id/adoptionForm", adopterFormValidationRules(), validate, foundationsController.receiveAdopterForm);
+router.post("/adoptionForm", adopterFormValidationRules(), validate, foundationsController.receiveAdopterForm);
+
+
+//
+router.get("/:id", verify, foundationsController.get);
 
 module.exports = router;

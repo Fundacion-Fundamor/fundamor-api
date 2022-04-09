@@ -3,7 +3,7 @@ const employee = require("../models").employee;
 const { Op } = require("sequelize");
 const helpers = require("../helpers/helpers");
 const nodemailer = require("nodemailer");
-const emailAdoption = require("../templates/emailAdoption");
+// const emailAdoption = require("../templates/emailAdoption");
 const emailPasswordRecovery = require("../templates/emailPasswordRecovery");
 
 exports.create = async (req, res) => {
@@ -316,8 +316,8 @@ exports.resetPassword = async (req, res) => {
 			let info = await transporter.sendMail({
 				from:`"Plataforma de adopción" <${process.env.EMAIL_SENDER_MAIL}>`, // sender address
 				to: req.body.correo, // list of receivers
-				subject: "Plataforma de adopción", // Subject line
-				text: "Recuperacion de contraseña", // plain text body
+				subject: "Recuperación de contraseña", // Subject line
+				text: "Recuperación de contraseña", // plain text body
 				html: emailPasswordRecovery(newPassword) // html body
 			});
 

@@ -1,5 +1,5 @@
 
-module.exports = function (newPassword) {
+module.exports = function ({ email, name, phone, message }) {
 
 
 	return `
@@ -124,7 +124,7 @@ module.exports = function (newPassword) {
       <tr>
         <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
           <a href="https://unlayer.com" target="_blank">
-          <img align="center" border="0" src="https://api.fundamorcalarca.org/site/images/logo.png" alt="Logo" title="Logo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 36%;max-width: 208.8px;" width="208.8" class="v-src-width v-src-max-width"/>
+          <img align="center" border="0" src="https://api.fundamorcalarca.org/site/images/logo.png" alt=""  style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 36%;max-width: 208.8px;" width="208.8" class="v-src-width v-src-max-width"/>
           </a>
         </td>
       </tr>
@@ -162,7 +162,7 @@ module.exports = function (newPassword) {
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 60px 20px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <h1 class="v-text-align v-line-height" style="margin: 0px; color: #000000; line-height: 150%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: 'Raleway',sans-serif; font-size: 26px;">
-        Recuperación de contraseña
+        ¡Una persona está contactando a la fundación!
       </h1>
     
           </td>
@@ -197,32 +197,18 @@ module.exports = function (newPassword) {
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:20px 80px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <h4 class="v-text-align v-line-height" style="margin: 0px; color: #c33118; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: 'Raleway',sans-serif; font-size: 16px;">
-        <strong>Su nueva contraseña es:</strong>
-        <strong>${newPassword}</strong>
-      </h4>
+        <strong style="display: flex;">Nombre: <p  style="color: #1e4b57;margin-left: 9px; font-weight: normal;">${name}</p></strong>
+        <strong style="display: flex; margin-top: 9px;"><p style="min-width: 56px;">Correo: </p> <p  style="color: #1e4b57;margin-left: 9px; font-weight: normal;">${email}</p></strong>
+        <strong style="display: flex;margin-top: 9px;">Teléfono: <p  style="color: #1e4b57;margin-left: 9px; font-weight: normal;">${phone}</p></strong>
+        <strong style="display: flex;margin-top: 9px;flex-direction: column; text-align: left;"> Mensaje: <p  style="color: #1e4b57; font-weight: normal;">${message}</p></strong>
+    
+    </h4>
     
           </td>
         </tr>
       </tbody>
     </table>
     
-    <table id="u_content_button_1" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-      <tbody>
-        <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 70px;font-family:arial,helvetica,sans-serif;" align="left">
-            
-    <div class="v-text-align" align="center">
-      <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:arial,helvetica,sans-serif;"><tr><td class="v-text-align" style="font-family:arial,helvetica,sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com" style="height:52px; v-text-anchor:middle; width:273px;" arcsize="0%" stroke="f" fillcolor="#1e4b57"><w:anchorlock/><center style="color:#FFFFFF;font-family:arial,helvetica,sans-serif;"><![endif]-->
-        <a href="https://fundamorcalarca.org/login" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #1e4b57; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:47%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
-          <span class="v-line-height" style="display:block;padding:15px 20px;line-height:120%;"><span style="font-size: 16px; line-height: 21.6px;">Ir a la plataforma</span></span>
-        </a>
-      <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
-    </div>
-    
-          </td>
-        </tr>
-      </tbody>
-    </table>
     
       <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
       </div>
@@ -343,7 +329,6 @@ module.exports = function (newPassword) {
     </body>
     
     </html>
-    
     
     `;
 };
