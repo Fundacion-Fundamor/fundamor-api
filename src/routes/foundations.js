@@ -4,6 +4,7 @@ const foundationsController = require("../controllers/foundationsController");
 const { foundationValidationRules, adopterFormValidationRules, contactFormValidationRules, validate } = require("../middleware/validator");
 const verify = require("../middleware/auth/verify");
 
+
 // foundation list
 router.get("/", verify, foundationsController.list);
 
