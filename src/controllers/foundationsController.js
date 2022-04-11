@@ -89,13 +89,18 @@ exports.myFoundation = async (req, res) => {
 
 	try {
 		const searchResult = await foundation.findByPk(process.env.FUNDAMOR_ID);
-
+		const rescuedAnimals = await animal.count();
+		const adoptedAnimals = await animal.count({ where: { estado: "adoptado" } });
 		if (searchResult) {
 
 			res.status(200).json({
 				state: true,
 				message: "Resultados obtenidos",
-				data: searchResult
+				data: {
+					foundation: searchResult,
+					rescuedAnimals,
+					adoptedAnimals
+				}
 			});
 		} else {
 			res.status(200).json({
