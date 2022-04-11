@@ -97,7 +97,7 @@ exports.list = async (req, res) => {
 
 		});
 
-		if (searchResult.length !== 0) {
+		if (searchResult) {
 
 			res.status(200).json({
 				state: true,
