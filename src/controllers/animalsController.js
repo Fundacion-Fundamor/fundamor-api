@@ -3,7 +3,6 @@
 
 const animal = require("../models").animal;
 const fs = require("fs").promises;
-var Sequelize = require("sequelize");
 /**Permite obtener la información de un animal a traves del
  * id del mismo
  *
@@ -149,7 +148,7 @@ exports.list = async (req, res) => {
 			},
 			include: "animalImage",
 	
-			order: [["id_animal", "DESC"],	Sequelize.fn("MIN", Sequelize.col("id_imagen_animal"))]
+			order: [["id_animal", "DESC"]]
 			
 		});
 
